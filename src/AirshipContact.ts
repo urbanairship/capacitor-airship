@@ -5,7 +5,7 @@ import {
 } from './ScopedSubscriptionListEditor';
 import { TagGroupEditor, TagGroupOperation } from './TagGroupEditor';
 import { SubscriptionScope } from './types';
-import type { AirshipPluginWrapper } from './plugin';
+import { AirshipPluginWrapper } from './plugin';
 
 /**
  * Airship contact.
@@ -19,7 +19,7 @@ export class AirshipContact {
    * @returns A promise.
    */
   public identify(namedUser: string): Promise<void> {
-    return this.plugin.perform('contact#identify', namedUser)
+    return this.plugin.perform('contact#identify', namedUser);
   }
 
   /**
@@ -27,7 +27,7 @@ export class AirshipContact {
    * @returns A promise.
    */
   public reset(): Promise<void> {
-    return this.plugin.perform('contact#reset')
+    return this.plugin.perform('contact#reset');
   }
 
   /**
@@ -35,7 +35,7 @@ export class AirshipContact {
    * @returns A promise with the result.
    */
   public getNamedUserId(): Promise<string | null | undefined> {
-    return this.plugin.perform('contact#getNamedUserId')
+    return this.plugin.perform('contact#getNamedUserId');
   }
 
   /**
@@ -43,7 +43,7 @@ export class AirshipContact {
    * @returns A promise with the result.
    */
   public getSubscriptionLists(): Promise<Record<string, SubscriptionScope[]>> {
-    return this.plugin.perform('contact#getSubscriptionLists')
+    return this.plugin.perform('contact#getSubscriptionLists');
   }
 
   /**
@@ -52,7 +52,7 @@ export class AirshipContact {
    */
   public editTagGroups(): TagGroupEditor {
     return new TagGroupEditor((operations: TagGroupOperation[]) => {
-      return this.plugin.perform('contact#editTagGroups', operations)
+      return this.plugin.perform('contact#editTagGroups', operations);
     });
   }
 
@@ -62,7 +62,7 @@ export class AirshipContact {
    */
   public editAttributes(): AttributeEditor {
     return new AttributeEditor((operations: AttributeOperation[]) => {
-      return this.plugin.perform('contact#editAttributes', operations)
+      return this.plugin.perform('contact#editAttributes', operations);
     });
   }
 
@@ -73,8 +73,8 @@ export class AirshipContact {
   public editSubscriptionLists(): ScopedSubscriptionListEditor {
     return new ScopedSubscriptionListEditor(
       (operations: ScopedSubscriptionListOperation[]) => {
-        return this.plugin.perform('contact#editSubscriptionLists', operations)
-      }
+        return this.plugin.perform('contact#editSubscriptionLists', operations);
+      },
     );
   }
 }

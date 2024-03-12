@@ -10,9 +10,50 @@ import AirshipFrameworkProxy
 @objc(AirshipPlugin)
 public class AirshipPlugin: CAPPlugin {
 
+    private static let eventNames: [AirshipProxyEventType: String] = [
+         .authorizedNotificationSettingsChanged: "ios_authorized_notification_settings_changed",
+         .pushTokenReceived: "push_token_received",
+         .deepLinkReceived: "deep_link_received",
+         .channelCreated: "channel_created",
+         .messageCenterUpdated: "message_center_updated",
+         .displayMessageCenter: "display_message_center",
+         .displayPreferenceCenter: "display_preference_center",
+         .notificationResponseReceived: "notification_response_received",
+         .pushReceived: "push_received",
+         .notificationStatusChanged: "notification_status_changed"
+     ]
+
     @MainActor
     public override func load() {
         AirshipCapacitorAutopilot.shared.onPluginInitialized()
+
+        Task {
+            for await _ in await AirshipProxyEventEmitter.shared.pendingEventAdded {
+                await self.notifyPendingEvents()
+            }
+        }
+    }
+
+    @MainActor
+    private func notifyPendingEvents() async {
+        for eventType in AirshipProxyEventType.allCases {
+            await AirshipProxyEventEmitter.shared.processPendingEvents(type: eventType) { event in
+                return sendEvent(event)
+            }
+        }
+    }
+
+    @MainActor
+    private func sendEvent(_ event: AirshipProxyEvent) -> Bool {
+        guard let eventName = Self.eventNames[event.type] else {
+            return false
+        }
+        guard self.hasListeners(eventName) else {
+            return false
+        }
+
+        self.notifyListeners(eventName, data: event.body)
+        return true
     }
 
     @objc
@@ -34,6 +75,14 @@ public class AirshipPlugin: CAPPlugin {
             } catch {
                 call.reject(error.localizedDescription)
             }
+        }
+    }
+
+    public override func addListener(_ call: CAPPluginCall) {
+        super.addListener(call)
+
+        Task {
+            await notifyPendingEvents()
         }
     }
 

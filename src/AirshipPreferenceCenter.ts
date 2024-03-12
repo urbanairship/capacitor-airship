@@ -1,6 +1,7 @@
-import type { AirshipPluginWrapper } from './plugin';
-import { PreferenceCenter } from './types';
-
+import { AirshipPluginWrapper } from './plugin';
+import { DisplayPreferenceCenterEvent, PreferenceCenter } from './types';
+import type { PluginListenerHandle } from '@capacitor/core';
+import { EventType } from './EventType';
 /**
  * Airship Preference Center.
  */
@@ -9,9 +10,9 @@ export class AirshipPreferenceCenter {
 
   /**
    * Requests to display a preference center.
-   * 
-   * Will either emit an event to display the 
-   * Preference Center if auto launch is disabled, 
+   *
+   * Will either emit an event to display the
+   * Preference Center if auto launch is disabled,
    * or display the OOTB UI.
    * @param preferenceCenterId The preference center Id.
    * @returns A promise.
@@ -26,10 +27,13 @@ export class AirshipPreferenceCenter {
    * @returns A promise with the result.
    */
   public getConfig(preferenceCenterId: string): Promise<PreferenceCenter> {
-    return this.plugin.perform('preferenceCenter#getConfig', preferenceCenterId);
+    return this.plugin.perform(
+      'preferenceCenter#getConfig',
+      preferenceCenterId,
+    );
   }
 
-   /**
+  /**
    * Enables or disables showing the OOTB UI when requested to display by either
    * `display` or by a notification with some other action.
    * @param preferenceCenterId The preference center Id.
@@ -38,8 +42,20 @@ export class AirshipPreferenceCenter {
    */
   public setAutoLaunchDefaultPreferenceCenter(
     preferenceCenterId: string,
-    autoLaunch: boolean
+    autoLaunch: boolean,
   ): Promise<void> {
-    return this.plugin.perform('preferenceCenter#getConfig', [preferenceCenterId, autoLaunch]);
+    return this.plugin.perform('preferenceCenter#getConfig', [
+      preferenceCenterId,
+      autoLaunch,
+    ]);
+  }
+
+  /**
+   * Adds a display message center listener.
+   */
+  public onDisplay(
+    listener: (event: DisplayPreferenceCenterEvent) => void,
+  ): Promise<PluginListenerHandle> {
+    return this.plugin.addListener(EventType.DisplayPreferenceCenter, listener);
   }
 }

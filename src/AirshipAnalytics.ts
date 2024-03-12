@@ -1,5 +1,5 @@
-import { CustomEvent } from "./types";
-import type { AirshipPluginWrapper } from './plugin';
+import { CustomEvent } from './types';
+import { AirshipPluginWrapper } from './plugin';
 
 /**
  * Airship analytics.
@@ -9,13 +9,16 @@ export class AirshipAnalytics {
 
   /**
    * Associates an identifier.
-   * 
+   *
    * @param key The key.
    * @param identifier The identifier. `null` to remove.
    * @returns A promise.
    */
   public associateIdentifier(key: string, identifier?: string): Promise<void> {
-    return this.plugin.perform('analytics#associateIdentifier', [key, identifier])
+    return this.plugin.perform('analytics#associateIdentifier', [
+      key,
+      identifier,
+    ]);
   }
 
   /**
@@ -24,7 +27,7 @@ export class AirshipAnalytics {
    * @returns A promise.
    */
   public trackScreen(screen?: string): Promise<void> {
-    return this.plugin.perform('analytics#trackScreen', screen)
+    return this.plugin.perform('analytics#trackScreen', screen);
   }
 
   /**
@@ -34,6 +37,6 @@ export class AirshipAnalytics {
    * custom event is rejected.
    */
   public addCustomEvent(event: CustomEvent): Promise<void> {
-    return this.plugin.perform('analytics#addCustomEvent', event)
+    return this.plugin.perform('analytics#addCustomEvent', event);
   }
 }

@@ -1,5 +1,5 @@
 import { JsonValue } from './types';
-import type { AirshipPluginWrapper } from './plugin';
+import { AirshipPluginWrapper } from './plugin';
 
 /**
  * Airship actions.
@@ -19,6 +19,6 @@ export class AirshipActions {
     actionName: string,
     actionValue?: JsonValue,
   ): Promise<JsonValue | null | undefined> {
-    return this.plugin.perform('actions#run', [actionName, actionValue])
+    return this.plugin.perform('actions#run', [actionName, actionValue]);
   }
 }

@@ -93,7 +93,7 @@ window.customElements.define(
 
       self.shadowRoot.querySelector('#call-plugin').addEventListener('click', async function (e) {
         try {
-          const result = await Airship.echo('boom!');
+          const result = await Airship.perform('channel#getTags');
 
           const resultArea = self.shadowRoot.querySelector('#plugin-result');
           if (!resultArea) {

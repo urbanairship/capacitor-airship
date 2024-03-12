@@ -4,8 +4,11 @@ import {
   SubscriptionListOperation,
 } from './SubscriptionListEditor';
 import { TagGroupEditor, TagGroupOperation } from './TagGroupEditor';
-import type { AirshipPluginWrapper } from './plugin';
+import { type AirshipPluginWrapper } from './plugin';
 import { TagEditor, TagOperation } from './TagEditor';
+import { ChannelCreatedEvent } from './types';
+import type { PluginListenerHandle } from '@capacitor/core';
+import { EventType } from './EventType';
 
 
 /**
@@ -88,5 +91,12 @@ export class AirshipChannel {
    */
   public enableChannelCreation(): Promise<void> {
     return this.plugin.perform('channel#enableChannelCreation');
+  }
+
+  /**
+   * Adds a channel created listener
+   */
+  public onChannelCreated(listener: (event: ChannelCreatedEvent) => void): Promise<PluginListenerHandle> {
+    return this.plugin.addListener(EventType.ChannelCreated, listener)
   }
 }

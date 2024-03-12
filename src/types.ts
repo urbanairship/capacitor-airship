@@ -171,32 +171,6 @@ export interface DisplayPreferenceCenterEvent {
   preferenceCenterId: string;
 }
 
-export enum EventType {
-  ChannelCreated = 'com.airship.channel_created',
-  NotificationResponse = 'com.airship.notification_response',
-  PushReceived = 'com.airship.push_received',
-  DeepLink = 'com.airship.deep_link',
-  MessageCenterUpdated = 'com.airship.message_center_updated',
-  PushNotificationStatusChangedStatus = 'com.airship.notification_status_changed',
-  DisplayMessageCenter = 'com.airship.display_message_center',
-  DisplayPreferenceCenter = 'com.airship.display_preference_center',
-  PushTokenReceived = 'com.airship.push_token_received',
-  IOSAuthorizedNotificationSettingsChanged = 'com.airship.authorized_notification_settings_changed',
-}
-
-export interface EventTypeMap {
-  [EventType.ChannelCreated]: ChannelCreatedEvent;
-  [EventType.NotificationResponse]: NotificationResponseEvent;
-  [EventType.PushReceived]: PushReceivedEvent;
-  [EventType.DeepLink]: DeepLinkEvent;
-  [EventType.MessageCenterUpdated]: MessageCenterUpdatedEvent;
-  [EventType.PushNotificationStatusChangedStatus]: PushNotificationStatusChangedEvent;
-  [EventType.IOSAuthorizedNotificationSettingsChanged]: iOS.AuthorizedNotificationSettingsChangedEvent;
-  [EventType.DisplayMessageCenter]: DisplayMessageCenterEvent;
-  [EventType.DisplayPreferenceCenter]: DisplayPreferenceCenterEvent;
-  [EventType.PushTokenReceived]: PushTokenReceivedEvent;
-}
-
 /**
  * Custom event
  */
