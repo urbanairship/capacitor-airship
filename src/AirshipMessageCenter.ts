@@ -70,6 +70,17 @@ export class AirshipMessageCenter {
     return this.plugin.perform('messageCenter#display', messageId);
   }
 
+  /** 
+   * Overlays the message view. Should be used to display the actual
+   * message body in a custom Message Center.
+   * 
+   * @param messageId The message Id.
+   * @returns A promise.
+   */
+  public showMessageView(messageId: string): Promise<void> {
+    return this.plugin.perform('messageCenter#showMessageView', messageId);
+  }
+
   /**
    * Refreshes the messages.
    * @returns A promise. Will reject if the list fails to refresh or if
@@ -108,5 +119,5 @@ export class AirshipMessageCenter {
   ): Promise<PluginListenerHandle> {
     return this.plugin.addListener(EventType.MessageCenterUpdated, listener);
   }
-  
+
 }
