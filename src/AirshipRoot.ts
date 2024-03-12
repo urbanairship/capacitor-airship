@@ -9,9 +9,11 @@ import { AirshipPreferenceCenter } from './AirshipPreferenceCenter';
 import { AirshipPrivacyManager } from './AirshipPrivacyManager';
 import { AirshipPush } from './AirshipPush';
 import { AirshipConfig } from './types';
-import type { AirshipPluginWrapper } from './plugin';
+import { AirshipPluginWrapper } from './plugin';
 import { AirshipFeatureFlagManager } from './AirshipFeatureFlagManager';
-
+import { DeepLinkEvent } from './types';
+import type { PluginListenerHandle } from '@capacitor/core';
+import { EventType } from './EventType';
 
 /**
  * Airship
@@ -60,5 +62,12 @@ export class AirshipRoot {
    */
   public isFlying(): Promise<boolean> {
     return this.plugin.perform('isFlying');
+  }
+
+  /**
+   * Adds a deep link listener.
+   */
+  public onDeepLink(listener: (event: DeepLinkEvent) => void): Promise<PluginListenerHandle> {
+    return this.plugin.addListener(EventType.DeepLink, listener)
   }
 }

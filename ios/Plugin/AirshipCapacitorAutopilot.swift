@@ -17,12 +17,12 @@ public final class AirshipCapacitorAutopilot: NSObject {
     private var launchOptions: [UIApplication.LaunchOptionsKey : Any]?
 
     /*
-     * In Capacitor 5, the order of initailization is:
+     * In Capacitor 5, the order of initialization is:
      * - AppDelegate#applicationDidFinishLaunching
      * - onPluginInitialized
      * - onApplicationDidFinishLaunching
      *
-     * We are going to be resiliant to that order changing by tracking each state
+     * We are going to be resilient to that order changing by tracking each state
      * any only attempting takeOff automatically after both onPluginInitialized
      * and onApplicationDidFinishLaunching are called on Autopilot.
      */
@@ -65,17 +65,14 @@ extension AirshipCapacitorAutopilot: AirshipProxyDelegate {
     public func migrateData(store: AirshipFrameworkProxy.ProxyStore) {
     }
     
-    // Can we pull this from the plugin config easily?
     public func loadDefaultConfig() -> AirshipConfig {
-        let config = AirshipConfig.default()
-        
-//        settings?.apply(config: config)
-        return config
+        return AirshipConfig.default()
     }
     
     @MainActor
     public func onAirshipReady() {
         Airship.analytics.registerSDKExtension(
+            // todo, add capacitor
             AirshipSDKExtension.cordova,
             version: AirshipCapacitorVersion.version
         )

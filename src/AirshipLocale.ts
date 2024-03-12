@@ -1,4 +1,4 @@
-import type { AirshipPluginWrapper } from './plugin';
+import { AirshipPluginWrapper } from './plugin';
 
 /**
  * Manages locale used by Airship messaging.

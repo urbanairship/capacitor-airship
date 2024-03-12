@@ -1,5 +1,16 @@
-import type { AirshipPluginWrapper } from './plugin';
-import { Android, iOS, PushNotificationStatus, PushPayload } from './types';
+import { AirshipPluginWrapper } from './plugin';
+import {
+  Android,
+  iOS,
+  NotificationResponseEvent,
+  PushNotificationStatus,
+  PushNotificationStatusChangedEvent,
+  PushPayload,
+  PushReceivedEvent,
+  PushTokenReceivedEvent,
+} from './types';
+import type { PluginListenerHandle } from '@capacitor/core';
+import { EventType } from './EventType';
 
 /**
  * Airship Push.
@@ -98,6 +109,42 @@ export class AirshipPush {
   public clearNotification(identifier: string): Promise<void> {
     return this.plugin.perform('push#clearNotification', identifier);
   }
+
+  /**
+   * Adds a notification response event listener.
+   */
+  public onNotificationResponse(
+    listener: (event: NotificationResponseEvent) => void,
+  ): Promise<PluginListenerHandle> {
+    return this.plugin.addListener(EventType.NotificationResponse, listener);
+  }
+
+  /**
+   * Adds a push received event listener.
+   */
+  public onPushReceived(
+    listener: (event: PushReceivedEvent) => void,
+  ): Promise<PluginListenerHandle> {
+    return this.plugin.addListener(EventType.PushReceived, listener);
+  }
+
+  /**
+   * Adds a notification status changed event listener.
+   */
+  public onNotificationStatusChanged(
+    listener: (event: PushNotificationStatusChangedEvent) => void,
+  ): Promise<PluginListenerHandle> {
+    return this.plugin.addListener(EventType.PushNotificationStatusChangedStatus, listener);
+  }
+
+  /**
+   * Adds a notification status changed event listener.
+   */
+  public onPushTokenReceived(
+    listener: (event: PushTokenReceivedEvent) => void,
+  ): Promise<PluginListenerHandle> {
+    return this.plugin.addListener(EventType.PushTokenReceived, listener);
+  }
 }
 
 /**
@@ -195,16 +242,20 @@ export class AirshipPushIOS {
 
   /**
    * Gets the quiet time settings.
-   * @param success Success callback.
-   * @param error Error callback.
-   */
-  /**
-   * Gets the quiet time settings.
    *
    * @returns A promise with the result.
    */
   public getQuietTime(): Promise<iOS.QuietTime | null | undefined> {
     return this.plugin.perform('push#ios#getQuietTime');
+  }
+
+  /**
+   * Adds a authorized settings changed event listener.
+   */
+  public onAuthorizedSettingsChanged(
+    listener: (event: iOS.AuthorizedNotificationSettingsChangedEvent) => void,
+  ): Promise<PluginListenerHandle> {
+    return this.plugin.addListener(EventType.IOSAuthorizedNotificationSettingsChanged, listener);
   }
 }
 

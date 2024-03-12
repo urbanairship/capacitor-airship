@@ -1,4 +1,4 @@
-import type { AirshipPluginWrapper } from './plugin';
+import { AirshipPluginWrapper } from './plugin';
 
 /**
  * Airship InApp Experiences.
@@ -12,7 +12,7 @@ export class AirshipInApp {
    * @returns A promise.
    */
   public setPaused(paused: boolean): Promise<void> {
-    return this.plugin.perform('inApp#setPaused', paused)
+    return this.plugin.perform('inApp#setPaused', paused);
   }
 
   /**
@@ -20,7 +20,7 @@ export class AirshipInApp {
    * @returns A promise with the result.
    */
   public isPaused(): Promise<boolean> {
-    return this.plugin.perform('inApp#isPaused')
+    return this.plugin.perform('inApp#isPaused');
   }
 
   /**
@@ -29,7 +29,7 @@ export class AirshipInApp {
    * @returns A promise.
    */
   public setDisplayInterval(milliseconds: number): Promise<void> {
-    return this.plugin.perform('inApp#setDisplayInterval', milliseconds)
+    return this.plugin.perform('inApp#setDisplayInterval', milliseconds);
   }
 
   /**
@@ -37,6 +37,6 @@ export class AirshipInApp {
    * @returns A promise with the result.
    */
   public getDisplayInterval(): Promise<number> {
-    return this.plugin.perform('inApp#getDisplayInterval')
+    return this.plugin.perform('inApp#getDisplayInterval');
   }
 }
