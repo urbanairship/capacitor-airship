@@ -28,7 +28,7 @@ import kotlinx.coroutines.plus
 import org.json.JSONArray
 import org.json.JSONObject
 
-@CapacitorPlugin(name = "Airship")
+@CapacitorPlugin(name = "AirshipPlugin")
 class AirshipPlugin : Plugin() {
     private val scope: CoroutineScope = CoroutineScope(Dispatchers.Main) + SupervisorJob()
 
@@ -59,7 +59,9 @@ class AirshipPlugin : Plugin() {
         UALog.i { "Airship capacitor plugin loaded." }
     }
 
-    override fun addListener(call: PluginCall?) {
+    @SuppressWarnings("unused")
+    @PluginMethod(returnType = PluginMethod.RETURN_NONE)
+    override fun addListener(call: PluginCall) {
         super.addListener(call)
         notifyPendingEvents()
     }
@@ -79,6 +81,7 @@ class AirshipPlugin : Plugin() {
     }
 
     @PluginMethod
+    @SuppressWarnings("unused")
     fun perform(call: PluginCall) {
         val data = JsonValue.wrap(call.data).optMap()
         val method = data.opt("method").optString()
@@ -117,7 +120,13 @@ class AirshipPlugin : Plugin() {
             "push#enableUserNotifications" -> call.resolvePending(method) { proxy.push.enableUserPushNotifications() }
             "push#isUserNotificationsEnabled" -> call.resolveResult(method) { proxy.push.isUserNotificationsEnabled() }
             "push#getNotificationStatus" -> call.resolveResult(method) { proxy.push.getNotificationStatus() }
-            "push#getActiveNotifications" -> call.resolveResult(method) { proxy.push.getActiveNotifications() }
+            "push#getActiveNotifications" -> call.resolveResult(method) {
+                if (Build.VERSION.SDK_INT >= 23) {
+                    proxy.push.getActiveNotifications()
+                } else {
+                    emptyList()
+                }
+            }
             "push#clearNotification" -> call.resolveResult(method) { proxy.push.clearNotification(arg.requireString()) }
             "push#clearNotifications" -> call.resolveResult(method) { proxy.push.clearNotifications() }
             "push#getPushToken" -> call.resolveResult(method) { proxy.push.getRegistrationToken() }
