@@ -1,2 +1,33 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+        <meta-data
+            android:name="com.urbanairship.autopilot"
+            android:value="com.airship.capacitor.CapacitorAutopilot"/>
+
+        <meta-data
+            android:name="com.urbanairship.webview.ENABLE_LOCAL_STORAGE"
+            android:value="true" />
+
+        <activity
+            android:name="com.urbanairship.android.framework.proxy.CustomMessageCenterActivity"
+            android:label="@string/ua_message_center_title"
+            android:launchMode="singleTask"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.urbanairship.VIEW_RICH_PUSH_INBOX" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.urbanairship.android.framework.proxy.CustomMessageActivity"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.urbanairship.VIEW_RICH_PUSH_MESSAGE" />
+                <data android:scheme="message" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
 </manifest>
