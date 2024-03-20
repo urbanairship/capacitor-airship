@@ -1,28 +1,33 @@
-ext {
-    junitVersion = project.hasProperty('junitVersion') ? rootProject.ext.junitVersion : '4.13.2'
-    androidxAppCompatVersion = project.hasProperty('androidxAppCompatVersion') ? rootProject.ext.androidxAppCompatVersion : '1.6.1'
-    androidxJunitVersion = project.hasProperty('androidxJunitVersion') ? rootProject.ext.androidxJunitVersion : '1.1.5'
-    androidxEspressoCoreVersion = project.hasProperty('androidxEspressoCoreVersion') ? rootProject.ext.androidxEspressoCoreVersion : '3.5.1'
-}
-
 buildscript {
+    def kotlinVersion = project.hasProperty('kotlinVersion') ? rootProject.ext.kotlinVersion : '1.8.20'
+
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.0.0'
+        classpath 'com.android.tools.build:gradle:8.0.2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     }
 }
 
+def isHmsEnabled() {
+    return (rootProject.hasProperty("airshipHmsEnabled") && rootProject.getProperty("airshipHmsEnabled") == "true") || (rootProject.ext.has("airshipHmsEnabled") && rootProject.ext.get("airshipHmsEnabled") == "true")
+}
+
+def getExtOrDefault(name) {
+    return rootProject.ext.has(name) ? rootProject.ext.get(name) : project.properties["Airship_" + name]
+}
+
 apply plugin: 'com.android.library'
+apply plugin: 'org.jetbrains.kotlin.android'
 
 android {
     namespace "com.airship.capacitor"
-    compileSdkVersion project.hasProperty('compileSdkVersion') ? rootProject.ext.compileSdkVersion : 33
+    compileSdk 34
     defaultConfig {
-        minSdkVersion project.hasProperty('minSdkVersion') ? rootProject.ext.minSdkVersion : 22
-        targetSdkVersion project.hasProperty('targetSdkVersion') ? rootProject.ext.targetSdkVersion : 33
+        minSdkVersion 23
+        targetSdkVersion 34
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -40,6 +45,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
 }
 
 repositories {
@@ -47,12 +55,18 @@ repositories {
     mavenCentral()
 }
 
-
 dependencies {
+    def proxyVersion = '5.4.0'
+    def airshipVersion = '17.7.3'
+    def kotlinVersion = project.hasProperty('kotlinVersion') ? rootProject.ext.kotlinVersion : '1.8.20'
+
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':capacitor-android')
-    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
-    testImplementation "junit:junit:$junitVersion"
-    androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    api "com.urbanairship.android:airship-framework-proxy:$proxyVersion"
+
+    if (isHmsEnabled()) {
+        implementation "com.urbanairship.android:urbanairship-hms:$airshipVersion"
+    }
 }

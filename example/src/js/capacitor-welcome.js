@@ -93,14 +93,47 @@ window.customElements.define(
 
       self.shadowRoot.querySelector('#call-plugin').addEventListener('click', async function (e) {
         try {
-          const result = await Airship.perform('channel#getTags');
+          await Airship.onDeepLink(event => {
+            console.log("onDeepLink", JSON.stringify(event))
+          })
 
-          const resultArea = self.shadowRoot.querySelector('#plugin-result');
-          if (!resultArea) {
-            return;
-          }
+          await Airship.push.onNotificationResponse(event => {
+            console.log("push.onNotificationResponse", JSON.stringify(event))
+          })
 
-          resultArea.innerText = JSON.stringify(result)
+          await Airship.push.onNotificationStatusChanged(event => {
+            console.log("push.onNotificationStatusChanged", JSON.stringify(event))
+          })
+
+          await Airship.push.onPushReceived(event => {
+            console.log("push.onPushReceived", JSON.stringify(event))
+          })
+
+          await Airship.push.onPushTokenReceived(event => {
+            console.log("push.onPushTokenReceived", JSON.stringify(event))
+          })
+
+          await Airship.channel.onChannelCreated(event => {
+            console.log("channel.onChannelCreated", JSON.stringify(event))
+          })
+
+          await Airship.messageCenter.onUpdated(event => {
+            console.log("messageCenter.onUpdated", JSON.stringify(event))
+          })
+
+          await Airship.messageCenter.onDisplay(event => {
+            console.log("messageCenter.onDisplay", JSON.stringify(event))
+          })
+
+          await Airship.preferenceCenter.onDisplay(event => {
+            console.log("preferenceCenter.onDisplay", JSON.stringify(event))
+          })
+
+          await Airship.push.iOS.onAuthorizedSettingsChanged(event => {
+            console.log("push.onAuthorizedSettingsChanged", JSON.stringify(event))
+          })
+
+          window.Airship = Airship
         } catch (e) {
           console.warn('User cancelled', e);
         }

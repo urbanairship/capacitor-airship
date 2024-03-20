@@ -4,7 +4,7 @@ import {
   SubscriptionListOperation,
 } from './SubscriptionListEditor';
 import { TagGroupEditor, TagGroupOperation } from './TagGroupEditor';
-import { type AirshipPluginWrapper } from './plugin';
+import { AirshipPluginWrapper } from './plugin';
 import { TagEditor, TagOperation } from './TagEditor';
 import { ChannelCreatedEvent } from './types';
 import type { PluginListenerHandle } from '@capacitor/core';
