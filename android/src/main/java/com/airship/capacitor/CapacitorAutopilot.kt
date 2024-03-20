@@ -14,8 +14,6 @@ class CapacitorAutopilot : BaseAutopilot() {
     override fun onAirshipReady(airship: UAirship) {
         super.onAirshipReady(airship)
 
-        val context = UAirship.getApplicationContext()
-
         Log.i("CapacitorAutopilot", "onAirshipReady")
 
         // TODO capacitor

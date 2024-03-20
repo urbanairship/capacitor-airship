@@ -7,8 +7,12 @@ import com.getcapacitor.Plugin
 import com.getcapacitor.PluginCall
 import com.getcapacitor.PluginMethod
 import com.getcapacitor.annotation.CapacitorPlugin
+import com.urbanairship.Autopilot
 import com.urbanairship.PendingResult
+import com.urbanairship.UALog
 import com.urbanairship.actions.ActionResult
+import com.urbanairship.android.framework.proxy.EventType
+import com.urbanairship.android.framework.proxy.events.EventEmitter
 import com.urbanairship.android.framework.proxy.proxies.AirshipProxy
 import com.urbanairship.android.framework.proxy.proxies.FeatureFlagProxy
 import com.urbanairship.json.JsonList
@@ -28,6 +32,51 @@ import org.json.JSONObject
 class AirshipPlugin : Plugin() {
     private val scope: CoroutineScope = CoroutineScope(Dispatchers.Main) + SupervisorJob()
 
+    companion object {
+        private val EVENT_NAME_MAP = mapOf(
+            EventType.BACKGROUND_NOTIFICATION_RESPONSE_RECEIVED to "notification_response",
+            EventType.FOREGROUND_NOTIFICATION_RESPONSE_RECEIVED to "notification_response",
+            EventType.CHANNEL_CREATED to "channel_created",
+            EventType.DEEP_LINK_RECEIVED to "deep_link_received",
+            EventType.DISPLAY_MESSAGE_CENTER to "display_message_center",
+            EventType.DISPLAY_PREFERENCE_CENTER to "display_preference_center",
+            EventType.MESSAGE_CENTER_UPDATED to "message_center_updated",
+            EventType.PUSH_TOKEN_RECEIVED to "push_token_received",
+            EventType.FOREGROUND_PUSH_RECEIVED to "push_received",
+            EventType.BACKGROUND_PUSH_RECEIVED to "background_push_received",
+            EventType.NOTIFICATION_STATUS_CHANGED to "notification_status_changed"
+        )
+    }
+    override fun load() {
+        super.load()
+        Autopilot.automaticTakeOff(context.applicationContext)
+
+        scope.launch {
+            EventEmitter.shared().pendingEventListener.collect {
+                notifyPendingEvents()
+            }
+        }
+        UALog.i { "Airship capacitor plugin loaded." }
+    }
+
+    override fun addListener(call: PluginCall?) {
+        super.addListener(call)
+        notifyPendingEvents()
+    }
+
+    private fun notifyPendingEvents() {
+        EventType.values().forEach { eventType ->
+            EventEmitter.shared().processPending(listOf(eventType)) { event ->
+                val name = EVENT_NAME_MAP[event.type]
+                if (hasListeners(name)) {
+                    notifyListeners(name, event.body.toJSObject())
+                    true
+                } else {
+                    false
+                }
+            }
+        }
+    }
 
     @PluginMethod
     fun perform(call: PluginCall) {
@@ -215,8 +264,7 @@ internal fun <T> PluginCall.resolveDeferred(method: String, function: ((T?, Exce
                             this.resolve(JSObject())
                         }
                         else -> {
-                            val map = jsonMapOf("value" to result).toJSONObject()
-                            this.resolve(JSObject.fromJSONObject(map))
+                            this.resolve(jsonMapOf("value" to result).toJSObject())
                         }
                     }
                 } catch (e: Exception) {
@@ -245,25 +293,25 @@ internal fun JsonValue.requireBoolean(): Boolean {
 internal fun JsonValue.requireStringList(): List<String> {
     return this.requireList().list.map { it.requireString() }
 }
-
-internal fun JsonValue.requireInt(): Int {
-    require(this.isInteger)
-    return this.getInt(0)
-}
-
 internal fun JsonList.toJSONArray(): JSONArray {
     val array = JSONArray()
     this.forEach {
-        array.put(it.toCapacitorJson())
+        array.put(it.unwrap())
     }
     return array
 }
 
-internal fun JsonMap.toJSONObject(): JSONObject {
-    return JSONObject(map.mapValues { it.value.toCapacitorJson() })
+
+internal fun JsonMap.toJSObject(): JSObject {
+    return JSObject.fromJSONObject(this.toJSONObject())
 }
 
-internal fun JsonSerializable.toCapacitorJson(): Any? {
+internal fun JsonMap.toJSONObject(): JSONObject {
+    return JSONObject(map.mapValues { it.value.unwrap() })
+}
+
+
+internal fun JsonSerializable.unwrap(): Any? {
     val json = this.toJsonValue()
     return when {
         json.isNull -> null
