@@ -1,37 +1,12 @@
-# @ua/capacitor-airship
+# Capacitor Airship Plugin
 
-Airship capacitor plugin
+A Capacitor plugin for Airship's iOS and Android SDK.
 
-## Install
+### Resources
 
-```bash
-npm install @ua/capacitor-airship
-npx cap sync
-```
+* [Getting started guide](https://docs.airship.com/platform/mobile/setup/sdk/capacitor/)
+* [API docs](https://docs.airship.com/reference/libraries/capacitor-airship/latest/)
 
-## API
+### Issues
 
-<docgen-index>
-
-* [`perform(...)`](#perform)
-
-</docgen-index>
-
-<docgen-api>
-<!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
-
-### perform(...)
-
-```typescript
-perform(options: { method: string; value?: any; }) => Promise<{ value?: any; }>
-```
-
-| Param         | Type                                          |
-| ------------- | --------------------------------------------- |
-| **`options`** | <code>{ method: string; value?: any; }</code> |
-
-**Returns:** <code>Promise&lt;{ value?: any; }&gt;</code>
-
---------------------
-
-</docgen-api>
+Please visit https://support.airship.com/ for any issues integrating or using this plugin.
