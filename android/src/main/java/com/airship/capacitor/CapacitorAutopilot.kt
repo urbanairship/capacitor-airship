@@ -11,6 +11,7 @@ import com.urbanairship.analytics.Analytics
 import com.urbanairship.android.framework.proxy.BaseAutopilot
 import com.urbanairship.android.framework.proxy.ProxyConfig
 import com.urbanairship.android.framework.proxy.ProxyStore
+import com.urbanairship.android.framework.proxy.applyProxyConfig
 import com.urbanairship.json.JsonValue
 
 class CapacitorAutopilot : BaseAutopilot() {
@@ -27,7 +28,9 @@ class CapacitorAutopilot : BaseAutopilot() {
     override fun createConfigBuilder(context: Context): AirshipConfigOptions.Builder {
         val pluginConfig = CapConfig.loadDefault(context).getPluginConfiguration("Airship")
         val proxyConfig = ProxyConfig(JsonValue.wrapOpt(pluginConfig.getObject("config")).optMap())
-        return AirshipConfigOptions.newBuilder().applyDefaultProperties(context).applyProxyConfig(context, proxyConfig)
+        val builder =  AirshipConfigOptions.newBuilder().applyDefaultProperties(context)
+        builder.applyProxyConfig(context, proxyConfig)
+        return builder
     }
 
     override fun onMigrateData(context: Context, proxyStore: ProxyStore) {
