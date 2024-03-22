@@ -8,6 +8,7 @@ window.customElements.define(
       super();
 
       SplashScreen.hide();
+      window.Airship = Airship;
 
       const root = this.attachShadow({ mode: 'open' });
 
@@ -79,9 +80,9 @@ window.customElements.define(
           This demo shows how to call Capacitor plugins. Say cheese!
         </p>
         <p>
-          <button class="button" id="call-plugin">Call plugin</button>
+          <button class="button" id="enable-push">Toggle push</button>
         </p>
-        <p id="plugin-result">
+        <p id="status-event">
         </p>
       </main>
     </div>
@@ -91,56 +92,56 @@ window.customElements.define(
     connectedCallback() {
       const self = this;
 
-      self.shadowRoot.querySelector('#call-plugin').addEventListener('click', async function (e) {
-        try {
-          await Airship.onDeepLink(event => {
-            console.log("onDeepLink", JSON.stringify(event))
-          })
-
-          await Airship.push.onNotificationResponse(event => {
-            console.log("push.onNotificationResponse", JSON.stringify(event))
-          })
-
-          await Airship.push.onNotificationStatusChanged(event => {
-            console.log("push.onNotificationStatusChanged", JSON.stringify(event))
-          })
-
-          await Airship.push.onPushReceived(event => {
-            console.log("push.onPushReceived", JSON.stringify(event))
-          })
-
-          await Airship.push.onPushTokenReceived(event => {
-            console.log("push.onPushTokenReceived", JSON.stringify(event))
-          })
-
-          await Airship.channel.onChannelCreated(event => {
-            console.log("channel.onChannelCreated", JSON.stringify(event))
-          })
-
-          await Airship.messageCenter.onUpdated(event => {
-            console.log("messageCenter.onUpdated", JSON.stringify(event))
-          })
-
-          await Airship.messageCenter.onDisplay(event => {
-            console.log("messageCenter.onDisplay", JSON.stringify(event))
-          })
-
-          await Airship.preferenceCenter.onDisplay(event => {
-            console.log("preferenceCenter.onDisplay", JSON.stringify(event))
-          })
-
-          await Airship.push.iOS.onAuthorizedSettingsChanged(event => {
-            console.log("push.onAuthorizedSettingsChanged", JSON.stringify(event))
-          })
-
-          window.Airship = Airship
-        } catch (e) {
-          console.warn('User cancelled', e);
-        }
+      self.shadowRoot.querySelector('#enable-push').addEventListener('click', async function (e) {
+        const isEnabled = await Airship.push.isUserNotificationsEnabled()
+        await Airship.push.setUserNotificationsEnabled(!isEnabled)
       });
     }
   }
 );
+
+window.onload = async function() {
+  await Airship.onDeepLink(event => {
+    console.log("onDeepLink", JSON.stringify(event))
+  });
+
+  await Airship.push.onNotificationResponse(event => {
+    console.log("push.onNotificationResponse", JSON.stringify(event))
+  });
+
+  await Airship.push.onNotificationStatusChanged(event => {
+    console.log("push.onNotificationStatusChanged", JSON.stringify(event))
+  });
+
+  await Airship.push.onPushReceived(event => {
+    console.log("push.onPushReceived", JSON.stringify(event))
+  });
+
+  await Airship.push.onPushTokenReceived(event => {
+    console.log("push.onPushTokenReceived", JSON.stringify(event))
+  });
+
+  await Airship.channel.onChannelCreated(event => {
+    console.log("channel.onChannelCreated", JSON.stringify(event))
+  });
+
+  await Airship.messageCenter.onUpdated(event => {
+    console.log("messageCenter.onUpdated", JSON.stringify(event))
+  });
+
+  await Airship.messageCenter.onDisplay(event => {
+    console.log("messageCenter.onDisplay", JSON.stringify(event))
+  });
+
+  await Airship.preferenceCenter.onDisplay(event => {
+    console.log("preferenceCenter.onDisplay", JSON.stringify(event))
+  });
+
+  await Airship.push.iOS.onAuthorizedSettingsChanged(event => {
+    console.log("push.onAuthorizedSettingsChanged", JSON.stringify(event))
+  });
+};
+
 
 window.customElements.define(
   'capacitor-welcome-titlebar',

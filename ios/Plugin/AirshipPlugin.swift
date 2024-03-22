@@ -25,7 +25,9 @@ public class AirshipPlugin: CAPPlugin {
 
     @MainActor
     public override func load() {
-        AirshipCapacitorAutopilot.shared.onPluginInitialized()
+        AirshipCapacitorAutopilot.shared.onPluginInitialized(
+            pluginConfig: self.getConfig()
+        )
 
         Task {
             for await _ in await AirshipProxyEventEmitter.shared.pendingEventAdded {
