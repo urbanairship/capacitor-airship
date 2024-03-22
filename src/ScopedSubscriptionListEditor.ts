@@ -2,7 +2,7 @@
 
 'use strict';
 
-import { SubscriptionScope } from './types';
+import type { SubscriptionScope } from './types';
 
 /**
  * Enum of internal scoped subscription list update type.

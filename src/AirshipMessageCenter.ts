@@ -1,11 +1,12 @@
-import { AirshipPluginWrapper } from './plugin';
-import {
+import type { PluginListenerHandle } from '@capacitor/core';
+
+import { EventType } from './EventType';
+import type { AirshipPluginWrapper } from './AirshipPlugin';
+import type {
   InboxMessage,
   DisplayMessageCenterEvent,
   MessageCenterUpdatedEvent,
 } from './types';
-import type { PluginListenerHandle } from '@capacitor/core';
-import { EventType } from './EventType';
 
 /**
  * Airship Message Center
@@ -95,7 +96,7 @@ export class AirshipMessageCenter {
    * `display` or by a notification with a Message Center action.
    * @param autoLaunch true to show OOTB UI, false to emit events.
    */
-  public setAutoLaunchDefaultMessageCenter(autoLaunch: boolean) {
+  public setAutoLaunchDefaultMessageCenter(autoLaunch: boolean): Promise<void> {
     return this.plugin.perform(
       'messageCenter#setAutoLaunchDefaultMessageCenter',
       autoLaunch,

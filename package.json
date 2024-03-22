@@ -28,15 +28,15 @@
     "native"
   ],
   "scripts": {
-    "verify": "npm run verify:ios && npm run verify:android && npm run verify:web",
+    "verify": "npm run build && npm run verify:ios && npm run verify:android",
     "verify:ios": "cd ios && pod install && xcrun xcodebuild -workspace Plugin.xcworkspace -scheme Plugin -destination generic/platform=iOS && cd ..",
-    "verify:android": "cd android && ./gradlew clean build cd ..",
+    "verify:android": "cd android && ./gradlew clean build && cd ..",
     "lint": "npm run eslint && npm run prettier -- --check && npm run swiftlint -- lint",
     "fmt": "npm run eslint -- --fix && npm run prettier -- --write && npm run swiftlint -- --fix --format",
     "eslint": "eslint . --ext ts",
     "prettier": "prettier \"**/*.{css,html,ts,js,java}\"",
-    "docgen": "docgen --api AirshipPlugin --output-readme README.md --output-json dist/docs.json",
-    "build": "npm run clean && npm run docgen && tsc && rollup -c rollup.config.js",
+    "build:docs": "typedoc src/index.ts",
+    "build": "npm run clean && npm run build:docs && tsc && rollup -c rollup.config.js",
     "clean": "rimraf ./dist",
     "watch": "tsc --watch",
     "prepublishOnly": "npm run build"
@@ -44,7 +44,6 @@
   "devDependencies": {
     "@capacitor/android": "^5.0.0",
     "@capacitor/core": "^5.0.0",
-    "@capacitor/docgen": "^0.0.18",
     "@capacitor/ios": "^5.0.0",
     "@ionic/eslint-config": "^0.3.0",
     "@ionic/prettier-config": "^1.0.1",
@@ -54,7 +53,8 @@
     "prettier-plugin-java": "~1.0.2",
     "rimraf": "^3.0.2",
     "rollup": "^2.32.0",
-    "typescript": "~4.1.5"
+    "typescript": "~4.8.0",
+    "typedoc": "0.23.24"
   },
   "peerDependencies": {
     "@capacitor/core": "^5.0.0"

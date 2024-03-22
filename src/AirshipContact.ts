@@ -1,11 +1,14 @@
-import { AttributeEditor, AttributeOperation } from './AttributeEditor';
+import type { AttributeOperation } from './AttributeEditor';
+import { AttributeEditor } from './AttributeEditor';
+import type {
+  ScopedSubscriptionListOperation} from './ScopedSubscriptionListEditor';
 import {
-  ScopedSubscriptionListEditor,
-  ScopedSubscriptionListOperation,
+  ScopedSubscriptionListEditor
 } from './ScopedSubscriptionListEditor';
-import { TagGroupEditor, TagGroupOperation } from './TagGroupEditor';
-import { SubscriptionScope } from './types';
-import { AirshipPluginWrapper } from './plugin';
+import type { TagGroupOperation } from './TagGroupEditor';
+import { TagGroupEditor } from './TagGroupEditor';
+import type { AirshipPluginWrapper } from './AirshipPlugin';
+import type { SubscriptionScope } from './types';
 
 /**
  * Airship contact.

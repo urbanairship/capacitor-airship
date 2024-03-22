@@ -1,14 +1,21 @@
-import { AttributeEditor, AttributeOperation } from './AttributeEditor';
-import {
-  SubscriptionListEditor,
-  SubscriptionListOperation,
-} from './SubscriptionListEditor';
-import { TagGroupEditor, TagGroupOperation } from './TagGroupEditor';
-import { AirshipPluginWrapper } from './plugin';
-import { TagEditor, TagOperation } from './TagEditor';
-import { ChannelCreatedEvent } from './types';
 import type { PluginListenerHandle } from '@capacitor/core';
+
+import type { AttributeOperation } from './AttributeEditor';
+import { AttributeEditor } from './AttributeEditor';
 import { EventType } from './EventType';
+import type {
+  SubscriptionListOperation} from './SubscriptionListEditor';
+import {
+  SubscriptionListEditor
+} from './SubscriptionListEditor';
+import type { TagOperation } from './TagEditor';
+import { TagEditor } from './TagEditor';
+import type { TagGroupOperation } from './TagGroupEditor';
+import { TagGroupEditor } from './TagGroupEditor';
+import type { AirshipPluginWrapper } from './AirshipPlugin';
+import type { ChannelCreatedEvent } from './types';
+
+
 
 
 /**

@@ -1,19 +1,19 @@
+import type { PluginListenerHandle } from '@capacitor/core';
+
 import { AirshipActions } from './AirshipActions';
 import { AirshipAnalytics } from './AirshipAnalytics';
 import { AirshipChannel } from './AirshipChannel';
 import { AirshipContact } from './AirshipContact';
+import { AirshipFeatureFlagManager } from './AirshipFeatureFlagManager';
 import { AirshipInApp } from './AirshipInApp';
 import { AirshipLocale } from './AirshipLocale';
 import { AirshipMessageCenter } from './AirshipMessageCenter';
 import { AirshipPreferenceCenter } from './AirshipPreferenceCenter';
 import { AirshipPrivacyManager } from './AirshipPrivacyManager';
 import { AirshipPush } from './AirshipPush';
-import { AirshipConfig } from './types';
-import { AirshipPluginWrapper } from './plugin';
-import { AirshipFeatureFlagManager } from './AirshipFeatureFlagManager';
-import { DeepLinkEvent } from './types';
-import type { PluginListenerHandle } from '@capacitor/core';
 import { EventType } from './EventType';
+import type { AirshipPluginWrapper } from './AirshipPlugin';
+import type { AirshipConfig , DeepLinkEvent } from './types';
 
 /**
  * Airship

@@ -1,5 +1,5 @@
-import { AirshipPluginWrapper } from './plugin';
-import { FeatureFlag } from './types';
+import type { AirshipPluginWrapper } from './AirshipPlugin';
+import type { FeatureFlag } from './types';
 
 /**
  * Airship feature flag manager.

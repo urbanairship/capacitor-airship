@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "50ADFF87201F53D600D50D53"
-               BuildableName = "Plugin.framework"
+               BuildableName = "UaCapacitorAirship.framework"
                BlueprintName = "Plugin"
                ReferencedContainer = "container:Plugin.xcodeproj">
             </BuildableReference>
@@ -61,7 +61,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "50ADFF87201F53D600D50D53"
-            BuildableName = "Plugin.framework"
+            BuildableName = "UaCapacitorAirship.framework"
             BlueprintName = "Plugin"
             ReferencedContainer = "container:Plugin.xcodeproj">
          </BuildableReference>

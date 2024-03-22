@@ -1,5 +1,6 @@
 import type { PluginListenerHandle } from '@capacitor/core';
-import { EventType, EventTypeMap } from './EventType';
+
+import type { EventType, EventTypeMap } from './EventType';
 
 export interface AirshipPlugin {
   perform(options: { method: string; value?: any }): Promise<{ value?: any }>;
