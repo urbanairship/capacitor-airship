@@ -1,5 +1,5 @@
-import { JsonValue } from './types';
-import { AirshipPluginWrapper } from './plugin';
+import type { AirshipPluginWrapper } from './AirshipPlugin';
+import type { JsonValue } from './types';
 
 /**
  * Airship actions.

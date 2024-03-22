@@ -72,7 +72,7 @@ export class TagGroupEditor {
    * @param tags Tags to set.
    * @return The tag group editor instance.
    */
-  setTags(group: string, tags: Array<string>): TagGroupEditor {
+  setTags(group: string, tags: string[]): TagGroupEditor {
     const operation = { operationType: 'set', group: group, tags: tags };
     this.operations.push(operation);
     return this;

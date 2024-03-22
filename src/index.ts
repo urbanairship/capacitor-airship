@@ -1,8 +1,8 @@
 import { registerPlugin } from '@capacitor/core';
 
-import type { AirshipPlugin } from './plugin';
-import { AirshipPluginWrapper } from './plugin';
 import { AirshipRoot } from './AirshipRoot';
+import type { AirshipPlugin } from './AirshipPlugin';
+import { AirshipPluginWrapper } from './AirshipPlugin';
 
 export { AirshipRoot } from './AirshipRoot';
 export { AirshipActions } from './AirshipActions';

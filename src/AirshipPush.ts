@@ -1,5 +1,8 @@
-import { AirshipPluginWrapper } from './plugin';
-import {
+import type { PluginListenerHandle } from '@capacitor/core';
+
+import { EventType } from './EventType';
+import type { AirshipPluginWrapper } from './AirshipPlugin';
+import type {
   Android,
   iOS,
   NotificationResponseEvent,
@@ -9,8 +12,6 @@ import {
   PushReceivedEvent,
   PushTokenReceivedEvent,
 } from './types';
-import type { PluginListenerHandle } from '@capacitor/core';
-import { EventType } from './EventType';
 
 /**
  * Airship Push.

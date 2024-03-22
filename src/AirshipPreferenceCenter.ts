@@ -1,7 +1,8 @@
-import { AirshipPluginWrapper } from './plugin';
-import { DisplayPreferenceCenterEvent, PreferenceCenter } from './types';
 import type { PluginListenerHandle } from '@capacitor/core';
+
 import { EventType } from './EventType';
+import type { AirshipPluginWrapper } from './AirshipPlugin';
+import type { DisplayPreferenceCenterEvent, PreferenceCenter } from './types';
 /**
  * Airship Preference Center.
  */

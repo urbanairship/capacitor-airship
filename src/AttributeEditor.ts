@@ -54,8 +54,8 @@ export class AttributeEditor {
     name: string,
     value: string | number | boolean | Date
   ): AttributeEditor {
-    var attributeValue: string | number | Date;
-    var attributeType: 'string' | 'number' | 'date';
+    let attributeValue: string | number | Date;
+    let attributeType: 'string' | 'number' | 'date';
 
     if (typeof value === 'boolean') {
       // No boolean attribute type. Convert value to string.

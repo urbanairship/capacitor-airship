@@ -1,5 +1,5 @@
-import { CustomEvent } from './types';
-import { AirshipPluginWrapper } from './plugin';
+import type { AirshipPluginWrapper } from './AirshipPlugin';
+import type { CustomEvent } from './types';
 
 /**
  * Airship analytics.

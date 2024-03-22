@@ -374,6 +374,32 @@ export namespace iOS {
   }
 }
 
+
+export namespace Android {
+  /**
+   * Android notification config.
+   */
+  export interface NotificationConfig {
+    /**
+     * The icon resource name.
+     */
+    icon?: string;
+    /**
+     * The large icon resource name.
+     */
+    largeIcon?: string;
+    /**
+     * The default android notification channel ID.
+     */
+    defaultChannelId?: string;
+    /**
+     * The accent color. Must be a hex value #AARRGGBB.
+     */
+    accentColor?: string;
+  }
+}
+
+
 /**
  * Airship config environment
  */
@@ -518,30 +544,6 @@ export interface AirshipConfig {
      */
     notificationConfig?: Android.NotificationConfig;
   };
-}
-
-export namespace Android {
-  /**
-   * Android notification config.
-   */
-  export interface NotificationConfig {
-    /**
-     * The icon resource name.
-     */
-    icon?: string;
-    /**
-     * The large icon resource name.
-     */
-    largeIcon?: string;
-    /**
-     * The default android notification channel ID.
-     */
-    defaultChannelId?: string;
-    /**
-     * The accent color. Must be a hex value #AARRGGBB.
-     */
-    accentColor?: string;
-  }
 }
 
 /**

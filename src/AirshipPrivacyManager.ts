@@ -1,5 +1,5 @@
-import { AirshipPluginWrapper } from './plugin';
-import { Feature } from './types';
+import type { AirshipPluginWrapper } from './AirshipPlugin';
+import type { Feature } from './types';
 
 /**
  * Airship Privacy Manager.

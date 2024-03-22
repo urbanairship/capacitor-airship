@@ -5,6 +5,7 @@
 #if __has_include(<UACapacitorAirship/UACapacitorAirship-Swift.h>)
 #import <UACapacitorAirship/UACapacitorAirship-Swift.h>
 #else
+#import <Capacitor/
 #import "UACapacitorAirship-Swift.h"
 #endif
 
