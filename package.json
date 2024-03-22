@@ -1,6 +1,6 @@
 {
   "name": "@ua/capacitor-airship",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Airship capacitor plugin",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
