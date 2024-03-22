@@ -1,3 +1,4 @@
+
 import { registerPlugin } from '@capacitor/core';
 
 import { AirshipRoot } from './AirshipRoot';
@@ -24,7 +25,7 @@ export { AttributeEditor } from './AttributeEditor';
 
 export * from './types';
 
-const plugin = registerPlugin<AirshipPlugin>('AirshipPlugin', {});
+const plugin = registerPlugin<AirshipPlugin>('Airship', {});
 
 const sharedAirship = new AirshipRoot(new AirshipPluginWrapper(plugin));
 

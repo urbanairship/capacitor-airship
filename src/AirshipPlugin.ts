@@ -1,6 +1,9 @@
+/// <reference types="@capacitor/cli" />
+
 import type { PluginListenerHandle } from '@capacitor/core';
 
 import type { EventType, EventTypeMap } from './EventType';
+import { AirshipConfig } from './types';
 
 export interface AirshipPlugin {
   perform(options: { method: string; value?: any }): Promise<{ value?: any }>;
@@ -25,3 +28,18 @@ export class AirshipPluginWrapper {
     return this.plugin.addListener(eventType, listener);
   }
 }
+
+declare module '@capacitor/cli' {
+  export interface PluginsConfig {
+    /**
+     * Airship plugin options
+     */
+    Airship?: {
+      /**
+       * Default config options
+       */
+      config?: AirshipConfig
+    }
+  }
+}
+

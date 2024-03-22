@@ -28,7 +28,7 @@ import kotlinx.coroutines.plus
 import org.json.JSONArray
 import org.json.JSONObject
 
-@CapacitorPlugin(name = "AirshipPlugin")
+@CapacitorPlugin(name = "Airship")
 class AirshipPlugin : Plugin() {
     private val scope: CoroutineScope = CoroutineScope(Dispatchers.Main) + SupervisorJob()
 
