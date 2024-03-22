@@ -2,6 +2,7 @@
 
 import AirshipKit
 import AirshipFrameworkProxy
+import Capacitor
 
 @objc
 public final class AirshipCapacitorAutopilot: NSObject {
@@ -15,6 +16,8 @@ public final class AirshipCapacitorAutopilot: NSObject {
     private var applicationDidFinishLaunching: Bool = false
     @MainActor
     private var launchOptions: [UIApplication.LaunchOptionsKey : Any]?
+
+    fileprivate var pluginConfig: PluginConfig?
 
     /*
      * In Capacitor 5, the order of initialization is:
@@ -43,8 +46,9 @@ public final class AirshipCapacitorAutopilot: NSObject {
     }
 
     @MainActor
-    public func onPluginInitialized() {
+    public func onPluginInitialized(pluginConfig: PluginConfig?) {
         self.pluginInitialized = true
+        self.pluginConfig = pluginConfig
         if self.pluginInitialized, self.applicationDidFinishLaunching {
             try? AirshipProxy.shared.attemptTakeOff(
                 launchOptions: self.launchOptions
@@ -62,11 +66,19 @@ public final class AirshipCapacitorAutopilot: NSObject {
 }
 
 extension AirshipCapacitorAutopilot: AirshipProxyDelegate {
-    public func migrateData(store: AirshipFrameworkProxy.ProxyStore) {
-    }
+    public func migrateData(store: AirshipFrameworkProxy.ProxyStore) {}
     
     public func loadDefaultConfig() -> AirshipConfig {
-        return AirshipConfig.default()
+        let airshipConfig = AirshipConfig.default()
+        if let config = self.pluginConfig?.getObject("config") {
+            do {
+                let proxyConfig: ProxyConfig = try AirshipJSON.wrap(config).decode()
+                airshipConfig.applyProxyConfig(proxyConfig: proxyConfig)
+            } catch {
+                AirshipLogger.error("Failed to parse config: \(error)")
+            }
+        }
+        return airshipConfig
     }
     
     @MainActor
