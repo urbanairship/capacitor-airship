@@ -216,7 +216,7 @@ public class AirshipPlugin: CAPPlugin {
             return try AirshipProxy.shared.push.getBadgeNumber()
 
         case "push#ios#setBadgeNumber":
-            try AirshipProxy.shared.push.setBadgeNumber(
+            try await AirshipProxy.shared.push.setBadgeNumber(
                 try call.requireIntArg()
             )
             return nil
@@ -231,7 +231,7 @@ public class AirshipPlugin: CAPPlugin {
             return try AirshipProxy.shared.push.isAutobadgeEnabled()
 
         case "push#ios#resetBadgeNumber":
-            try AirshipProxy.shared.push.setBadgeNumber(0)
+            try await AirshipProxy.shared.push.setBadgeNumber(0)
             return nil
 
         case "push#ios#setNotificationOptions":
@@ -262,8 +262,14 @@ public class AirshipPlugin: CAPPlugin {
             return try AirshipProxy.shared.push.isQuietTimeEnabled()
 
         case "push#ios#setQuietTime":
+            let proxySettings: CodableQuietTimeSettings = try call.requireCodableArg()
             try AirshipProxy.shared.push.setQuietTime(
-                try call.requireCodableArg()
+                QuietTimeSettings(
+                    startHour: proxySettings.startHour,
+                    startMinute: proxySettings.startMinute,
+                    endHour: proxySettings.endHour,
+                    endMinute: proxySettings.endMinute
+                )
             )
             return nil
 
@@ -554,4 +560,11 @@ extension CAPPluginCall {
 
         throw AirshipErrors.error("Argument must be a double")
     }
+}
+
+public struct CodableQuietTimeSettings: Codable {
+    let startHour: UInt
+    let startMinute: UInt
+    let endHour: UInt
+    let endMinute: UInt
 }
