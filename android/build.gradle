@@ -56,8 +56,8 @@ repositories {
 }
 
 dependencies {
-    def proxyVersion = '5.4.1'
-    def airshipVersion = '17.7.3'
+    def proxyVersion = '6.0.0'
+    def airshipVersion = '17.8.0'
     def kotlinVersion = project.hasProperty('kotlinVersion') ? rootProject.ext.kotlinVersion : '1.8.20'
 
 
