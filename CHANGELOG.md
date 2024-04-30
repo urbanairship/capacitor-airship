@@ -1,5 +1,12 @@
 # Capacitor Plugin Changelog
 
+## Version 1.1.1 April 30, 2024
+
+Patch release that updates the Airship iOS SDK.
+
+### Changes
+- Updated Airship iOS SDK to 18.1.2
+
 ## Version 1.1.0 April 18, 2024
 
 Minor release that updates the Airship SDKs.
