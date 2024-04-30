@@ -262,14 +262,8 @@ public class AirshipPlugin: CAPPlugin {
             return try AirshipProxy.shared.push.isQuietTimeEnabled()
 
         case "push#ios#setQuietTime":
-            let proxySettings: CodableQuietTimeSettings = try call.requireCodableArg()
             try AirshipProxy.shared.push.setQuietTime(
-                ProxyQuietTimeSettings(
-                    startHour: proxySettings.startHour,
-                    startMinute: proxySettings.startMinute,
-                    endHour: proxySettings.endHour,
-                    endMinute: proxySettings.endMinute
-                )
+                try call.requireCodableArg()
             )
             return nil
 
