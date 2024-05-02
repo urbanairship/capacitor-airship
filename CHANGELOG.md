@@ -7,6 +7,7 @@ Minor release that fixes push events on Android.
 ### Changes
 - Fixed push events on Android.
 - Added `isForeground` to push received events to indicate the application state when the push was received.
+- Updated iOS SDK to 18.1.2
 
 ## Version 1.1.0 April 18, 2024
 
