@@ -34,8 +34,8 @@ class AirshipPlugin : Plugin() {
 
     companion object {
         private val EVENT_NAME_MAP = mapOf(
-            EventType.BACKGROUND_NOTIFICATION_RESPONSE_RECEIVED to "notification_response",
-            EventType.FOREGROUND_NOTIFICATION_RESPONSE_RECEIVED to "notification_response",
+            EventType.BACKGROUND_NOTIFICATION_RESPONSE_RECEIVED to "notification_response_received",
+            EventType.FOREGROUND_NOTIFICATION_RESPONSE_RECEIVED to "notification_response_received",
             EventType.CHANNEL_CREATED to "channel_created",
             EventType.DEEP_LINK_RECEIVED to "deep_link_received",
             EventType.DISPLAY_MESSAGE_CENTER to "display_message_center",
