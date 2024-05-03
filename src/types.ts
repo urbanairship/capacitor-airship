@@ -30,7 +30,15 @@ export interface PushTokenReceivedEvent {
  * Event fired when a push is received.
  */
 export interface PushReceivedEvent {
+  /**
+   * The push payload.
+   */
   pushPayload: PushPayload;
+
+  /**
+  * Indicates whether the push was received when the application was in the background or foreground.
+  */
+  isForeground: boolean;
 }
 
 /**
