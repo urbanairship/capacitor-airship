@@ -43,7 +43,7 @@ class AirshipPlugin : Plugin() {
             EventType.MESSAGE_CENTER_UPDATED to "message_center_updated",
             EventType.PUSH_TOKEN_RECEIVED to "push_token_received",
             EventType.FOREGROUND_PUSH_RECEIVED to "push_received",
-            EventType.BACKGROUND_PUSH_RECEIVED to "background_push_received",
+            EventType.BACKGROUND_PUSH_RECEIVED to "push_received",
             EventType.NOTIFICATION_STATUS_CHANGED to "notification_status_changed"
         )
     }
