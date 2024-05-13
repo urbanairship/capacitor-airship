@@ -153,7 +153,7 @@ class AirshipPlugin : Plugin() {
             "inApp#getDisplayInterval" -> call.resolveResult(method) { proxy.inApp.getDisplayInterval() }
 
             // Analytics
-            "analytics#trackScreen" -> call.resolveResult(method) { proxy.analytics.trackScreen(arg.optString()) }
+            "analytics#trackScreen" -> call.resolveResult(method) { proxy.analytics.trackScreen(arg.string) }
             "analytics#addCustomEvent" -> call.resolveResult(method) { proxy.analytics.addEvent(arg) }
             "analytics#associateIdentifier" -> {
                 val associatedIdentifierArgs = arg.requireStringList()
@@ -168,7 +168,7 @@ class AirshipPlugin : Plugin() {
                 JsonValue.wrapOpt(proxy.messageCenter.getMessages())
             }
             "messageCenter#dismiss" -> call.resolveResult(method) { proxy.messageCenter.dismiss() }
-            "messageCenter#display" -> call.resolveResult(method) { proxy.messageCenter.display(arg.optString()) }
+            "messageCenter#display" -> call.resolveResult(method) { proxy.messageCenter.display(arg.string) }
             "messageCenter#showMessageView" -> call.resolveResult(method) { proxy.messageCenter.showMessageView(arg.requireString()) }
             "messageCenter#markMessageRead" -> call.resolveResult(method) { proxy.messageCenter.markMessageRead(arg.requireString()) }
             "messageCenter#deleteMessage" -> call.resolveResult(method) { proxy.messageCenter.deleteMessage(arg.requireString()) }
