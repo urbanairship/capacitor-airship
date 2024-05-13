@@ -1,7 +1,14 @@
 # Capacitor Plugin Changelog
 
-## Version 1.2.0 May 2, 2024
+## Version 1.2.1 May 13, 2024
+Patch release that updates to latest Airship SDKs and fixes issues with methods that take an optional string parameter on Android.
 
+### Changes
+- Updated iOS SDK to 18.2.0
+- Updated iOS SDK to 17.8.1
+- Fixed `Airship.messageCenter.display(null)` and `Airship.analytics.trackScreen(null)` on Android
+
+## Version 1.2.0 May 2, 2024
 Minor release that fixes push events on Android.
 
 ### Changes
@@ -10,7 +17,6 @@ Minor release that fixes push events on Android.
 - Updated iOS SDK to 18.1.2
 
 ## Version 1.1.0 April 18, 2024
-
 Minor release that updates the Airship SDKs.
 
 ### Changes
@@ -19,5 +25,4 @@ Minor release that updates the Airship SDKs.
 
 
 ## Version 1.0.0  March 22, 2024
-
 Initial capacitor plugin release
