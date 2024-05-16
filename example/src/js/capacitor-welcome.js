@@ -82,6 +82,12 @@ window.customElements.define(
         <p>
           <button class="button" id="enable-push">Toggle push</button>
         </p>
+        <p>
+          <button class="button" id="display-message-center">Display message center</button>
+        </p>
+        <p>
+            <button class="button" id="display-preference-center">Display preference center</button>
+        </p>
         <p id="status-event">
         </p>
       </main>
@@ -95,6 +101,14 @@ window.customElements.define(
       self.shadowRoot.querySelector('#enable-push').addEventListener('click', async function (e) {
         const isEnabled = await Airship.push.isUserNotificationsEnabled()
         await Airship.push.setUserNotificationsEnabled(!isEnabled)
+      });
+        
+      self.shadowRoot.querySelector('#display-message-center').addEventListener('click', async function (e) {
+        await Airship.messageCenter.display()
+      });
+        
+      self.shadowRoot.querySelector('#display-preference-center').addEventListener('click', async function (e) {
+        await Airship.preferenceCenter.display("neat")
       });
     }
   }
