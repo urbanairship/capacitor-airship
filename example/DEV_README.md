@@ -8,7 +8,7 @@ npm install @capacitor/cli @capacitor/core
 2. Install dependencies from ROOT directory:
 ```bash
 npm i && npm run build
-cd examples
+cd example
 npm i && npm run build
 ```
 
