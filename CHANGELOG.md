@@ -1,5 +1,11 @@
 # Capacitor Plugin Changelog
 
+## Version 1.2.2 May 17, 2024
+Patch release that updates to latest iOS SDK.
+
+### Changes
+- Updated iOS SDK to 18.2.2
+
 ## Version 1.2.1 May 13, 2024
 Patch release that updates to latest Airship SDKs and fixes issues with methods that take an optional string parameter on Android.
 
