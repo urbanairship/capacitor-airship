@@ -1,5 +1,11 @@
 # Capacitor Plugin Changelog
 
+## Version 1.2.3 June 20, 2024
+Patch release that updates to latest iOS SDK.
+
+### Changes
+- Updated iOS SDK to 18.4.0
+
 ## Version 1.2.2 May 17, 2024
 Patch release that updates to latest iOS SDK.
 
