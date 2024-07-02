@@ -18,7 +18,8 @@ let package = Package(
             name: "UaCapacitorAirship",
             dependencies: [
                 .product(name: "Capacitor", package: "capacitor-swift-pm"),
-                .product(name: "Cordova", package: "capacitor-swift-pm")
+                .product(name: "Cordova", package: "capacitor-swift-pm"),
+                .product(name: "AirshipFrameworkProxy", package: "airship-mobile-framework-proxy")
             ],
             path: "ios/Plugin"
         )
