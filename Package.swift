@@ -14,14 +14,20 @@ let package = Package(
         .package(url: "https://github.com/urbanairship/airship-mobile-framework-proxy.git", from: "7.0.0")
     ],
     targets: [
-        .target(
-            name: "UaCapacitorAirship",
+         .target(
+            name: "UaCapacitorAirshipPlugin",
             dependencies: [
                 .product(name: "Capacitor", package: "capacitor-swift-pm"),
                 .product(name: "Cordova", package: "capacitor-swift-pm"),
                 .product(name: "AirshipFrameworkProxy", package: "airship-mobile-framework-proxy")
             ],
             path: "ios/Plugin"
+        ),
+        .target(
+            name: "UaCapacitorAirship",
+            dependencies: [.target(name: "UaCapacitorAirshipPlugin")],
+            path: "ios/Bootloader",
+            publicHeadersPath: "Public"
         )
     ]
 )
