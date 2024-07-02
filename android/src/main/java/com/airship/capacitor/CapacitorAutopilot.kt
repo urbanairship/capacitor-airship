@@ -7,7 +7,7 @@ import android.util.Log
 import com.getcapacitor.CapConfig
 import com.urbanairship.AirshipConfigOptions
 import com.urbanairship.UAirship
-import com.urbanairship.analytics.Analytics
+import com.urbanairship.analytics.Extension
 import com.urbanairship.android.framework.proxy.BaseAutopilot
 import com.urbanairship.android.framework.proxy.ProxyConfig
 import com.urbanairship.android.framework.proxy.ProxyStore
@@ -20,9 +20,7 @@ class CapacitorAutopilot : BaseAutopilot() {
         super.onAirshipReady(airship)
 
         Log.i("CapacitorAutopilot", "onAirshipReady")
-
-        // TODO capacitor
-        airship.analytics.registerSDKExtension(Analytics.EXTENSION_CORDOVA, AirshipCapacitorVersion.version)
+        airship.analytics.registerSDKExtension(Extension.CAPACITOR, AirshipCapacitorVersion.version)
     }
 
     override fun createConfigBuilder(context: Context): AirshipConfigOptions.Builder {
