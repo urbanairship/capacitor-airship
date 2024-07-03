@@ -1,13 +1,18 @@
+ext {
+    airshipProxyVersion = project.hasProperty('airshipProxyVersion') ? rootProject.ext.airshipProxyVersion : '7.0.0'
+}
+
+
 buildscript {
-    def kotlinVersion = project.hasProperty('kotlinVersion') ? rootProject.ext.kotlinVersion : '1.8.20'
+    ext.kotlin_version = project.hasProperty("kotlin_version") ? rootProject.ext.kotlin_version : '1.9.10'
 
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.0.2'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath 'com.android.tools.build:gradle:8.2.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
@@ -15,12 +20,8 @@ def isHmsEnabled() {
     return (rootProject.hasProperty("airshipHmsEnabled") && rootProject.getProperty("airshipHmsEnabled") == "true") || (rootProject.ext.has("airshipHmsEnabled") && rootProject.ext.get("airshipHmsEnabled") == "true")
 }
 
-def getExtOrDefault(name) {
-    return rootProject.ext.has(name) ? rootProject.ext.get(name) : project.properties["Airship_" + name]
-}
-
 apply plugin: 'com.android.library'
-apply plugin: 'org.jetbrains.kotlin.android'
+apply plugin: 'kotlin-android'
 
 android {
     namespace "com.airship.capacitor"
@@ -46,7 +47,7 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '17'
+        jvmTarget = JavaVersion.VERSION_17
     }
 }
 
@@ -56,17 +57,12 @@ repositories {
 }
 
 dependencies {
-    def proxyVersion = '6.3.0'
-    def airshipVersion = '17.8.1'
-    def kotlinVersion = project.hasProperty('kotlinVersion') ? rootProject.ext.kotlinVersion : '1.8.20'
-
-
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':capacitor-android')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-    api "com.urbanairship.android:airship-framework-proxy:$proxyVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    api "com.urbanairship.android:airship-framework-proxy:$airshipProxyVersion"
 
     if (isHmsEnabled()) {
-        implementation "com.urbanairship.android:urbanairship-hms:$airshipVersion"
+        implementation "com.urbanairship.android:airship-framework-proxy-hms:$airshipProxyVersion"
     }
 }

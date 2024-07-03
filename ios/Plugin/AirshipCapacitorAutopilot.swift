@@ -1,6 +1,11 @@
 /* Copyright Airship and Contributors */
 
+#if canImport(AirshipKit)
 import AirshipKit
+#elseif canImport(AirshipCore)
+import AirshipCore
+#endif
+
 import AirshipFrameworkProxy
 import Capacitor
 
@@ -84,8 +89,7 @@ extension AirshipCapacitorAutopilot: AirshipProxyDelegate {
     @MainActor
     public func onAirshipReady() {
         Airship.analytics.registerSDKExtension(
-            // todo, add capacitor
-            AirshipSDKExtension.cordova,
+            AirshipSDKExtension.capacitor,
             version: AirshipCapacitorVersion.version
         )
     }
