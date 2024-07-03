@@ -1,5 +1,13 @@
 # Capacitor Plugin Changelog
 
+## Version 2.0.0 July 2, 2024
+Major release to support Capacitor 6.
+
+### Changes
+- Updated Airship Android SDK to 18.1.1
+- Updated Airship iOS SDK to 18.5.0
+- Added iOS logPrivacyLevel that can be set in the environments when calling takeOff
+
 ## Version 1.2.4 June 21, 2024
 Patch release to fix a regression on iOS with In-App Automations, Scenes, and Surveys ignoring screen, version, and custom event triggers. Apps using those triggers that are on 1.2.3 should update.
 
