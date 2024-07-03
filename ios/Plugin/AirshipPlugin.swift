@@ -1,6 +1,12 @@
 import Foundation
 import Capacitor
+
+#if canImport(AirshipKit)
 import AirshipKit
+#elseif canImport(AirshipCore)
+import AirshipCore
+#endif
+
 import AirshipFrameworkProxy
 
 /**
@@ -8,8 +14,14 @@ import AirshipFrameworkProxy
  * here: https://capacitorjs.com/docs/plugins/ios
  */
 @objc(AirshipPlugin)
-public class AirshipPlugin: CAPPlugin {
+public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin {
 
+    public let identifier = "AirshipPlugin"
+    public let jsName = "Airship"
+    public let pluginMethods: [CAPPluginMethod] = [
+        CAPPluginMethod(name: "perform", returnType: CAPPluginReturnPromise)
+    ]
+    
     private static let eventNames: [AirshipProxyEventType: String] = [
          .authorizedNotificationSettingsChanged: "ios_authorized_notification_settings_changed",
          .pushTokenReceived: "push_token_received",

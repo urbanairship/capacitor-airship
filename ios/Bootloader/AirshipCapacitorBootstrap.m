@@ -4,9 +4,10 @@
 
 #if __has_include(<UACapacitorAirship/UACapacitorAirship-Swift.h>)
 #import <UACapacitorAirship/UACapacitorAirship-Swift.h>
+#elif __has_include("UACapacitorAirship-Swift.h")
+#import "UaCapacitorAirship-Swift.h"
 #else
-#import <Capacitor/
-#import "UACapacitorAirship-Swift.h"
+@import UaCapacitorAirshipPlugin;
 #endif
 
 @implementation AirshipCapacitorBootstrap
