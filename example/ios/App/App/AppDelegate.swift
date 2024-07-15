@@ -1,15 +1,55 @@
 import UIKit
 import Capacitor
 
+import AirshipKit
+import Combine
+
+// Predicate for named user filtering on the message extra `named_user`
+fileprivate class NamedUserMessageCenterPredicate: MessageCenterPredicate {
+    let namedUser: String?
+
+    init(namedUser: String?) {
+        self.namedUser = namedUser
+    }
+
+    func evaluate(message: MessageCenterMessage) -> Bool {
+        guard let messageUser = message.extra["named_user"] else {
+            return true
+        }
+        return messageUser == namedUser
+    }
+}
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+
+    /// Used in combine to store susbcriptions
+    private var subscriptions: Set<AnyCancellable> = Set()
 
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+
+        for family in UIFont.familyNames.sorted() {
+            let names = UIFont.fontNames(forFamilyName: family)
+            print("Family: \(family) Font names: \(names)")
+        }
+
+        NotificationCenter.default.addObserver(forName: AirshipNotifications.AirshipReady.name, object: nil, queue: .main) { _ in
+            // Set to nil until we are able to get the named user ID
+            MessageCenter.shared.predicate = NamedUserMessageCenterPredicate(namedUser: nil)
+
+            // Current value publisher should be called with the current named user ID
+            Airship.contact.namedUserIDPublisher.receive(on: DispatchQueue.main).sink { value in
+                MessageCenter.shared.predicate = NamedUserMessageCenterPredicate(namedUser: value)
+            }.store(in: &self.subscriptions)
+        }
+
         return true
     }
+
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -47,3 +87,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 }
+
