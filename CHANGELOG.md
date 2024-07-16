@@ -1,5 +1,11 @@
 # Capacitor Plugin Changelog
 
+## Version 2.0.1 July 16, 2024
+Patch release that fixes a critical issue with iOS that prevents the Airship library from automatically initializing. Apps using 2.0.0 should update.
+
+### Changes
+- Added missing files to the npm package for iOS
+
 ## Version 2.0.0 July 2, 2024
 Major release to support Capacitor 6.
 
