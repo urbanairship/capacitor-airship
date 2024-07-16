@@ -1,6 +1,6 @@
 {
   "name": "@ua/capacitor-airship",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Airship capacitor plugin",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -11,6 +11,7 @@
     "android/build.gradle",
     "dist/",
     "ios/Plugin/",
+    "ios/Bootloader/",
     "UaCapacitorAirship.podspec"
   ],
   "author": "Airship",
