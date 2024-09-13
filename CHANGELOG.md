@@ -1,5 +1,14 @@
 # Capacitor Plugin Changelog
 
+## Version 2.1.0 September 16, 2024
+Minor release that adds `notificationPermissionStatus` to the `PushNotificationStatus` object and a way to specify the fallback when requesting permissions and the permission is already denied.
+
+### Changes
+- Updated Airship Android SDK to 18.3.0
+- Updated Airship iOS SDK to 18.9.1
+- Added `notificationPermissionStatus` to `PushNotificationStatus`
+- Added options to `enableUserNotifications` to specify the `PromptPermissionFallback` when enabling user notifications
+
 ## Version 2.0.1 July 16, 2024
 Patch release that fixes a critical issue with iOS that prevents the Airship library from automatically initializing. Apps using 2.0.0 should update.
 

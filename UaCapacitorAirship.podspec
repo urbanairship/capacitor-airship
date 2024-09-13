@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target  = '14.0'
   s.dependency 'Capacitor'
   s.swift_version = '5.1'
-  s.dependency "AirshipFrameworkProxy", "7.0.0"
+  s.dependency "AirshipFrameworkProxy", "8.0.0"
   s.default_subspecs = ["Bootloader", "Plugin"]
 
 
