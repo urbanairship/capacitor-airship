@@ -36,8 +36,8 @@ export interface PushReceivedEvent {
   pushPayload: PushPayload;
 
   /**
-  * Indicates whether the push was received when the application was in the background or foreground.
-  */
+   * Indicates whether the push was received when the application was in the background or foreground.
+   */
   isForeground: boolean;
 }
 
@@ -123,6 +123,42 @@ export interface PushNotificationStatus {
    * is true but `isOptedIn` is false, that means push token was not able to be registered.
    */
   isUserOptedIn: boolean;
+
+  /**
+   * The notification permission status.
+   */
+  notificationPermissionStatus: PermissionStatus;
+}
+
+/**
+ * Enum of permission status.
+ */
+export enum PermissionStatus {
+  /**
+   * Permission is granted.
+   */
+  Granted = 'granted',
+
+  /**
+   * Permission is denied.
+   */
+  Denied = 'denied',
+
+  /**
+   * Permission has not yet been requested.
+   */
+  NotDetermined = 'not_determined',
+}
+
+/**
+ * Fallback when prompting for permission and the permission is
+ * already denied on iOS or is denied silently on Android.
+ */
+export enum PromptPermissionFallback {
+  /**
+   * Take the user to the system settings to enable the permission.
+   */
+  SystemSettings = "systemSettings"
 }
 
 /**
@@ -382,7 +418,6 @@ export namespace iOS {
   }
 }
 
-
 export namespace Android {
   /**
    * Android notification config.
@@ -406,7 +441,6 @@ export namespace Android {
     accentColor?: string;
   }
 }
-
 
 /**
  * Airship config environment
@@ -436,8 +470,8 @@ export interface ConfigEnvironment {
      * and redacting logs with string interpolation. `public` will log all configured log levels to the console
      * without redacting any of the log lines.
      */
-    logPrivacyLevel: "private" | "public"
-  }
+    logPrivacyLevel?: 'private' | 'public';
+  };
 }
 
 /**
