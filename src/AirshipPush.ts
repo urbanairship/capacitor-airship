@@ -11,6 +11,7 @@ import type {
   PushPayload,
   PushReceivedEvent,
   PushTokenReceivedEvent,
+  PromptPermissionFallback
 } from './types';
 
 /**
@@ -55,10 +56,13 @@ export class AirshipPush {
 
   /**
    * Enables user notifications.
+   * @param options Optional options.
    * @returns A promise with the permission result.
    */
-  public enableUserNotifications(): Promise<boolean> {
-    return this.plugin.perform('push#enableUserNotifications');
+  public enableUserNotifications(options?: {
+    fallback?: PromptPermissionFallback
+  }): Promise<boolean> {
+    return this.plugin.perform('push#enableUserNotifications', options);
   }
 
   /**
