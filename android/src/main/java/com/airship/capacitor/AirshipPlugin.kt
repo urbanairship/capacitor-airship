@@ -1,7 +1,6 @@
 package com.airship.capacitor
 
 import android.os.Build
-import com.getcapacitor.JSArray
 import com.getcapacitor.JSObject
 import com.getcapacitor.Plugin
 import com.getcapacitor.PluginCall
@@ -14,6 +13,7 @@ import com.urbanairship.actions.ActionResult
 import com.urbanairship.android.framework.proxy.EventType
 import com.urbanairship.android.framework.proxy.events.EventEmitter
 import com.urbanairship.android.framework.proxy.proxies.AirshipProxy
+import com.urbanairship.android.framework.proxy.proxies.EnableUserNotificationsArgs
 import com.urbanairship.android.framework.proxy.proxies.FeatureFlagProxy
 import com.urbanairship.json.JsonList
 import com.urbanairship.json.JsonMap
@@ -67,7 +67,7 @@ class AirshipPlugin : Plugin() {
     }
 
     private fun notifyPendingEvents() {
-        EventType.values().forEach { eventType ->
+        EventType.entries.forEach { eventType ->
             EventEmitter.shared().processPending(listOf(eventType)) { event ->
                 val name = EVENT_NAME_MAP[event.type]
                 if (hasListeners(name)) {
@@ -118,9 +118,17 @@ class AirshipPlugin : Plugin() {
 
                 // Push
                 "push#setUserNotificationsEnabled" -> call.resolveResult(method) { proxy.push.setUserNotificationsEnabled(arg.requireBoolean()) }
-                "push#enableUserNotifications" -> call.resolvePending(method) { proxy.push.enableUserPushNotifications() }
+                "push#enableUserNotifications" -> call.resolveSuspending(method) {
+                    val options = if (arg.isNull) {
+                        null
+                    } else {
+                        EnableUserNotificationsArgs.fromJson(arg)
+                    }
+                    proxy.push.enableUserPushNotifications(options)
+                }
+
                 "push#isUserNotificationsEnabled" -> call.resolveResult(method) { proxy.push.isUserNotificationsEnabled() }
-                "push#getNotificationStatus" -> call.resolveResult(method) { proxy.push.getNotificationStatus() }
+                "push#getNotificationStatus" -> call.resolveSuspending(method) { proxy.push.getNotificationStatus() }
                 "push#getActiveNotifications" -> call.resolveResult(method) {
                     if (Build.VERSION.SDK_INT >= 23) {
                         proxy.push.getActiveNotifications()
@@ -225,28 +233,14 @@ class AirshipPlugin : Plugin() {
                 }
 
                 // Feature Flag
-                "featureFlagManager#flag" -> call.resolveDeferred(method) { resolveCallback ->
-                    scope.launch {
-                        try {
-                            val flag = proxy.featureFlagManager.flag(arg.requireString())
-                            resolveCallback(flag, null)
-                        } catch (e: Exception) {
-                            resolveCallback(null, e)
-                        }
-                    }
+                "featureFlagManager#flag" -> call.resolveSuspending(method) {
+                    proxy.featureFlagManager.flag(arg.requireString())
                 }
 
                 "featureFlagManager#trackInteraction" -> {
-                    call.resolveDeferred(method) { resolveCallback ->
-                        scope.launch {
-                            try {
-                                val featureFlagProxy = FeatureFlagProxy(arg)
-                                proxy.featureFlagManager.trackInteraction(flag = featureFlagProxy)
-                                resolveCallback(null, null)
-                            } catch (e: Exception) {
-                                resolveCallback(null, e)
-                            }
-                        }
+                    call.resolveSuspending(method) {
+                        val featureFlagProxy = FeatureFlagProxy(arg)
+                        proxy.featureFlagManager.trackInteraction(flag = featureFlagProxy)
                     }
                 }
 
@@ -262,14 +256,27 @@ internal fun PluginCall.resolveResult(method: String, function: () -> Any?) {
     resolveDeferred(method) { callback -> callback(function(), null) }
 }
 
+internal suspend fun PluginCall.resolveSuspending(method: String, function: suspend () -> Any?) {
+    try {
+        when (val result = function()) {
+            is Unit -> {
+                this.resolve(JSObject())
+            }
+            else -> {
+                this.resolve(jsonMapOf("value" to result).toJSObject())
+            }
+        }
+    } catch (e: Exception) {
+        this.reject(method, e)
+    }
+}
+
 internal fun <T> PluginCall.resolveDeferred(method: String, function: ((T?, Exception?) -> Unit) -> Unit) {
     try {
         function { result, error ->
             if (error != null) {
                 this.reject(method, error)
             } else {
-
-
                 try {
                     when (result) {
                         is Unit -> {
