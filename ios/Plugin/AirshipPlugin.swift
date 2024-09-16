@@ -203,7 +203,9 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin {
             return nil
 
         case "push#enableUserNotifications":
-            return try await AirshipProxy.shared.push.enableUserPushNotifications()
+            return try await AirshipProxy.shared.push.enableUserPushNotifications(
+                args: try call.optionalCodableArg()
+            )
 
         case "push#isUserNotificationsEnabled":
             return try AirshipProxy.shared.push.isUserNotificationsEnabled()
@@ -475,7 +477,15 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin {
 }
 
 extension CAPPluginCall {
-    func requireCodableArg<T: Codable>() throws -> T  {
+    func optionalCodableArg<T: Decodable>() throws -> T?  {
+        guard let value = self.getValue("value") else {
+            return nil
+        }
+
+        return try AirshipJSON.wrap(value).decode()
+    }
+
+    func requireCodableArg<T: Decodable>() throws -> T  {
         guard let value = self.getValue("value") else {
             throw AirshipErrors.error("Missing argument")
         }
