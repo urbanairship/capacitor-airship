@@ -343,6 +343,12 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin {
             )
             return nil
 
+        case "messageCenter#showMessageCenter":
+            try AirshipProxy.shared.messageCenter.showMessageCenter(
+                messageID: try? call.requireStringArg()
+            )
+            return nil
+
         case "messageCenter#dismiss":
             try AirshipProxy.shared.messageCenter.dismiss()
             return nil

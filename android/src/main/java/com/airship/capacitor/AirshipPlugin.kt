@@ -179,6 +179,8 @@ class AirshipPlugin : Plugin() {
                 "messageCenter#dismiss" -> call.resolveResult(method) { proxy.messageCenter.dismiss() }
                 "messageCenter#display" -> call.resolveResult(method) { proxy.messageCenter.display(arg.string) }
                 "messageCenter#showMessageView" -> call.resolveResult(method) { proxy.messageCenter.showMessageView(arg.requireString()) }
+                "messageCenter#showMessageCenter" -> call.resolveResult(method) { proxy.messageCenter.showMessageCenter(arg.string) }
+
                 "messageCenter#markMessageRead" -> call.resolveResult(method) { proxy.messageCenter.markMessageRead(arg.requireString()) }
                 "messageCenter#deleteMessage" -> call.resolveResult(method) { proxy.messageCenter.deleteMessage(arg.requireString()) }
                 "messageCenter#getUnreadMessageCount" -> call.resolveResult(method) { proxy.messageCenter.getUnreadMessagesCount() }
