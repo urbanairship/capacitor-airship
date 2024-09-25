@@ -1,5 +1,12 @@
 # Capacitor Plugin Changelog
 
+## Version 2.2.0 September 25, 2024
+Minor release that updates the iOS SDK to 18.9.2 and adds the method `Airship.messageCenter.showMessageCenter(messageId?: string)` that can be used to show the OOTB Message Center UI even if auto launching Message Center is disabled. This new functionality is useful if the application needs to route the user in the app before processing the display event while still being able to use the OOTB UI.
+
+### Changes
+- Updated Airship iOS SDK to 18.9.2.
+- Added new `showMessageCenter(messageId?: string)` to `MessageCenter`.
+
 ## Version 2.1.0 September 16, 2024
 Minor release that adds `notificationPermissionStatus` to the `PushNotificationStatus` object and a way to specify the fallback when requesting permissions and the permission is already denied.
 

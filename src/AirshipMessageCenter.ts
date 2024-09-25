@@ -82,6 +82,16 @@ export class AirshipMessageCenter {
     return this.plugin.perform('messageCenter#showMessageView', messageId);
   }
 
+   /** 
+   * Overlays the message center regardless if auto launch Message Center is enabled or not.
+   * 
+   * @param messageId Optional message Id.
+   * @returns A promise.
+   */
+   public showMessageCenter(messageId?: string): Promise<void> {
+    return this.plugin.perform('messageCenter#showMessageCenter', messageId);
+  }
+
   /**
    * Refreshes the messages.
    * @returns A promise. Will reject if the list fails to refresh or if
