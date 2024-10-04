@@ -32,7 +32,8 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin {
          .displayPreferenceCenter: "display_preference_center",
          .notificationResponseReceived: "notification_response_received",
          .pushReceived: "push_received",
-         .notificationStatusChanged: "notification_status_changed"
+         .notificationStatusChanged: "notification_status_changed",
+         .liveActivitiesUpdated: "ios_live_activities_updated"
      ]
 
     @MainActor
@@ -476,6 +477,53 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin {
             )
 
             return nil
+
+        // Live Activity Manager
+        case "liveUpdateManager#list":
+            if #available(iOS 16.1, *) {
+                return try await LiveActivityManager.shared.list(
+                    try call.requireCodableArg()
+                )
+            } else {
+                throw AirshipErrors.error("Live Activities only available on 16.1+")
+            }
+
+        case "liveUpdateManager#listAll":
+            if #available(iOS 16.1, *) {
+                return try await LiveActivityManager.shared.listAll()
+            } else {
+                throw AirshipErrors.error("Live Activities only available on 16.1+")
+            }
+
+        case "liveUpdateManager#start":
+            if #available(iOS 16.1, *) {
+                return try await LiveActivityManager.shared.start(
+                    try call.requireCodableArg()
+                )
+            } else {
+                throw AirshipErrors.error("Live Activities only available on 16.1+")
+            }
+
+        case "liveUpdateManager#update":
+            if #available(iOS 16.1, *) {
+                try await LiveActivityManager.shared.update(
+                    try call.requireCodableArg()
+                )
+            } else {
+                throw AirshipErrors.error("Live Activities only available on 16.1+")
+            }
+            return nil
+
+        case "liveUpdateManager#end":
+            if #available(iOS 16.1, *) {
+                try await LiveActivityManager.shared.end(
+                    try call.requireCodableArg()
+                )
+            } else {
+                throw AirshipErrors.error("Live Activities only available on 16.1+")
+            }
+            return nil
+
         default:
             throw AirshipErrors.error("Not implemented \(method)")
         }

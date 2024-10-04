@@ -9,10 +9,8 @@ import AirshipCore
 import AirshipFrameworkProxy
 import Capacitor
 
-@objc
 public final class AirshipCapacitorAutopilot: NSObject {
 
-    @objc
     public static let shared: AirshipCapacitorAutopilot = AirshipCapacitorAutopilot()
 
     @MainActor
@@ -36,8 +34,7 @@ public final class AirshipCapacitorAutopilot: NSObject {
      */
 
     @MainActor
-    @objc
-    public func onApplicationDidFinishLaunching(
+    func onApplicationDidFinishLaunching(
         launchOptions: [UIApplication.LaunchOptionsKey : Any]?
     ) {
         AirshipProxy.shared.delegate = self 
