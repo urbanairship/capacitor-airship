@@ -13,7 +13,7 @@ import { AirshipPrivacyManager } from './AirshipPrivacyManager';
 import { AirshipPush } from './AirshipPush';
 import { EventType } from './EventType';
 import type { AirshipPluginWrapper } from './AirshipPlugin';
-import type { AirshipConfig , DeepLinkEvent } from './types';
+import type { AirshipConfig, DeepLinkEvent } from './types';
 import { AirshipLiveActivityManager } from './AirshipLiveActivityManager';
 import { AirshipLiveUpdateManager } from './AirshipLiveUpdateManager';
 
@@ -33,15 +33,15 @@ export class AirshipRoot {
   public readonly push: AirshipPush;
   public readonly featureFlagManager: AirshipFeatureFlagManager;
 
-    /**
+  /**
    * iOS only accessors
    */
-    public readonly iOS: AirshipRootIOS;
+  public readonly iOS: AirshipRootIOS;
 
-    /**
-     * iOS only accessors
-     */
-    public readonly android: AirshipRootAndroid;
+  /**
+   * iOS only accessors
+   */
+  public readonly android: AirshipRootAndroid;
 
   constructor(private readonly plugin: AirshipPluginWrapper) {
     this.actions = new AirshipActions(plugin);
@@ -81,15 +81,16 @@ export class AirshipRoot {
   /**
    * Adds a deep link listener.
    */
-  public onDeepLink(listener: (event: DeepLinkEvent) => void): Promise<PluginListenerHandle> {
-    return this.plugin.addListener(EventType.DeepLink, listener)
+  public onDeepLink(
+    listener: (event: DeepLinkEvent) => void,
+  ): Promise<PluginListenerHandle> {
+    return this.plugin.addListener(EventType.DeepLink, listener);
   }
 }
 
-
 export class AirshipRootIOS {
   public readonly liveActivityManager: AirshipLiveActivityManager;
-  
+
   constructor(plugin: AirshipPluginWrapper) {
     this.liveActivityManager = new AirshipLiveActivityManager(plugin);
   }
@@ -97,7 +98,7 @@ export class AirshipRootIOS {
 
 export class AirshipRootAndroid {
   public readonly liveUpdateManager: AirshipLiveUpdateManager;
-  
+
   constructor(plugin: AirshipPluginWrapper) {
     this.liveUpdateManager = new AirshipLiveUpdateManager(plugin);
   }

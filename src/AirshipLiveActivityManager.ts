@@ -65,7 +65,7 @@ export class AirshipLiveActivityManager {
   /**
    * Adds a Live Activity listener.
    */
-  public onChannelCreated(
+  public onLiveActivityUpdates(
     listener: (event: LiveActivitiesUpdatedEvent) => void,
   ): Promise<PluginListenerHandle> {
     return this.plugin.addListener(

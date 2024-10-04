@@ -21,6 +21,10 @@ target 'App' do
   # Add your Pods here
 end
 
+target 'ExampleNotificationServiceExtension' do
+  pod 'AirshipServiceExtension'
+end
+
 post_install do |installer|
   assertDeploymentTarget(installer)
 end

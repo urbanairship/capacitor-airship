@@ -12,6 +12,7 @@ dependencies {
     implementation project(':capacitor-camera')
     implementation project(':capacitor-splash-screen')
     implementation project(':ua-capacitor-airship')
+    implementation 'androidx.core:core-ktx:1.13.1'
 
 }
 

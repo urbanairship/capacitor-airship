@@ -479,7 +479,7 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin {
             return nil
 
         // Live Activity Manager
-        case "liveUpdateManager#list":
+        case "liveActivityManager#list":
             if #available(iOS 16.1, *) {
                 return try await LiveActivityManager.shared.list(
                     try call.requireCodableArg()
@@ -488,14 +488,14 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin {
                 throw AirshipErrors.error("Live Activities only available on 16.1+")
             }
 
-        case "liveUpdateManager#listAll":
+        case "liveActivityManager#listAll":
             if #available(iOS 16.1, *) {
                 return try await LiveActivityManager.shared.listAll()
             } else {
                 throw AirshipErrors.error("Live Activities only available on 16.1+")
             }
 
-        case "liveUpdateManager#start":
+        case "liveActivityManager#start":
             if #available(iOS 16.1, *) {
                 return try await LiveActivityManager.shared.start(
                     try call.requireCodableArg()
@@ -504,7 +504,7 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin {
                 throw AirshipErrors.error("Live Activities only available on 16.1+")
             }
 
-        case "liveUpdateManager#update":
+        case "liveActivityManager#update":
             if #available(iOS 16.1, *) {
                 try await LiveActivityManager.shared.update(
                     try call.requireCodableArg()
@@ -514,7 +514,7 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin {
             }
             return nil
 
-        case "liveUpdateManager#end":
+        case "liveActivityManager#end":
             if #available(iOS 16.1, *) {
                 try await LiveActivityManager.shared.end(
                     try call.requireCodableArg()
