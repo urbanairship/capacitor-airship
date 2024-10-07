@@ -216,6 +216,17 @@ export interface DisplayPreferenceCenterEvent {
 }
 
 /**
+ * Event fired whenever any of the Live Activities update, create, or end.
+ */
+export interface LiveActivitiesUpdatedEvent {
+  /**
+   * The Live Activities.
+   */
+  activities: LiveActivity[];
+}
+
+
+/**
  * Custom event
  */
 export interface CustomEvent {
@@ -645,6 +656,10 @@ export interface InboxMessage {
    */
   sentDate: number;
   /**
+   * Optional - The message expiration date in milliseconds.
+   */
+  expirationDate?: number;
+  /**
    * Optional - The icon url for the message.
    */
   listIconUrl: string;
@@ -823,4 +838,257 @@ export interface FeatureFlag {
    * @ignore
    */
   readonly _internal: unknown;
+}
+
+
+/**
+ * Live Activity info.
+ */
+export interface LiveActivity {
+  /**
+   * The activity ID.
+   */
+  id: string;
+  /**
+   * The attribute types.
+   */
+  attributeTypes: string;
+  /**
+   * The content.
+   */
+  content: LiveActivityContent;
+  /**
+   * The attributes.
+   */
+  attributes: JsonObject;
+}
+
+/**
+ * Live Activity content.
+ */
+export interface LiveActivityContent {
+  /**
+   * The content state.
+   */
+  state: JsonObject;
+  /**
+   * Optional ISO 8601 date string that defines when the Live Activity will be stale.
+   */
+  staleDate?: string;
+  /**
+   * The relevance score.
+   */
+  relevanceScore: number;
+}
+
+/**
+ * Base Live Activity request.
+ */
+export interface LiveActivityRequest {
+  /**
+   * Attributes types. This should match the Activity type of your Live Activity.
+   */
+  attributesType: string;
+}
+
+/**
+ * Live Activity list request.
+ */
+export interface LiveActivityListRequest extends LiveActivityRequest {}
+
+/**
+ * Live Activity start request.
+ */
+export interface LiveActivityStartRequest extends LiveActivityRequest {
+  /**
+   * Dynamic content.
+   */
+  content: LiveActivityContent;
+  /**
+   * Fixed attributes.
+   */
+  attributes: JsonObject;
+}
+
+/**
+ * Live Activity update request.
+ */
+export interface LiveActivityUpdateRequest extends LiveActivityRequest {
+  /**
+   * The Live Activity ID to update.
+   */
+  activityId: string;
+  /**
+   * Dynamic content.
+   */
+  content: LiveActivityContent;
+}
+
+/**
+ * Live Activity end request.
+ */
+export interface LiveActivityEndRequest extends LiveActivityRequest {
+  /**
+   * The Live Activity ID to update.
+   */
+  activityId: string;
+  /**
+   * Dynamic content.
+   */
+  content?: LiveActivityContent;
+
+  /**
+   * Dismissal policy. Defaults to `LiveActivityDismissalPolicyDefault`.
+   */
+  dismissalPolicy?: LiveActivityDismissalPolicy;
+}
+
+export type LiveActivityDismissalPolicy =
+  | LiveActivityDismissalPolicyImmediate
+  | LiveActivityDismissalPolicyDefault
+  | LiveActivityDismissalPolicyAfterDate;
+
+/**
+ * Dismissal policy to immediately dismiss the Live Activity on end.
+ */
+export interface LiveActivityDismissalPolicyImmediate {
+  type: 'immediate';
+}
+
+/**
+ * Dismissal policy to dismiss the Live Activity after the expiration.
+ */
+export interface LiveActivityDismissalPolicyDefault {
+  type: 'default';
+}
+
+/**
+ * Dismissal policy to dismiss the Live Activity after a given date.
+ */
+export interface LiveActivityDismissalPolicyAfterDate {
+  type: 'after';
+  // ISO 8601 date string.
+  date: string;
+}
+
+/**
+ * Live Update info.
+ */
+export interface LiveUpdate {
+  /**
+   * The Live Update name.
+   */
+  name: string;
+
+  /**
+   * The Live Update type.
+   */
+  type: string;
+
+  /**
+   * Dynamic content.
+   */
+  content: JsonObject;
+
+  /**
+   *  ISO 8601 date string of the last content update.
+   */
+  lastContentUpdateTimestamp: string;
+
+  /**
+   * ISO 8601 date string of the last state update.
+   */
+  lastStateChangeTimestamp: string;
+
+  /**
+   * Optional ISO 8601 date string that defines when to end this Live Update.
+   */
+  dismissTimestamp?: string;
+}
+
+
+/**
+ * Live Update list request.
+ */
+export interface LiveUpdateListRequest {
+  type: string;
+}
+
+/**
+ * Live Update update request.
+ */
+export interface LiveUpdateUpdateRequest {
+  /**
+   * The Live Update name.
+   */
+  name: string;
+  /**
+   * Dynamic content.
+   */
+  content: JsonObject;
+
+  /**
+   * Optional ISO 8601 date string, used to filter out of order updates/
+   */
+  timestamp?: string;
+
+  /**
+   * Optional ISO 8601 date string that defines when to end this Live Update.
+   */
+  dismissTimestamp?: string;
+}
+
+/**
+ * Live Update end request.
+ */
+export interface LiveUpdateEndRequest {
+  /**
+   * The Live Update name.
+   */
+  name: string;
+
+  /**
+   * Dynamic content.
+   */
+  content?: JsonObject;
+
+  /**
+   * Optional ISO 8601 date string, used to filter out of order updates/
+   */
+  timestamp?: string;
+
+  /**
+   * Optional ISO 8601 date string that defines when to end this Live Update.
+   */
+  dismissTimestamp?: string;
+}
+
+/**
+ * Live Update start request.
+ */
+export interface LiveUpdateStartRequest {
+  /**
+   * The Live Update name.
+   */
+  name: string;
+
+  /**
+   * The Live Update type.
+   */
+  type: string;
+
+  /**
+   * Dynamic content.
+   */
+  content: JsonObject;
+
+  /**
+   * Optional ISO 8601 date string, used to filter out of order updates/
+   */
+  timestamp?: string;
+
+  /**
+   * Optional ISO 8601 date string that defines when to end this Live Update.
+   */
+  dismissTimestamp?: string;
 }

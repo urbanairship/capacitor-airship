@@ -9,6 +9,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+
+        <meta-data
+            android:name="com.urbanairship.plugin.extender"
+            android:value="com.example.plugin.AirshipExtender" />
+
+
         <activity
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode"
             android:name=".MainActivity"

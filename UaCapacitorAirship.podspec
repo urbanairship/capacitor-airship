@@ -13,16 +13,6 @@ Pod::Spec.new do |s|
   s.ios.deployment_target  = '14.0'
   s.dependency 'Capacitor'
   s.swift_version = '5.1'
-  s.dependency "AirshipFrameworkProxy", "8.1.0"
-  s.default_subspecs = ["Bootloader", "Plugin"]
-
-
-  s.subspec "Bootloader" do |bootloader|
-    bootloader.source_files = 'ios/Bootloader/**/*.{swift,h,m,c,cc,mm,cpp}'
-  end
-
-
-  s.subspec "Plugin" do |plugin|
-    plugin.source_files = 'ios/Plugin/**/*.{swift,h,m,c,cc,mm,cpp}'
-  end
+  s.dependency "AirshipFrameworkProxy", "10.0.0"
+  s.source_files = 'ios/Plugin/**/*.{swift,h,m,c,cc,mm,cpp}'
 end

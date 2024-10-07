@@ -1,6 +1,13 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
     namespace "com.example.plugin"
     compileSdk rootProject.ext.compileSdkVersion
     defaultConfig {
