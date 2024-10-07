@@ -15,6 +15,7 @@ import com.urbanairship.android.framework.proxy.events.EventEmitter
 import com.urbanairship.android.framework.proxy.proxies.AirshipProxy
 import com.urbanairship.android.framework.proxy.proxies.EnableUserNotificationsArgs
 import com.urbanairship.android.framework.proxy.proxies.FeatureFlagProxy
+import com.urbanairship.android.framework.proxy.proxies.LiveUpdateRequest
 import com.urbanairship.json.JsonList
 import com.urbanairship.json.JsonMap
 import com.urbanairship.json.JsonSerializable
@@ -244,6 +245,35 @@ class AirshipPlugin : Plugin() {
                         val featureFlagProxy = FeatureFlagProxy(arg)
                         proxy.featureFlagManager.trackInteraction(flag = featureFlagProxy)
                     }
+                }
+
+                // Live Update
+                "liveUpdateManager#list" -> call.resolveSuspending(method) {
+                    val request = LiveUpdateRequest.List.fromJson(arg)
+                    proxy.liveUpdateManager.list(request)
+                }
+
+                "liveUpdateManager#listAll" -> call.resolveSuspending(method) {
+                    proxy.liveUpdateManager.listAll()
+                }
+
+                "liveUpdateManager#start" -> call.resolveSuspending(method) {
+                    val request = LiveUpdateRequest.Start.fromJson(arg)
+                    proxy.liveUpdateManager.start(request)
+                }
+
+                "liveUpdateManager#update" -> call.resolveSuspending(method) {
+                    val request = LiveUpdateRequest.Update.fromJson(arg)
+                    proxy.liveUpdateManager.update(request)
+                }
+
+                "liveUpdateManager#end" -> call.resolveSuspending(method) {
+                    val request = LiveUpdateRequest.End.fromJson(arg)
+                    proxy.liveUpdateManager.end(request)
+                }
+
+                "liveUpdateManager#clearAll" -> call.resolveSuspending(method) {
+                    proxy.liveUpdateManager.clearAll()
                 }
 
                 else -> call.reject("Not implemented")

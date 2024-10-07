@@ -1,5 +1,17 @@
 # Capacitor Plugin Changelog
 
+## Version 2.3.0 - October 7, 2024
+
+Minor release that updates to latest SDK versions and adds support for iOS Live Activities & Android Live Updates.
+
+### Changes
+- Updated Airship Android SDK to [18.3.2](https://github.com/urbanairship/android-library/releases/tag/18.3.2)
+- Updated Airship iOS SDK to [18.10.0](https://github.com/urbanairship/ios-library/releases/tag/18.10.0)
+- Added new APIs to manage [iOS Live Activities](https://docs.airship.com/platform/mobile/ios-live-activities/)
+- Added new APIs to manage [Android Live Updates](https://docs.airship.com/platform/mobile/android-live-updates/)
+- Added a new [Plugin Extenders](http://localhost:1313/platform/mobile/setup/sdk/capacitor/#extending-airship) to modify the native Airship SDK after takeOff
+
+
 ## Version 2.2.0 September 25, 2024
 Minor release that updates the iOS SDK to 18.9.2 and adds the method `Airship.messageCenter.showMessageCenter(messageId?: string)` that can be used to show the OOTB Message Center UI even if auto launching Message Center is disabled. This new functionality is useful if the application needs to route the user in the app before processing the display event while still being able to use the OOTB UI.
 

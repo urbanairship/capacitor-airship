@@ -16,9 +16,7 @@ import com.urbanairship.json.JsonValue
 
 class CapacitorAutopilot : BaseAutopilot() {
 
-    override fun onAirshipReady(airship: UAirship) {
-        super.onAirshipReady(airship)
-
+    override fun onReady(context: Context, airship: UAirship) {
         Log.i("CapacitorAutopilot", "onAirshipReady")
         airship.analytics.registerSDKExtension(Extension.CAPACITOR, AirshipCapacitorVersion.version)
     }
