@@ -1,6 +1,6 @@
 # Capacitor Plugin Changelog
 
-## Version 2.3.0 - October 4, 2024
+## Version 2.3.0 - October 7, 2024
 
 Minor release that updates to latest SDK versions and adds support for iOS Live Activities & Android Live Updates.
 
@@ -9,8 +9,7 @@ Minor release that updates to latest SDK versions and adds support for iOS Live 
 - Updated Airship iOS SDK to [18.10.0](https://github.com/urbanairship/ios-library/releases/tag/18.10.0)
 - Added new APIs to manage [iOS Live Activities](https://docs.airship.com/platform/mobile/ios-live-activities/)
 - Added new APIs to manage [Android Live Updates](https://docs.airship.com/platform/mobile/android-live-updates/)
-- Added a new [iOS plugin extender]() to modify the native Airship SDK after takeOff
-- Added new [Android plugin extender]() to modify the native Airship SDK after takeOff
+- Added a new [Plugin Extenders](http://localhost:1313/platform/mobile/setup/sdk/capacitor/#extending-airship) to modify the native Airship SDK after takeOff
 
 
 ## Version 2.2.0 September 25, 2024
