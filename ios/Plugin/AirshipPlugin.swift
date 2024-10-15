@@ -366,7 +366,7 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin {
             )
             return nil
 
-        case "messageCenter#getUnreadMessageCount":
+        case "messageCenter#getUnreadCount":
             return try await AirshipProxy.shared.messageCenter.getUnreadCount()
 
         case "messageCenter#refreshMessages":

@@ -1,5 +1,13 @@
 # Capacitor Plugin Changelog
 
+## Version 2.4.0 - October 15, 2024
+Minor release that updates the native SDKs and fixes an issue with `Airship.messageCenter.getUnreadCount()`
+
+### Changes
+- Updated Airship iOS SDK to [18.11.1](https://github.com/urbanairship/ios-library/releases/tag/18.11.1)
+- Fixed method binding for `Airship.messageCenter.getUnreadCount()`
+- Fixed MessageCenterPredicate not being applied to the OOTB Message Center UI on iOS
+
 ## Version 2.3.0 - October 7, 2024
 
 Minor release that updates to latest SDK versions and adds support for iOS Live Activities & Android Live Updates.
