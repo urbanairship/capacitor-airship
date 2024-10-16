@@ -184,7 +184,7 @@ class AirshipPlugin : Plugin() {
 
                 "messageCenter#markMessageRead" -> call.resolveResult(method) { proxy.messageCenter.markMessageRead(arg.requireString()) }
                 "messageCenter#deleteMessage" -> call.resolveResult(method) { proxy.messageCenter.deleteMessage(arg.requireString()) }
-                "messageCenter#getUnreadMessageCount" -> call.resolveResult(method) { proxy.messageCenter.getUnreadMessagesCount() }
+                "messageCenter#getUnreadCount" -> call.resolveResult(method) { proxy.messageCenter.getUnreadMessagesCount() }
                 "messageCenter#setAutoLaunchDefaultMessageCenter" -> call.resolveResult(method) { proxy.messageCenter.setAutoLaunchDefaultMessageCenter(arg.requireBoolean()) }
                 "messageCenter#refreshMessages" -> call.resolveDeferred(method) { resolveCallback ->
                     proxy.messageCenter.refreshInbox().addResultCallback {
