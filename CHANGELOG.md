@@ -1,5 +1,12 @@
 # Capacitor Plugin Changelog
 
+## Version 3.0.0 - October 25, 2024
+Major version that makes it easier to include Airship in a hybrid app. The only breaking change is when extending the AirshipPluginExtender protocol on java there is a new extendConfig(Contex, AirshipConfigOptions.Builder) method to implement. Most application will not be affected.
+
+### Changes
+- Added new methods to the plugin extender to make hybrid app integrations easier
+- Updated Airship Android SDK to [18.3.3](https://github.com/urbanairship/android-library/releases/tag/18.3.3)
+
 ## Version 2.4.0 - October 15, 2024
 Minor release that updates the native SDKs and fixes an issue with `Airship.messageCenter.getUnreadCount()`
 
