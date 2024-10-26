@@ -1,5 +1,5 @@
 ext {
-    airshipProxyVersion = project.hasProperty('airshipProxyVersion') ? rootProject.ext.airshipProxyVersion : '11.0.0'
+    airshipProxyVersion = project.hasProperty('airshipProxyVersion') ? rootProject.ext.airshipProxyVersion : '11.0.1'
 }
 
 

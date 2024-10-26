@@ -6,6 +6,7 @@ Major version that makes it easier to include Airship in a hybrid app. The only 
 ### Changes
 - Added new methods to the plugin extender to make hybrid app integrations easier
 - Updated Airship Android SDK to [18.3.3](https://github.com/urbanairship/android-library/releases/tag/18.3.3)
+- Fixed tracking live activities started from a push notification
 
 ## Version 2.4.0 - October 15, 2024
 Minor release that updates the native SDKs and fixes an issue with `Airship.messageCenter.getUnreadCount()`
