@@ -11,7 +11,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/ionic-team/capacitor-swift-pm.git", branch: "main"),
-        .package(url: "https://github.com/urbanairship/airship-mobile-framework-proxy.git", from: "11.0.0")
+        .package(url: "https://github.com/urbanairship/airship-mobile-framework-proxy.git", from: "11.0.1")
     ],
     targets: [
          .target(
