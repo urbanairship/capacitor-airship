@@ -1,5 +1,13 @@
 # Capacitor Plugin Changelog
 
+
+## Version 3.0.1 - November 26, 2024
+Patch release that updates the iOS SDK to 18.12.2 and Android SDK to 18.4.2
+
+### Changes
+- Updated Android SDK to 18.4.2.
+- Updated iOS SDK to 18.12.2.
+
 ## Version 3.0.0 - October 25, 2024
 Major version that makes it easier to include Airship in a hybrid app. The only breaking change is when extending the AirshipPluginExtender protocol on java there is a new extendConfig(Contex, AirshipConfigOptions.Builder) method to implement. Most application will not be affected.
 
