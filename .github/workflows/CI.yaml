@@ -15,4 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Run CI
-        run: npm ci && npm run verify
+        run: |
+            set -eo pipefail
+            npm ci > /dev/null 2>&1
+            npm run verify | xcpretty --color
