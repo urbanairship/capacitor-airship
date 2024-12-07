@@ -7,12 +7,23 @@ on:
 
 jobs:
   deploy:
-    runs-on: macos-13-xlarge
+    runs-on: macos-15-xlarge
     timeout-minutes: 20
     env:
-      DEVELOPER_DIR: /Applications/Xcode_15.2.app/Contents/Developer
+      DEVELOPER_DIR: /Applications/Xcode_16.1.app/Contents/Developer
 
     steps:
+      - uses: actions/checkout@v4
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0.1'
+      - name: Install CocoaPods and xcpretty
+        run: |
+          gem install cocoapods -v '1.16.1'
+          gem install xcpretty
+      - name: Select Xcode version
+        run: sudo xcode-select -s '/Applications/Xcode_16.1.app/Contents/Developer'
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Check Version
@@ -34,7 +45,10 @@ jobs:
           node-version: 21
           registry-url: https://registry.npmjs.org/
       - name: Verify
-        run: npm ci && npm run verify
+        run: |
+          set -eo pipefail
+          npm ci --no-save --registry=https://registry.npmjs.org/
+          npm run verify | xcpretty --color
       - name: Publish
         run: npm publish --access public    
         env:
