@@ -11,13 +11,10 @@ if [ -z "$PROXY_VERSION" ]; then
 fi
 
 # Update UaCapacitorAirship.podspec
-sed -i.bak -E "s/(s\.dependency *\"AirshipFrameworkProxy\", *\")([^\"]*)(\")/\1$PROXY_VERSION\3/" "$ROOT_PATH/UaCapacitorAirship.podspec"
+sed -i '' "s/s\.dependency.*AirshipFrameworkProxy.*$/s.dependency \"AirshipFrameworkProxy\", \"$PROXY_VERSION\"/" "$ROOT_PATH/UaCapacitorAirship.podspec"
 
 # Update android/build.gradle
-sed -i.bak -E "s/(def proxyVersion = ')([^']*)(')/\1$PROXY_VERSION\3/" "$ROOT_PATH/android/build.gradle"
+sed -i '' "s/def proxyVersion = '.*'/def proxyVersion = '$PROXY_VERSION'/" "$ROOT_PATH/android/build.gradle"
 
 # Update ios/Podfile
-sed -i.bak -E "s/(pod 'AirshipFrameworkProxy', ')(.*?)(')/\1$PROXY_VERSION\3/" "$ROOT_PATH/ios/Podfile"
-
-# Clean up backup files
-find "$ROOT_PATH" -name "*.bak" -delete
+sed -i '' "s/pod 'AirshipFrameworkProxy'.*$/pod 'AirshipFrameworkProxy', '$PROXY_VERSION'/" "$ROOT_PATH/ios/Podfile"
