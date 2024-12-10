@@ -40,6 +40,12 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Make scripts executable
+        run: |
+          chmod +x ./scripts/update_version.sh
+          chmod +x ./scripts/update_proxy_version.sh
+          chmod +x ./scripts/update_changelog.sh
+
       - name: Run Updates
         run: |
           ./scripts/update_version.sh "${{ github.event.inputs.capacitor_version }}" || exit 1
