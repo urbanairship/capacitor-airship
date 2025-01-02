@@ -102,14 +102,14 @@ jobs:
           echo "PR Number: ${{ steps.create-pr.outputs.pull-request-number }}"
           echo "PR URL: ${{ steps.create-pr.outputs.pull-request-url }}"
 
-      - name: Slack Notification (Success)
-        if: success() && steps.create-pr.outputs.pull-request-number
-        uses: homoluctus/slatify@master
-        with:
-          type: success
-          job_name: ":tada: Capacitor plugin release pull request generated :tada:"
-          message: "@mobile-team A new Capacitor plugin release pull request for (v${{ github.event.inputs.capacitor_version }}) is ready! :rocket:"
-          url: ${{ secrets.MOBILE_SLACK_WEBHOOK }}
+      # - name: Slack Notification (Success)
+      #   if: success() && steps.create-pr.outputs.pull-request-number
+      #   uses: homoluctus/slatify@master
+      #   with:
+      #     type: success
+      #     job_name: ":tada: Capacitor plugin release pull request generated :tada:"
+      #     message: "@mobile-team A new Capacitor plugin release pull request for (v${{ github.event.inputs.capacitor_version }}) is ready! :rocket:"
+      #     url: ${{ secrets.MOBILE_SLACK_WEBHOOK }}
 
       - name: Handle Failure
         if: failure()
@@ -117,11 +117,11 @@ jobs:
           echo "::error::Release preparation failed. Please check the logs above for details."
           exit 1
 
-      - name: Slack Notification (Failure)
-        if: failure()
-        uses: homoluctus/slatify@master
-        with:
-          type: failure
-          job_name: ":disappointed: Capacitor Plugin Release Failed :disappointed:"
-          message: "@crow The release preparation failed. Please check the workflow logs. :sob:"
-          url: ${{ secrets.MOBILE_SLACK_WEBHOOK }}
+      # - name: Slack Notification (Failure)
+      #   if: failure()
+      #   uses: homoluctus/slatify@master
+      #   with:
+      #     type: failure
+      #     job_name: ":disappointed: Capacitor Plugin Release Failed :disappointed:"
+      #     message: "@crow The release preparation failed. Please check the workflow logs. :sob:"
+      #     url: ${{ secrets.MOBILE_SLACK_WEBHOOK }}
