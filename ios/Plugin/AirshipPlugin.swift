@@ -1,4 +1,5 @@
 import Foundation
+@preconcurrency
 import Capacitor
 
 #if canImport(AirshipKit)
@@ -14,7 +15,7 @@ import AirshipFrameworkProxy
  * here: https://capacitorjs.com/docs/plugins/ios
  */
 @objc(AirshipPlugin)
-public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin {
+public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin, @unchecked Sendable {
 
     public let identifier = "AirshipPlugin"
     public let jsName = "Airship"
@@ -36,15 +37,17 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin {
          .liveActivitiesUpdated: "ios_live_activities_updated"
      ]
 
-    @MainActor
     public override func load() {
-        AirshipCapacitorAutopilot.shared.onPluginInitialized(
-            pluginConfig: self.getConfig()
-        )
+        let config = self.getConfig()
+        MainActor.assumeIsolated {
+            AirshipCapacitorAutopilot.shared.onPluginInitialized(
+                pluginConfig: config
+            )
 
-        Task {
-            for await _ in await AirshipProxyEventEmitter.shared.pendingEventAdded {
-                await self.notifyPendingEvents()
+            Task {
+                for await _ in await AirshipProxyEventEmitter.shared.pendingEventAdded {
+                    await self.notifyPendingEvents()
+                }
             }
         }
     }
@@ -59,15 +62,19 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin {
     }
 
     @MainActor
-    private func sendEvent(_ event: AirshipProxyEvent) -> Bool {
+    private func sendEvent(_ event: any AirshipProxyEvent) -> Bool {
         guard let eventName = Self.eventNames[event.type] else {
             return false
         }
         guard self.hasListeners(eventName) else {
             return false
         }
+        do {
+            self.notifyListeners(eventName, data: try event.body.unwrapped())
+        } catch {
+            AirshipLogger.error("Failed to send event: \(event) error: \(error)")
+        }
 
-        self.notifyListeners(eventName, data: event.body)
         return true
     }
 
@@ -80,7 +87,7 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin {
 
         CAPLog.print("⚡️  To Airship -> ", pluginId, method, call.callbackId as Any)
 
-        Task {
+        Task { @MainActor in
             do {
                 if let result = try await self.handle(method: method, call: call) {
                     call.resolve(["value": try AirshipJSON.wrap(result).unWrap() as Any])
@@ -102,7 +109,7 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin {
     }
 
     @MainActor
-    private func handle(method: String, call: CAPPluginCall) async throws -> Any? {
+    private func handle(method: String, call: CAPPluginCall) async throws -> (any Sendable)? {
 
         switch method {
 
@@ -117,20 +124,20 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin {
 
         // Channel
         case "channel#getChannelId":
-            return try AirshipProxy.shared.channel.getChannelId()
+            return try AirshipProxy.shared.channel.channelID
 
         case "channel#editTags":
             try AirshipProxy.shared.channel.editTags(
-                json: try call.requireAnyArg()
+                operations: try call.requireCodableArg()
             )
             return nil
 
         case "channel#getTags":
-            return try AirshipProxy.shared.channel.getTags()
+            return try AirshipProxy.shared.channel.tags
 
         case "channel#editTagGroups":
             try AirshipProxy.shared.channel.editTagGroups(
-                json: try call.requireAnyArg()
+                operations: try call.requireCodableArg()
             )
             return nil
 
@@ -142,12 +149,12 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin {
 
         case "channel#editAttributes":
             try AirshipProxy.shared.channel.editAttributes(
-                json: try call.requireAnyArg()
+                operations: try call.requireCodableArg()
             )
             return nil
 
         case "channel#getSubscriptionLists":
-            return try await AirshipProxy.shared.channel.getSubscriptionLists()
+            return try await AirshipProxy.shared.channel.fetchSubscriptionLists()
 
         case "channel#enableChannelCreation":
             try AirshipProxy.shared.channel.enableChannelCreation()
@@ -156,19 +163,19 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin {
         // Contact
         case "contact#editTagGroups":
             try AirshipProxy.shared.contact.editTagGroups(
-                json: try call.requireAnyArg()
+                operations: try call.requireCodableArg()
             )
             return nil
 
         case "contact#editSubscriptionLists":
             try AirshipProxy.shared.contact.editSubscriptionLists(
-                json: try call.requireAnyArg()
+                operations: try call.requireCodableArg()
             )
             return nil
 
         case "contact#editAttributes":
             try AirshipProxy.shared.contact.editAttributes(
-                json: try call.requireAnyArg()
+                operations: try call.requireCodableArg()
             )
             return nil
 
@@ -190,7 +197,7 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin {
             return nil
 
         case "contact#getNamedUserId":
-            return try await AirshipProxy.shared.contact.getNamedUser()
+            return try await AirshipProxy.shared.contact.namedUserID
 
 
         // Push
@@ -212,10 +219,10 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin {
             return try AirshipProxy.shared.push.isUserNotificationsEnabled()
 
         case "push#getNotificationStatus":
-            return try await AirshipProxy.shared.push.getNotificationStatus()
+            return try await AirshipProxy.shared.push.notificationStatus
 
         case "push#getActiveNotifications":
-            return await AirshipProxy.shared.push.getActiveNotifications()
+            return try await AirshipProxy.shared.push.getActiveNotifications()
 
         case "push#clearNotification":
             AirshipProxy.shared.push.clearNotification(
@@ -283,7 +290,7 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin {
             return nil
 
         case "push#ios#getQuietTime":
-            return try AirshipProxy.shared.push.getQuietTime()
+            return try AirshipJSON.wrap(try AirshipProxy.shared.push.getQuietTime())
 
         // In-App
         case "inApp#setPaused":
@@ -297,7 +304,7 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin {
 
         case "inApp#setDisplayInterval":
             try AirshipProxy.shared.inApp.setDisplayInterval(
-                try call.requireIntArg()
+                milliseconds: try call.requireIntArg()
             )
             return nil
 
@@ -330,7 +337,7 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin {
 
         // Message Center
         case "messageCenter#getMessages":
-            return try? await AirshipProxy.shared.messageCenter.getMessages()
+            return try await AirshipProxy.shared.messageCenter.messages
 
         case "messageCenter#display":
             try AirshipProxy.shared.messageCenter.display(
@@ -367,7 +374,7 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin {
             return nil
 
         case "messageCenter#getUnreadCount":
-            return try await AirshipProxy.shared.messageCenter.getUnreadCount()
+            return try await AirshipProxy.shared.messageCenter.unreadCount
 
         case "messageCenter#refreshMessages":
             try await AirshipProxy.shared.messageCenter.refresh()
@@ -446,7 +453,7 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin {
             return nil
 
         case "locale#getCurrentLocale":
-            return try AirshipProxy.shared.locale.getCurrentLocale()
+            return try AirshipProxy.shared.locale.currentLocale
 
         // Actions
         case "actions#run":
@@ -459,11 +466,10 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin {
             }
 
             let arg = try? AirshipJSON.wrap(args[1])
-            let result = try await AirshipProxy.shared.action.runAction(
+            return try await AirshipProxy.shared.action.runAction(
                 actionName,
                 value: args.count == 2 ? arg : nil
-            ) as? AirshipJSON
-            return result?.unWrap()
+            )
 
         // Feature Flag
         case "featureFlagManager#flag":
@@ -629,5 +635,14 @@ extension CAPPluginCall {
         }
 
         throw AirshipErrors.error("Argument must be a double")
+    }
+}
+
+fileprivate extension Encodable {
+    func unwrapped<T>() throws -> T {
+        guard let value = try AirshipJSON.wrap(self).unWrap() as? T else {
+            throw AirshipErrors.error("Failed to unwrap codable")
+        }
+        return value
     }
 }

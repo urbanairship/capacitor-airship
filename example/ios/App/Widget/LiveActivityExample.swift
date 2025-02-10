@@ -2,9 +2,9 @@ import ActivityKit
 import WidgetKit
 import SwiftUI
 
-struct ExampleLiveActivity: Widget {
+struct LiveActivityExample: Widget {
     var body: some WidgetConfiguration {
-        ActivityConfiguration(for: ExampleAttributes.self) { context in
+        ActivityConfiguration(for: LiveActivityExampleAttributes.self) { context in
             // Lock screen/banner UI goes here
             VStack {
                 Text("Hello \(context.state.emoji)")
@@ -39,25 +39,25 @@ struct ExampleLiveActivity: Widget {
     }
 }
 
-extension ExampleAttributes {
-    fileprivate static var preview: ExampleAttributes {
-        ExampleAttributes(name: "World")
+extension LiveActivityExampleAttributes {
+    fileprivate static var preview: LiveActivityExampleAttributes {
+        LiveActivityExampleAttributes(name: "World")
     }
 }
 
-extension ExampleAttributes.ContentState {
-    fileprivate static var smiley: ExampleAttributes.ContentState {
-        ExampleAttributes.ContentState(emoji: "😀")
+extension LiveActivityExampleAttributes.ContentState {
+    fileprivate static var smiley: LiveActivityExampleAttributes.ContentState {
+        LiveActivityExampleAttributes.ContentState(emoji: "😀")
      }
      
-     fileprivate static var starEyes: ExampleAttributes.ContentState {
-         ExampleAttributes.ContentState(emoji: "🤩")
+     fileprivate static var starEyes: LiveActivityExampleAttributes.ContentState {
+         LiveActivityExampleAttributes.ContentState(emoji: "🤩")
      }
 }
 
-#Preview("Notification", as: .content, using: ExampleAttributes.preview) {
-    ExampleLiveActivity()
+#Preview("Notification", as: .content, using: LiveActivityExampleAttributes.preview) {
+    LiveActivityExample()
 } contentStates: {
-    ExampleAttributes.ContentState.smiley
-    ExampleAttributes.ContentState.starEyes
+    LiveActivityExampleAttributes.ContentState.smiley
+    LiveActivityExampleAttributes.ContentState.starEyes
 }

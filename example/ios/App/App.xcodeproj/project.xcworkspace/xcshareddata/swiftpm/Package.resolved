@@ -1,0 +1,33 @@
+{
+  "originHash" : "8eeb2dbf0eb744d15f81aa06131b1c5a4268f872fc366a0616bf6dcb572383a1",
+  "pins" : [
+    {
+      "identity" : "airship-mobile-framework-proxy",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/urbanairship/airship-mobile-framework-proxy.git",
+      "state" : {
+        "revision" : "e1f350572f97b9493fbecb9cee3ff9c6c924d683",
+        "version" : "13.0.0"
+      }
+    },
+    {
+      "identity" : "capacitor-swift-pm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ionic-team/capacitor-swift-pm.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "bc99a4197e8a966c99912a644a9aa5710f7e3409"
+      }
+    },
+    {
+      "identity" : "ios-library",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/urbanairship/ios-library.git",
+      "state" : {
+        "revision" : "adb01f7a7abf2998379bf64b5ca3fbbdcfb90ef7",
+        "version" : "19.0.3"
+      }
+    }
+  ],
+  "version" : 3
+}
