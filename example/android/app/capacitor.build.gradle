@@ -2,8 +2,8 @@
 
 android {
   compileOptions {
-      sourceCompatibility JavaVersion.VERSION_17
-      targetCompatibility JavaVersion.VERSION_17
+      sourceCompatibility JavaVersion.VERSION_21
+      targetCompatibility JavaVersion.VERSION_21
   }
 }
 
@@ -12,7 +12,6 @@ dependencies {
     implementation project(':capacitor-camera')
     implementation project(':capacitor-splash-screen')
     implementation project(':ua-capacitor-airship')
-    implementation 'androidx.core:core-ktx:1.13.1'
 
 }
 

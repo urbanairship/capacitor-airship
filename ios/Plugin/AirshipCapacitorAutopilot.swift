@@ -9,15 +9,13 @@ import AirshipCore
 import AirshipFrameworkProxy
 import Capacitor
 
+@MainActor
 public final class AirshipCapacitorAutopilot: NSObject {
 
     public static let shared: AirshipCapacitorAutopilot = AirshipCapacitorAutopilot()
 
-    @MainActor
     private var pluginInitialized: Bool = false
-    @MainActor
     private var applicationDidFinishLaunching: Bool = false
-    @MainActor
     private var launchOptions: [UIApplication.LaunchOptionsKey : Any]?
 
     fileprivate var pluginConfig: PluginConfig?
@@ -71,7 +69,7 @@ extension AirshipCapacitorAutopilot: AirshipProxyDelegate {
     public func migrateData(store: AirshipFrameworkProxy.ProxyStore) {}
     
     public func loadDefaultConfig() -> AirshipConfig {
-        let airshipConfig = AirshipConfig.default()
+        var airshipConfig = (try? AirshipConfig.default()) ?? AirshipConfig()
         if let config = self.pluginConfig?.getObject("config") {
             do {
                 let proxyConfig: ProxyConfig = try AirshipJSON.wrap(config).decode()

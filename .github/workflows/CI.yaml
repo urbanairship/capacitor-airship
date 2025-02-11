@@ -16,10 +16,10 @@ jobs:
           gem install cocoapods -v '1.16.1'
           gem install xcpretty
       - name: Select Xcode version
-        run: sudo xcode-select -s '/Applications/Xcode_16.1.app/Contents/Developer'
+        run: sudo xcode-select -s '/Applications/Xcode_16.2.app/Contents/Developer'
       - uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '22'
           registry-url: 'https://registry.npmjs.org'
       - name: Run CI
         run: |

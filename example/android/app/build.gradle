@@ -5,7 +5,7 @@ apply plugin: 'kotlin-kapt'
 android {
 
     kotlinOptions {
-        jvmTarget = '17'
+        jvmTarget = JavaVersion.VERSION_21
     }
 
     namespace "com.example.plugin"
