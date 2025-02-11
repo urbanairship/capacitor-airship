@@ -1,8 +1,7 @@
 import ActivityKit
 import WidgetKit
-import SwiftUI
 
-struct ExampleAttributes: ActivityAttributes {
+struct LiveActivityExampleAttributes: ActivityAttributes {
     public struct ContentState: Codable, Hashable {
         // Dynamic stateful properties about your activity go here!
         var emoji: String

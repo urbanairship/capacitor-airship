@@ -1,5 +1,4 @@
 import Foundation
-import AirshipKit
 import AirshipFrameworkProxy
 import ActivityKit
 
@@ -15,10 +14,10 @@ public class AirshipPluginExtender: NSObject, AirshipPluginExtenderProtocol {
       try? LiveActivityManager.shared.setup { configurator in
 
         // Register each activity type
-          await configurator.register(forType: Activity<ExampleAttributes>.self) { attributes in
-              // Track this property as the Airship name for updates
-              attributes.name
-          }
+          await configurator.register(forType: Activity<LiveActivityExampleAttributes>.self) { attributes in
+          // Track this property as the Airship name for updates
+          attributes.name
+        }
       }
     }
   }
