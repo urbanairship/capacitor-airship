@@ -1,6 +1,6 @@
 # Capacitor Plugin Changelog
 
-## Version 4.0.0 - February 10, 2025
+## Version 4.0.0 - February 11, 2025
 Major release that updates the Android Airship SDK to 19.1.0 and iOS Airship SDK to 19.0.3
 
 ### Changes
@@ -8,6 +8,8 @@ Major release that updates the Android Airship SDK to 19.1.0 and iOS Airship SDK
 - Updated iOS SDK to [19.0.3](https://github.com/urbanairship/ios-library/releases/tag/19.0.3).
 - Updated Capacitor to 7.0.0
 - Fixed SPM integration
+- iOS requires Xcode 16.2 and iOS 15+
+- Android requires compileSdkVersion 35+ and minSdkVersion 23+
 
 ## Version 3.1.0 - December 6, 2024
 Minor release that updates the Android Airship SDK to 18.5.0 and iOS Airship SDK to 18.13.0
