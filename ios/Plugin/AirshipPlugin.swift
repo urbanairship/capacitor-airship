@@ -45,7 +45,7 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin, @unchecked Sendable {
             )
 
             Task {
-                for await _ in await AirshipProxyEventEmitter.shared.pendingEventAdded {
+                for await _ in AirshipProxyEventEmitter.shared.pendingEventAdded {
                     await self.notifyPendingEvents()
                 }
             }
@@ -55,7 +55,7 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin, @unchecked Sendable {
     @MainActor
     private func notifyPendingEvents() async {
         for eventType in AirshipProxyEventType.allCases {
-            await AirshipProxyEventEmitter.shared.processPendingEvents(type: eventType) { event in
+            AirshipProxyEventEmitter.shared.processPendingEvents(type: eventType) { event in
                 return sendEvent(event)
             }
         }
