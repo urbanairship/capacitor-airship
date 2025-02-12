@@ -7,6 +7,8 @@ Pods
 Podfile.lock
 Build
 xcuserdata
+example/ios/App/App.xcarchive/*
+example/ios/App/archive.plist
 
 # macOS files
 .DS_Store

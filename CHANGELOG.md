@@ -1,5 +1,11 @@
 # Capacitor Plugin Changelog
 
+## Version 4.0.1 February 11, 2025
+Patch release to fix the `MessageCenterUpdatedEvent` property `messageUnreadCount` on iOS.
+
+### Changes
+- Fixed MessageCenterUpdatedEvent.messageUnreadCount on iOS.
+
 ## Version 4.0.0 - February 11, 2025
 Major release that updates the Android Airship SDK to 19.1.0 and iOS Airship SDK to 19.0.3
 
