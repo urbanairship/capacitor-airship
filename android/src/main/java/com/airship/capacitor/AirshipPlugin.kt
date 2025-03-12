@@ -212,6 +212,7 @@ class AirshipPlugin : Plugin() {
             "inApp#getDisplayInterval" -> call.resolve(scope, method) { proxy.inApp.getDisplayInterval() }
 
             // Analytics
+            "analytics#getSessionId" -> call.resolve(scope, method) { proxy.analytics.getSessionId() }
             "analytics#trackScreen" -> call.resolve(scope, method) { proxy.analytics.trackScreen(arg.string) }
             "analytics#addCustomEvent" -> call.resolve(scope, method) { proxy.analytics.addEvent(arg) }
             "analytics#associateIdentifier" -> {
