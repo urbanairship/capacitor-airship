@@ -1,6 +1,15 @@
 # Capacitor Plugin Changelog
 
-## Version 4.0.1 February 11, 2025
+## Version 4.1.0 - March 12, 2025
+Major release that updates to the latest Airship SDKs and exposes the analytics session ID.
+
+### Changes
+- Updated Android SDK to [19.3.0](https://github.com/urbanairship/android-library/releases/tag/19.3.0).
+- Updated iOS SDK to [19.1.0](https://github.com/urbanairship/ios-library/releases/tag/19.1.0).
+- Added `Airship.analytics.getSessionId()` method.
+
+
+## Version 4.0.1 - February 11, 2025
 Patch release to fix the `MessageCenterUpdatedEvent` property `messageUnreadCount` on iOS.
 
 ### Changes
