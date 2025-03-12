@@ -312,6 +312,9 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin, @unchecked Sendable {
             return try AirshipProxy.shared.inApp.getDisplayInterval()
 
         // Analytics
+        case "analytics#getSessionId":
+            return try AirshipProxy.shared.analytics.getSessionID()
+
         case "analytics#trackScreen":
             try AirshipProxy.shared.analytics.trackScreen(
                 try? call.requireStringArg()
