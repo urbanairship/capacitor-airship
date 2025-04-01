@@ -13,6 +13,6 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '15.0'
   s.dependency 'Capacitor'
   s.swift_version = '6'
-  s.dependency "AirshipFrameworkProxy", "13.3.0"
+  s.dependency "AirshipFrameworkProxy", "13.3.1"
   s.source_files = 'ios/Plugin/**/*.{swift,h,m,c,cc,mm,cpp}'
 end
