@@ -1,5 +1,14 @@
 # Capacitor Plugin Changelog
 
+## Version 4.2.1 - April 18, 2025
+
+Patch release that updates the Android SDK to 19.5.1 and the iOS SDK to 19.2.1
+
+### Changes
+- Updated Android SDK to [19.5.1](https://github.com/urbanairship/android-library/releases/tag/19.5.1)
+- Updated iOS SDK to [19.2.1](https://github.com/urbanairship/ios-library/releases/tag/19.2.1)
+
+
 ## Version 4.2.0 - March 27, 2025
 
 Minor release that updates the Android SDK to 19.4.0 and the iOS SDK to 19.1.1
