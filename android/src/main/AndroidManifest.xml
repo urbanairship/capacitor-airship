@@ -12,6 +12,7 @@
         <activity
             android:name="com.urbanairship.android.framework.proxy.CustomMessageCenterActivity"
             android:label="@string/ua_message_center_title"
+            android:theme="@style/UrbanAirship.MessageCenter.Activity"
             android:launchMode="singleTask"
             android:exported="false">
             <intent-filter>
@@ -28,6 +29,7 @@
 
         <activity
             android:name="com.urbanairship.android.framework.proxy.CustomMessageActivity"
+            android:theme="@style/UrbanAirship.MessageCenter.Activity"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.urbanairship.VIEW_RICH_PUSH_MESSAGE" />
