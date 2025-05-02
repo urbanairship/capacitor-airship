@@ -127,7 +127,7 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin, @unchecked Sendable {
             return try AirshipProxy.shared.channel.channelID
 
         case "channel#waitForChannelId":
-            return await try AirshipProxy.shared.channel.waitForChannelID()
+            return try await AirshipProxy.shared.channel.waitForChannelID()
 
         case "channel#editTags":
             try AirshipProxy.shared.channel.editTags(
