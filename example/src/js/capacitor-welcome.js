@@ -1,5 +1,9 @@
 import { SplashScreen } from '@capacitor/splash-screen';
 import { Airship } from '@ua/capacitor-airship';
+import { Preferences } from '@capacitor/preferences';
+
+
+
 
 window.customElements.define(
   'capacitor-welcome',
@@ -83,6 +87,12 @@ window.customElements.define(
           <button class="button" id="enable-push">Toggle push</button>
         </p>
         <p>
+          <button class="button" id="toggle-darkmode">Toggle dark mode</button>
+        </p>
+          <p>
+          <button class="button" id="clear-darkmode">Clear dark mode</button>
+        </p>
+        <p>
           <button class="button" id="display-message-center">Display message center</button>
         </p>
         <p>
@@ -109,6 +119,23 @@ window.customElements.define(
         
       self.shadowRoot.querySelector('#display-preference-center').addEventListener('click', async function (e) {
         await Airship.preferenceCenter.display("neat")
+      });
+
+      self.shadowRoot.querySelector('#toggle-darkmode').addEventListener('click', async function (e) {
+        let { value } = await Preferences.get({
+          key: 'appTheme',
+        });
+        console.log("Value:", value)
+        await Preferences.set({
+          key: 'appTheme',
+          value: value == "dark" ? "light" : "dark"
+        });
+      });
+
+      self.shadowRoot.querySelector('#clear-darkmode').addEventListener('click', async function (e) {
+        await Preferences.remove({
+          key: 'appTheme'
+        });
       });
     }
   }
