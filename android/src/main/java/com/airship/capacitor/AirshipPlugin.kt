@@ -97,6 +97,7 @@ class AirshipPlugin : Plugin() {
 
             // Channel
             "channel#getChannelId" -> call.resolve(scope, method) { proxy.channel.getChannelId() }
+            "channel#waitForChannelId" -> call.resolve(scope, method) { proxy.channel.waitForChannelId() }
 
             "channel#editTags" -> call.resolve(scope, method) { proxy.channel.editTags(arg) }
             "channel#getTags" -> call.resolve(scope, method) { proxy.channel.getTags().toList() }
