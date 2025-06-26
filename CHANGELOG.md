@@ -2,14 +2,13 @@
 
 [All Releases](https://github.com/urbanairship/capacitor-airship/releases)
 
-## Version 4.4.0 - May 15, 2025
-Minor release that adds support for using Feature Flags as an audience condition for other Feature Flags and Vimeo videos in Scenes.
+## Version 4.4.0 - June 26, 2025
+Minor release that adds support for Android log privacy level configuration and updates the Android SDK to 19.9.1 and the iOS SDK to 19.6.1.
 
 ### Changes
-- Added support for using Feature Flags as an audience condition for other Feature Flags.
-- Added support for Vimeo videos in Scenes.
-- Updated Android SDK to [19.7.0](https://github.com/urbanairship/android-library/releases/tag/19.7.0)
-- Updated iOS SDK to [19.4.0](https://github.com/urbanairship/ios-library/releases/tag/19.4.0)
+- Updated Android SDK to [19.9.1](https://github.com/urbanairship/android-library/releases/tag/19.9.1)
+- Updated iOS SDK to [19.6.1](https://github.com/urbanairship/ios-library/releases/tag/19.6.1)
+- Added Android `logPrivacyLevel` configuration support
 
 ## Version 4.3.1 - May 9, 2025
 Patch release that updates iOS SDK to 19.3.2
