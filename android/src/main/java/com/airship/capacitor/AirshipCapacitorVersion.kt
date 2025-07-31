@@ -3,5 +3,5 @@
 package com.airship.capacitor
 
 object AirshipCapacitorVersion {
-    var version = "4.4.0"
+    var version = "4.5.0"
 }
