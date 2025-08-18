@@ -629,6 +629,7 @@ export enum Feature {
   Chat = 'chat',
   Analytics = 'analytics',
   TagsAndAttributes = 'tags_and_attributes',
+  FeatureFlags = 'feature_flags',
   Contacts = 'contacts',
   // No longer used
   Location = 'location',
