@@ -5,7 +5,7 @@ def capacitor_pods
   use_frameworks!
   pod 'Capacitor', :path => '../node_modules/@capacitor/ios'
   pod 'CapacitorCordova', :path => '../node_modules/@capacitor/ios'
-  pod 'AirshipFrameworkProxy', '14.6.0'
+  pod 'AirshipFrameworkProxy', '14.7.0'
 end
 
 target 'Plugin' do
