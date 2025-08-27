@@ -9,6 +9,6 @@ public class AirshipPluginLoader: NSObject, AirshipPluginLoaderProtocol {
     public static func onApplicationDidFinishLaunching(
         launchOptions: [UIApplication.LaunchOptionsKey : Any]?
     ) {
-        AirshipCapacitorAutopilot.shared.onApplicationDidFinishLaunching(launchOptions: launchOptions)
+        AirshipCapacitorAutopilot.shared.onApplicationDidFinishLaunching()
     }
 }

@@ -16,7 +16,6 @@ public final class AirshipCapacitorAutopilot: NSObject {
 
     private var pluginInitialized: Bool = false
     private var applicationDidFinishLaunching: Bool = false
-    private var launchOptions: [UIApplication.LaunchOptionsKey : Any]?
 
     fileprivate var pluginConfig: PluginConfig?
 
@@ -32,16 +31,11 @@ public final class AirshipCapacitorAutopilot: NSObject {
      */
 
     @MainActor
-    func onApplicationDidFinishLaunching(
-        launchOptions: [UIApplication.LaunchOptionsKey : Any]?
-    ) {
+    func onApplicationDidFinishLaunching() {
         AirshipProxy.shared.delegate = self 
-        self.launchOptions = launchOptions
         self.applicationDidFinishLaunching = true
         if self.pluginInitialized, self.applicationDidFinishLaunching {
-            try? AirshipProxy.shared.attemptTakeOff(
-                launchOptions: self.launchOptions
-            )
+            try? AirshipProxy.shared.attemptTakeOff()
         }
     }
 
@@ -50,9 +44,7 @@ public final class AirshipCapacitorAutopilot: NSObject {
         self.pluginInitialized = true
         self.pluginConfig = pluginConfig
         if self.pluginInitialized, self.applicationDidFinishLaunching {
-            try? AirshipProxy.shared.attemptTakeOff(
-                launchOptions: self.launchOptions
-            )
+            try? AirshipProxy.shared.attemptTakeOff()
         }
     }
 
@@ -60,7 +52,6 @@ public final class AirshipCapacitorAutopilot: NSObject {
     func attemptTakeOff(json: Any) throws -> Bool {
         return try AirshipProxy.shared.takeOff(
             json: json,
-            launchOptions: self.launchOptions
         )
     }
 }
