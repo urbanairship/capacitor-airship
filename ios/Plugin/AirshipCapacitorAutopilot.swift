@@ -35,9 +35,7 @@ public final class AirshipCapacitorAutopilot: NSObject {
         AirshipProxy.shared.delegate = self 
         self.applicationDidFinishLaunching = true
         if self.pluginInitialized, self.applicationDidFinishLaunching {
-            try? AirshipProxy.shared.attemptTakeOff(
-                launchOptions: self.launchOptions
-            )
+            try? AirshipProxy.shared.attemptTakeOff()
         }
     }
 
@@ -46,9 +44,7 @@ public final class AirshipCapacitorAutopilot: NSObject {
         self.pluginInitialized = true
         self.pluginConfig = pluginConfig
         if self.pluginInitialized, self.applicationDidFinishLaunching {
-            try? AirshipProxy.shared.attemptTakeOff(
-                launchOptions: self.launchOptions
-            )
+            try? AirshipProxy.shared.attemptTakeOff()
         }
     }
 
