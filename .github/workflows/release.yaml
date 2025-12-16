@@ -7,10 +7,10 @@ on:
 
 jobs:
   deploy:
-    runs-on: macos-15-xlarge
+    runs-on: macos-26-xlarge
     timeout-minutes: 20
     env:
-      DEVELOPER_DIR: /Applications/Xcode_16.4.app/Contents/Developer
+      DEVELOPER_DIR: /Applications/Xcode_26.0.app/Contents/Developer
 
     steps:
       - uses: actions/checkout@v4
@@ -23,26 +23,31 @@ jobs:
           gem install cocoapods -v '1.16.1'
           gem install xcpretty
       - name: Select Xcode version
-        run: sudo xcode-select -s '/Applications/Xcode_16.4.app/Contents/Developer'
+        run: sudo xcode-select -s '/Applications/Xcode_26.0.app/Contents/Developer'
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Check Version
         run: bash ./scripts/check_version.sh ${GITHUB_REF/refs\/tags\//}
       - name: Get the version
         id: get_version
-        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+        run: echo "VERSION=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_OUTPUT
       - name: Get the release notes
         id: get_release_notes
         run: |
           VERSION=${{ steps.get_version.outputs.VERSION }}
           NOTES="$(awk "/## Version $VERSION/{flag=1;next}/## Version/{flag=0}flag" CHANGELOG.md)"
-          NOTES="${NOTES//'%'/%25}"
-          NOTES="${NOTES//$'\n'/%0A}"
-          NOTES="${NOTES//$'\r'/%0D}"
-          echo ::set-output name=NOTES::"$NOTES"
-      - uses: actions/setup-node@master
+          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+          echo "NOTES<<$EOF" >> $GITHUB_OUTPUT
+          echo "$NOTES" >> $GITHUB_OUTPUT
+          echo "$EOF" >> $GITHUB_OUTPUT
+      - uses: actions/setup-node@v4
         with:
-          node-version: 21
+          node-version: '22'
           registry-url: https://registry.npmjs.org/
       - name: Verify
         run: |

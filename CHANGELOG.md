@@ -1,5 +1,16 @@
 # Capacitor Plugin Changelog
 
+## Version 5.0.0 - December 16, 2025
+
+Major release that updates to Airship SDK 20.x with breaking changes.
+
+### Changes
+- Updated Android SDK to [20.1.0](https://github.com/urbanairship/android-library/releases/tag/20.1.0)
+- Updated iOS SDK to [20.0.2](https://github.com/urbanairship/ios-library/releases/tag/20.0.2)
+- iOS requires iOS 16.0+
+- Android requires compileSdkVersion 36+, Kotlin 2.2.20+, Gradle 8.13+, and JDK 21+
+- Custom `AirshipPluginExtender` implementations must update `onAirshipReady` signature (remove `UAirship` parameter)
+
 ## Version 4.6.1 - November 14, 2025
 
 Patch release that fixes YouTube video playback in In-App Automation and Scenes. Applications that use YouTube videos in Scenes and non-html In-App Automations (IAA) must update to resolve playback errors.
