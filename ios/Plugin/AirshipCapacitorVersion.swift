@@ -3,5 +3,5 @@
 import Foundation
 
 class AirshipCapacitorVersion {
-    static let version = "4.6.1"
+    static let version = "5.0.0"
 }

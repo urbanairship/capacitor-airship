@@ -1,5 +1,14 @@
 # Capacitor Plugin Changelog
 
+## Version 5.0.0 - December 30, 2025
+
+Major release that updates the Android SDK to 20.0.6 and the iOS SDK to 20.0.3
+
+### Changes
+- Updated Android SDK to [20.0.6](https://github.com/urbanairship/android-library/releases/tag/20.0.6)
+- Updated iOS SDK to [20.0.3](https://github.com/urbanairship/ios-library/releases/tag/20.0.3)
+
+
 ## Version 4.6.1 - November 14, 2025
 
 Patch release that fixes YouTube video playback in In-App Automation and Scenes. Applications that use YouTube videos in Scenes and non-html In-App Automations (IAA) must update to resolve playback errors.
