@@ -8,6 +8,8 @@ Minor release that updates the iOS SDK to 20.1.1 and the Android SDK to 20.1.1.
 - Updated iOS SDK to [20.1.1](https://github.com/urbanairship/ios-library/releases/tag/20.1.1)
 - Updated Android SDK to [20.1.1](https://github.com/urbanairship/android-library/releases/tag/20.1.1)
 - iOS minimum deployment target increased from 15.0 to 16.0
+- Android compileSdkVersion updated to 36
+- Android Kotlin version updated to 2.2.0
 
 
 ## Version 5.0.0 - December 30, 2025
