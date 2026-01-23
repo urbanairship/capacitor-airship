@@ -6,7 +6,7 @@ import android.content.Context
 import android.util.Log
 import com.getcapacitor.CapConfig
 import com.urbanairship.AirshipConfigOptions
-import com.urbanairship.UAirship
+import com.urbanairship.Airship
 import com.urbanairship.analytics.Extension
 import com.urbanairship.android.framework.proxy.BaseAutopilot
 import com.urbanairship.android.framework.proxy.ProxyConfig
@@ -16,9 +16,9 @@ import com.urbanairship.json.JsonValue
 
 class CapacitorAutopilot : BaseAutopilot() {
 
-    override fun onReady(context: Context, airship: UAirship) {
+    override fun onReady(context: Context) {
         Log.i("CapacitorAutopilot", "onAirshipReady")
-        airship.analytics.registerSDKExtension(Extension.CAPACITOR, AirshipCapacitorVersion.version)
+        Airship.analytics.registerSDKExtension(Extension.CAPACITOR, AirshipCapacitorVersion.version)
     }
 
     override fun createConfigBuilder(context: Context): AirshipConfigOptions.Builder {
