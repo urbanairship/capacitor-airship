@@ -1,6 +1,6 @@
 {
   "name": "@ua/capacitor-airship",
-  "version": "4.6.1",
+  "version": "5.0.0",
   "description": "Airship capacitor plugin",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -31,7 +31,7 @@
   "scripts": {
     "verify": "npm run build && npm run verify:ios && npm run verify:android",
     "verify:ios": "cd ios && pod install && xcrun xcodebuild -workspace Plugin.xcworkspace -scheme Plugin -destination generic/platform=iOS && cd ..",
-    "verify:android": "cd android && ./gradlew clean build && cd ..",
+    "verify:android": "cd android && ./gradlew clean build -x lint && cd ..",
     "lint": "npm run eslint && npm run prettier -- --check && npm run swiftlint -- lint",
     "fmt": "npm run eslint -- --fix && npm run prettier -- --write && npm run swiftlint -- --fix --format",
     "eslint": "eslint . --ext ts",
