@@ -64,8 +64,6 @@ jobs:
           body: ${{ steps.get_release_notes.outputs.NOTES }}
           draft: false
           prerelease: false
-      - name: Publish Docs
-        run: npm publish --access public  
       - name: Setup GCP Auth
         uses: google-github-actions/auth@v1
         with:
