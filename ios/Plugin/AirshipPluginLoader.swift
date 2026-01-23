@@ -1,6 +1,5 @@
 
 public import AirshipFrameworkProxy
-public import Foundation
 public import UIKit
 
 @objc(AirshipPluginLoader)
