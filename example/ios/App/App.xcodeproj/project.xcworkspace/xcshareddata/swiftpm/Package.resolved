@@ -1,13 +1,13 @@
 {
-  "originHash" : "b9d9382873e66beba883fb0dc15cef896da11469e709797a5dfcb0e92e886d96",
+  "originHash" : "59801d589c7f80a0642ff074fe78984227a3c968f86744b5dd0f3ca684245002",
   "pins" : [
     {
       "identity" : "airship-mobile-framework-proxy",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/urbanairship/airship-mobile-framework-proxy.git",
       "state" : {
-        "revision" : "2adc098f6eb2754e74e9a9fcd7190e926cfe56d3",
-        "version" : "13.2.0"
+        "revision" : "77425d5b85a4a50398ced903c204fb77e2d8c96c",
+        "version" : "15.4.0"
       }
     },
     {
@@ -16,16 +16,16 @@
       "location" : "https://github.com/ionic-team/capacitor-swift-pm.git",
       "state" : {
         "branch" : "main",
-        "revision" : "bc99a4197e8a966c99912a644a9aa5710f7e3409"
+        "revision" : "1f324fe7bdbdc8c5cc28bea48a231545a8c2e823"
       }
     },
     {
       "identity" : "ios-library",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/urbanairship/ios-library.git",
+      "location" : "https://github.com/urbanairship/ios-library",
       "state" : {
-        "revision" : "511eaf4d613d94d317892dc384257fe6dbe3ce13",
-        "version" : "19.1.0"
+        "revision" : "d07367eb662441e3c8935bde552205b84860d52b",
+        "version" : "20.3.1"
       }
     }
   ],
