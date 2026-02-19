@@ -1,16 +1,13 @@
 # Capacitor Plugin Changelog
 
-## Version 5.1.0 - January 20, 2026
+## Version 5.1.0 - February 18, 2026
 
-Minor release that updates the iOS SDK to 20.1.1 and the Android SDK to 20.1.1.
+Minor release that fixes Airship failing to take off on iOS due to a plugin loader compatibility issue and updates the iOS SDK to 20.3.0 and the Android SDK to 20.2.0.
 
 ### Changes
-- Updated iOS SDK to [20.1.1](https://github.com/urbanairship/ios-library/releases/tag/20.1.1)
-- Updated Android SDK to [20.1.1](https://github.com/urbanairship/android-library/releases/tag/20.1.1)
-- iOS minimum deployment target increased from 15.0 to 16.0
-- Android compileSdkVersion updated to 36
-- Android Kotlin version updated to 2.2.20
-- Android Gradle Plugin updated to 8.13.0
+- Updated iOS SDK to [20.3.0](https://github.com/urbanairship/ios-library/releases/tag/20.3.0)
+- Updated Android SDK to [20.2.0](https://github.com/urbanairship/android-library/releases/tag/20.2.0)
+- Fixed iOS plugin loader to use the updated `onLoad()` protocol method
 
 
 ## Version 5.0.0 - December 30, 2025
