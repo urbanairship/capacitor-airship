@@ -5,6 +5,10 @@ on:
     tags:
       - "[0-9]+.[0-9]+.[0-9]+*"
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   deploy:
     runs-on: macos-26-xlarge
@@ -40,9 +44,9 @@ jobs:
           NOTES="${NOTES//$'\n'/%0A}"
           NOTES="${NOTES//$'\r'/%0D}"
           echo ::set-output name=NOTES::"$NOTES"
-      - uses: actions/setup-node@master
+      - uses: actions/setup-node@v4
         with:
-          node-version: 21
+          node-version: '24'
           registry-url: https://registry.npmjs.org/
       - name: Verify
         run: |
@@ -50,9 +54,7 @@ jobs:
           npm ci --no-save --registry=https://registry.npmjs.org/
           npm run verify | xcpretty --color
       - name: Publish
-        run: npm publish --access public    
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }} 
+        run: npm publish --access public
       - name: Github Release
         id: create_release
         uses: softprops/action-gh-release@v1
