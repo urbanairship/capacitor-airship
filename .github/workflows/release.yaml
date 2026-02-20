@@ -51,7 +51,7 @@ jobs:
       - name: Verify
         run: |
           set -eo pipefail
-          npm ci --no-save --registry=https://registry.npmjs.org/
+          npm install --no-save --registry=https://registry.npmjs.org/
           npm run verify | xcpretty --color
       - name: Publish
         run: npm publish --access public

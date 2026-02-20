@@ -29,13 +29,13 @@ jobs:
       - name: Verify plugin
         run: |
           set -eo pipefail
-          npm ci --no-save --registry=https://registry.npmjs.org/
+          npm install --no-save --registry=https://registry.npmjs.org/
           npm run verify | xcpretty --color
       - name: Build example iOS app
         run: |
           set -eo pipefail
           cd example
-          npm ci --no-save --registry=https://registry.npmjs.org/
+          npm install --no-save --registry=https://registry.npmjs.org/
           npm run build
           npx cap sync ios
           cd ..
