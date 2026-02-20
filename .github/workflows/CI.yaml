@@ -7,6 +7,11 @@ jobs:
     runs-on: macos-26-xlarge
     steps:
       - uses: actions/checkout@v4
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -21,8 +26,26 @@ jobs:
         with:
           node-version: '22'
           registry-url: 'https://registry.npmjs.org'
-      - name: Run CI
+      - name: Verify plugin
         run: |
           set -eo pipefail
           npm ci --no-save --registry=https://registry.npmjs.org/
           npm run verify | xcpretty --color
+      - name: Build example iOS app
+        run: |
+          set -eo pipefail
+          cd example
+          npm ci --no-save --registry=https://registry.npmjs.org/
+          npm run build
+          npx cap sync ios
+          cd ..
+          xcodebuild -project example/ios/App/App.xcodeproj \
+            -scheme App \
+            -destination 'generic/platform=iOS Simulator' \
+            clean build | xcpretty --color
+      - name: Build example Android app
+        run: |
+          cd example
+          npx cap sync android
+          cd android
+          ./gradlew assembleDebug -x lint -x lintVitalRelease
