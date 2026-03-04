@@ -7,7 +7,7 @@ Minor release that updates the Android SDK to 20.4.0 and the iOS SDK to 20.4.0.
 ### Changes
 - Updated Android SDK to [20.4.0](https://github.com/urbanairship/android-library/releases/tag/20.4.0)
 - Updated iOS SDK to [20.4.0](https://github.com/urbanairship/ios-library/releases/tag/20.4.0)
-
+- Fixed missing back button on iOS when displaying a message with Airship.messageCenter.showMessageView
 
 ## Version 5.1.0 - February 19, 2026
 
