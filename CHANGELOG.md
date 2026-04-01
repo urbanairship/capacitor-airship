@@ -1,6 +1,6 @@
 # Capacitor Plugin Changelog
 
-## Version 5.4.0 - March 31, 2026
+## Version 5.4.0 - April 1, 2026
 
 Minor release that updates the Android SDK to 20.6.1 and the iOS SDK to 20.6.0
 
