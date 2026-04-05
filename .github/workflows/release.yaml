@@ -74,3 +74,22 @@ jobs:
         uses: google-github-actions/setup-gcloud@v1
       - name: Upload Docs
         run: bash ./scripts/upload_docs.sh ${GITHUB_REF/refs\/tags\//} ./docs
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+  deploy-docs:
+    needs: deploy
+    runs-on: ubuntu-latest
+    continue-on-error: true # Remove when migration to GH Pages is complete
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
