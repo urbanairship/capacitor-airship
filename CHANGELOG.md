@@ -1,5 +1,13 @@
 # Capacitor Plugin Changelog
 
+## Version 5.4.1 - April 25, 2026
+
+Patch release that updates the Android SDK to 20.6.4 and the iOS SDK to 20.6.3.
+
+### Changes
+- Updated Android SDK to [20.6.4](https://github.com/urbanairship/android-library/releases/tag/20.6.4)
+- Updated iOS SDK to [20.6.3](https://github.com/urbanairship/ios-library/releases/tag/20.6.3)
+
 ## Version 5.4.0 - April 1, 2026
 
 Minor release that updates the Android SDK to 20.6.1 and the iOS SDK to 20.6.0
