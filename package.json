@@ -1,6 +1,6 @@
 {
   "name": "@ua/capacitor-airship",
-  "version": "5.5.0",
+  "version": "5.5.1",
   "description": "Airship capacitor plugin",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -12,6 +12,7 @@
     "dist/",
     "ios/Plugin/",
     "ios/Bootloader/",
+    "Package.swift",
     "UaCapacitorAirship.podspec"
   ],
   "author": "Airship",

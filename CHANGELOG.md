@@ -1,5 +1,12 @@
 # Capacitor Plugin Changelog
 
+## Version 5.5.1 - May 6, 2026
+
+Patch release that fixes `Package.swift` not being included in the published npm package.
+
+### Changes
+- Fixed `Package.swift` missing from the published npm package
+
 ## Version 5.5.0 - May 1, 2026
 
 Minor release that updates the Android SDK to 20.7.0 and the iOS SDK to 20.7.0.
