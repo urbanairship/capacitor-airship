@@ -1,5 +1,14 @@
 # Capacitor Plugin Changelog
 
+## Version 6.0.0 - May 7, 2026
+
+Major release that updates Capacitor to 8.0.
+
+### Changes
+- Updated Capacitor to 8.0
+- Android `minSdkVersion` increased from 23 to 24
+- Android Gradle wrapper updated to 8.14.3
+
 ## Version 5.5.1 - May 6, 2026
 
 Patch release that fixes `Package.swift` not being included in the published npm package.
