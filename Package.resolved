@@ -1,5 +1,5 @@
 {
-  "originHash" : "b9d9382873e66beba883fb0dc15cef896da11469e709797a5dfcb0e92e886d96",
+  "originHash" : "7c74186df5dea40fc7d2bc146b757b5f454cabc83d45b260de2cf00644e6e459",
   "pins" : [
     {
       "identity" : "airship-mobile-framework-proxy",
@@ -15,23 +15,14 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ionic-team/capacitor-swift-pm.git",
       "state" : {
-        "revision" : "ba301d2c37bc6d9a67978f81d312597243ab61af",
-        "version" : "8.3.2"
-      }
-    },
-    {
-      "identity" : "ion-ios-camera",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/ionic-team/ion-ios-camera.git",
-      "state" : {
-        "revision" : "2cd4f06b0ece21b6458e23357280c51f94bfceb8",
-        "version" : "1.0.4"
+        "revision" : "f1a8fadf1437c23b825c818fb6509c9dbbae2f61",
+        "version" : "8.3.1"
       }
     },
     {
       "identity" : "ios-library",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/urbanairship/ios-library",
+      "location" : "https://github.com/urbanairship/ios-library.git",
       "state" : {
         "revision" : "bfd4ce0474bb5ea3e038c270fe35e899482f72bd",
         "version" : "20.7.0"
