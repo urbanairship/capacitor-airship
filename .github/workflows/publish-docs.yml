@@ -1,0 +1,74 @@
+name: Publish Docs
+
+on:
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
+    secrets:
+      GCP_SA_KEY:
+        required: true
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version tag to publish docs for (e.g. 12.0.0)'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  release-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.version }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          registry-url: https://registry.npmjs.org/
+
+      - name: Install dependencies
+        run: npm install --no-save --registry=https://registry.npmjs.org/
+
+      - name: Build docs
+        run: npm run build:docs
+
+      - name: Setup GCP Auth
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+      - name: Upload Docs
+        env:
+          VERSION: ${{ inputs.version }}
+        run: bash ./scripts/upload_docs.sh "$VERSION" ./docs
+
+  deploy-docs:
+    needs: release-docs
+    runs-on: ubuntu-latest
+    continue-on-error: true # Remove when migration to GH Pages is complete
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
