@@ -121,6 +121,18 @@ class AirshipPlugin : Plugin() {
             "contact#reset" -> call.resolve(scope, method) { proxy.contact.reset() }
             "contact#notifyRemoteLogin" -> call.resolve(scope, method) { proxy.contact.notifyRemoteLogin() }
             "contact#identify" -> call.resolve(scope, method) { proxy.contact.identify(arg.requireString()) }
+            "contact#registerSms" -> call.resolve(scope, method) {
+                val args = arg.requireList()
+                val msisdn = args.get(0).requireString()
+                val options = args.get(1)
+                proxy.contact.registerSms(msisdn, options)
+            }
+            "contact#registerEmail" -> call.resolve(scope, method) {
+                val args = arg.requireList()
+                val address = args.get(0).requireString()
+                val options = args.get(1)
+                proxy.contact.registerEmail(address, options)
+            }
             "contact#getNamedUserId" -> call.resolve(scope, method) { proxy.contact.getNamedUserId() }
             "contact#editTagGroups" -> call.resolve(scope, method) { proxy.contact.editTagGroups(arg) }
             "contact#editSubscriptionLists" -> call.resolve(scope, method) {
