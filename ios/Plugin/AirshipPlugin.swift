@@ -195,6 +195,28 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin, @unchecked Sendable {
             try AirshipProxy.shared.contact.reset()
             return nil
 
+        case "contact#registerSms":
+            let args = try call.requireArrayArg()
+            guard args.count == 2, let msisdn = args[0] as? String else {
+                throw AirshipErrors.error("Call requires [String, Any]")
+            }
+            try AirshipProxy.shared.contact.registerSMS(
+                msisdn,
+                options: try AirshipJSON.wrap(args[1]).decode()
+            )
+            return nil
+
+        case "contact#registerEmail":
+            let args = try call.requireArrayArg()
+            guard args.count == 2, let address = args[0] as? String else {
+                throw AirshipErrors.error("Call requires [String, Any]")
+            }
+            try AirshipProxy.shared.contact.registerEmail(
+                address,
+                options: try AirshipJSON.wrap(args[1]).decode()
+            )
+            return nil
+
         case "contact#notifyRemoteLogin":
             try AirshipProxy.shared.contact.notifyRemoteLogin()
             return nil
