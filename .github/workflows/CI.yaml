@@ -30,7 +30,7 @@ jobs:
         run: |
           set -eo pipefail
           npm install --no-save --registry=https://registry.npmjs.org/
-          npm run verify | xcpretty --color
+          npm run verify
       - name: Build example iOS app
         run: |
           set -eo pipefail
