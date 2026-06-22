@@ -14,6 +14,7 @@
 		50ADFFA42020D75100D50D53 /* Capacitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50ADFFA52020D75100D50D53 /* Capacitor.framework */; };
 		50E1A94820377CB70090CE1A /* AirshipPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E1A94720377CB70090CE1A /* AirshipPlugin.swift */; };
 		6EDAFAC02CB096AF000BD4AA /* AirshipPluginLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDAFABF2CB09698000BD4AA /* AirshipPluginLoader.swift */; };
+		A1B2C3D42E000001000BD4AA /* AirshipCapacitorEmbeddedViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D42E000002000BD4AA /* AirshipCapacitorEmbeddedViewManager.swift */; };
 		6EDE5F202B9FCF3600E33D04 /* AirshipCapacitorVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDE5F1C2B9FCF3600E33D04 /* AirshipCapacitorVersion.swift */; };
 		6EDE5F232B9FCF3600E33D04 /* AirshipCapacitorAutopilot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDE5F1F2B9FCF3600E33D04 /* AirshipCapacitorAutopilot.swift */; };
 /* End PBXBuildFile section */
@@ -39,6 +40,7 @@
 		50E1A94720377CB70090CE1A /* AirshipPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirshipPlugin.swift; sourceTree = "<group>"; };
 		5E23F77F099397094342571A /* Pods-Plugin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plugin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Plugin/Pods-Plugin.debug.xcconfig"; sourceTree = "<group>"; };
 		6EDAFABF2CB09698000BD4AA /* AirshipPluginLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirshipPluginLoader.swift; sourceTree = "<group>"; };
+		A1B2C3D42E000002000BD4AA /* AirshipCapacitorEmbeddedViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirshipCapacitorEmbeddedViewManager.swift; sourceTree = "<group>"; };
 		6EDE5F1C2B9FCF3600E33D04 /* AirshipCapacitorVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirshipCapacitorVersion.swift; sourceTree = "<group>"; };
 		6EDE5F1F2B9FCF3600E33D04 /* AirshipCapacitorAutopilot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirshipCapacitorAutopilot.swift; sourceTree = "<group>"; };
 		91781294A431A2A7CC6EB714 /* Pods-Plugin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plugin.release.xcconfig"; path = "Pods/Target Support Files/Pods-Plugin/Pods-Plugin.release.xcconfig"; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				6EDAFABF2CB09698000BD4AA /* AirshipPluginLoader.swift */,
+				A1B2C3D42E000002000BD4AA /* AirshipCapacitorEmbeddedViewManager.swift */,
 				6EDE5F1F2B9FCF3600E33D04 /* AirshipCapacitorAutopilot.swift */,
 				6EDE5F1C2B9FCF3600E33D04 /* AirshipCapacitorVersion.swift */,
 				50E1A94720377CB70090CE1A /* AirshipPlugin.swift */,
@@ -312,6 +315,7 @@
 				50E1A94820377CB70090CE1A /* AirshipPlugin.swift in Sources */,
 				6EDE5F202B9FCF3600E33D04 /* AirshipCapacitorVersion.swift in Sources */,
 				6EDAFAC02CB096AF000BD4AA /* AirshipPluginLoader.swift in Sources */,
+				A1B2C3D42E000001000BD4AA /* AirshipCapacitorEmbeddedViewManager.swift in Sources */,
 				6EDE5F232B9FCF3600E33D04 /* AirshipCapacitorAutopilot.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

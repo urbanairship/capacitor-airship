@@ -22,6 +22,8 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin, @unchecked Sendable {
     public let pluginMethods: [CAPPluginMethod] = [
         CAPPluginMethod(name: "perform", returnType: CAPPluginReturnPromise)
     ]
+
+    private let embeddedViewManager = AirshipCapacitorEmbeddedViewManager()
     
     private static let eventNames: [AirshipProxyEventType: String] = [
          .authorizedNotificationSettingsChanged: "ios_authorized_notification_settings_changed",
@@ -34,7 +36,8 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin, @unchecked Sendable {
          .notificationResponseReceived: "notification_response_received",
          .pushReceived: "push_received",
          .notificationStatusChanged: "notification_status_changed",
-         .liveActivitiesUpdated: "ios_live_activities_updated"
+         .liveActivitiesUpdated: "ios_live_activities_updated",
+         .pendingEmbeddedUpdated: "pending_embedded_updated"
      ]
 
     public override func load() {
@@ -336,6 +339,47 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin, @unchecked Sendable {
         case "inApp#getDisplayInterval":
             return try AirshipProxy.shared.inApp.getDisplayInterval()
 
+        case "inApp#resendPendingEmbeddedEvent":
+            AirshipProxy.shared.inApp.resendLastEmbeddedEvent()
+            return nil
+
+        // Embedded View
+        case "embeddedView#create":
+            let args: EmbeddedViewCreateArgs = try call.requireCodableArg()
+            guard let webView = self.webView else {
+                throw AirshipErrors.error("Web view unavailable")
+            }
+            embeddedViewManager.create(
+                viewId: args.viewId,
+                embeddedId: args.embeddedId,
+                frame: args.frame.cgRect,
+                clip: args.clip.cgRect,
+                webView: webView
+            )
+            return nil
+
+        case "embeddedView#updateFrame":
+            let args: EmbeddedViewFrameArgs = try call.requireCodableArg()
+            try embeddedViewManager.updateFrame(
+                viewId: args.viewId,
+                frame: args.frame.cgRect,
+                clip: args.clip.cgRect
+            )
+            return nil
+
+        case "embeddedView#setVisible":
+            let args: EmbeddedViewVisibleArgs = try call.requireCodableArg()
+            try embeddedViewManager.setVisible(
+                viewId: args.viewId,
+                visible: args.visible
+            )
+            return nil
+
+        case "embeddedView#dispose":
+            let args: EmbeddedViewDisposeArgs = try call.requireCodableArg()
+            embeddedViewManager.dispose(viewId: args.viewId)
+            return nil
+
         // Analytics
         case "analytics#getSessionId":
             return try AirshipProxy.shared.analytics.getSessionID()
@@ -562,6 +606,39 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin, @unchecked Sendable {
             throw AirshipErrors.error("Not implemented \(method)")
         }
     }
+}
+
+fileprivate struct EmbeddedViewRect: Decodable {
+    let x: Double
+    let y: Double
+    let width: Double
+    let height: Double
+
+    var cgRect: CGRect {
+        CGRect(x: x, y: y, width: width, height: height)
+    }
+}
+
+fileprivate struct EmbeddedViewCreateArgs: Decodable {
+    let viewId: String
+    let embeddedId: String
+    let frame: EmbeddedViewRect
+    let clip: EmbeddedViewRect
+}
+
+fileprivate struct EmbeddedViewFrameArgs: Decodable {
+    let viewId: String
+    let frame: EmbeddedViewRect
+    let clip: EmbeddedViewRect
+}
+
+fileprivate struct EmbeddedViewVisibleArgs: Decodable {
+    let viewId: String
+    let visible: Bool
+}
+
+fileprivate struct EmbeddedViewDisposeArgs: Decodable {
+    let viewId: String
 }
 
 extension CAPPluginCall {

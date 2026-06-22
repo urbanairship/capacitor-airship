@@ -88,6 +88,12 @@ window.customElements.define(
         <p>
             <button class="button" id="display-preference-center">Display preference center</button>
         </p>
+        <h2>Embedded Content</h2>
+        <p id="embedded-ready">Embedded "test" ready: false</p>
+        <p>
+          <button class="button" id="toggle-embedded">Toggle embedded view</button>
+        </p>
+        <div id="embedded-placeholder" style="height: 250px;"></div>
         <p id="status-event">
         </p>
       </main>
@@ -99,63 +105,79 @@ window.customElements.define(
       const self = this;
 
       self.shadowRoot.querySelector('#enable-push').addEventListener('click', async function (e) {
-        const isEnabled = await Airship.push.isUserNotificationsEnabled()
-        await Airship.push.setUserNotificationsEnabled(!isEnabled)
+        const isEnabled = await Airship.push.isUserNotificationsEnabled();
+        await Airship.push.setUserNotificationsEnabled(!isEnabled);
       });
-        
+
       self.shadowRoot.querySelector('#display-message-center').addEventListener('click', async function (e) {
-        await Airship.messageCenter.display()
+        await Airship.messageCenter.display();
       });
-        
+
       self.shadowRoot.querySelector('#display-preference-center').addEventListener('click', async function (e) {
-        await Airship.preferenceCenter.display("neat")
+        await Airship.preferenceCenter.display('neat');
+      });
+
+      Airship.inApp.addEmbeddedReadyListener('test', (isReady) => {
+        self.shadowRoot.querySelector('#embedded-ready').textContent = `Embedded "test" ready: ${isReady}`;
+      });
+
+      let embeddedView = null;
+      self.shadowRoot.querySelector('#toggle-embedded').addEventListener('click', async function (e) {
+        if (embeddedView) {
+          await embeddedView.destroy();
+          embeddedView = null;
+        } else {
+          embeddedView = await Airship.inApp.createEmbeddedView({
+            embeddedId: 'test',
+            element: self.shadowRoot.querySelector('#embedded-placeholder'),
+          });
+        }
       });
     }
-  }
+  },
 );
 
-window.onload = async function() {
-  await Airship.onDeepLink(event => {
-    console.log("onDeepLink", JSON.stringify(event))
+window.onload = async function () {
+  await Airship.onDeepLink((event) => {
+    console.log('onDeepLink', JSON.stringify(event));
   });
 
-  await Airship.push.onNotificationResponse(event => {
-    console.log("push.onNotificationResponse", JSON.stringify(event))
+  await Airship.push.onNotificationResponse((event) => {
+    console.log('push.onNotificationResponse', JSON.stringify(event));
   });
 
-  await Airship.push.onNotificationStatusChanged(event => {
-    console.log("push.onNotificationStatusChanged", JSON.stringify(event))
+  await Airship.push.onNotificationStatusChanged((event) => {
+    console.log('push.onNotificationStatusChanged', JSON.stringify(event));
   });
 
-  await Airship.push.onPushReceived(event => {
-    console.log("push.onPushReceived", JSON.stringify(event))
+  await Airship.push.onPushReceived((event) => {
+    console.log('push.onPushReceived', JSON.stringify(event));
   });
 
-  await Airship.push.onPushTokenReceived(event => {
-    console.log("push.onPushTokenReceived", JSON.stringify(event))
+  await Airship.push.onPushTokenReceived((event) => {
+    console.log('push.onPushTokenReceived', JSON.stringify(event));
   });
 
-  await Airship.channel.onChannelCreated(event => {
-    console.log("channel.onChannelCreated", JSON.stringify(event))
+  await Airship.channel.onChannelCreated((event) => {
+    console.log('channel.onChannelCreated', JSON.stringify(event));
   });
 
-  await Airship.messageCenter.onUpdated(event => {
-    console.log("messageCenter.onUpdated", JSON.stringify(event))
+  await Airship.messageCenter.onUpdated((event) => {
+    console.log('messageCenter.onUpdated', JSON.stringify(event));
   });
 
-  await Airship.messageCenter.onDisplay(event => {
-    console.log("messageCenter.onDisplay", JSON.stringify(event))
+  await Airship.messageCenter.onDisplay((event) => {
+    console.log('messageCenter.onDisplay', JSON.stringify(event));
   });
 
-  await Airship.preferenceCenter.onDisplay(event => {
-    console.log("preferenceCenter.onDisplay", JSON.stringify(event))
+  await Airship.preferenceCenter.onDisplay((event) => {
+    console.log('preferenceCenter.onDisplay', JSON.stringify(event));
   });
 
-  await Airship.push.iOS.onAuthorizedSettingsChanged(event => {
-    console.log("push.onAuthorizedSettingsChanged", JSON.stringify(event))
+  await Airship.push.iOS.onAuthorizedSettingsChanged((event) => {
+    console.log('push.onAuthorizedSettingsChanged', JSON.stringify(event));
   });
 };
-
 
 window.customElements.define(
   'capacitor-welcome-titlebar',
@@ -183,5 +205,5 @@ window.customElements.define(
     <slot></slot>
     `;
     }
-  }
+  },
 );

@@ -32,6 +32,7 @@ import org.json.JSONObject
 @CapacitorPlugin(name = "Airship")
 class AirshipPlugin : Plugin() {
     private val scope: CoroutineScope = CoroutineScope(Dispatchers.Main) + SupervisorJob()
+    private val embeddedViewManager by lazy { AirshipEmbeddedViewManager(bridge) }
 
     companion object {
         private val EVENT_NAME_MAP = mapOf(
@@ -45,7 +46,8 @@ class AirshipPlugin : Plugin() {
             EventType.PUSH_TOKEN_RECEIVED to "push_token_received",
             EventType.FOREGROUND_PUSH_RECEIVED to "push_received",
             EventType.BACKGROUND_PUSH_RECEIVED to "push_received",
-            EventType.NOTIFICATION_STATUS_CHANGED to "notification_status_changed"
+            EventType.NOTIFICATION_STATUS_CHANGED to "notification_status_changed",
+            EventType.PENDING_EMBEDDED_UPDATED to "pending_embedded_updated"
         )
     }
     override fun load() {
@@ -223,6 +225,41 @@ class AirshipPlugin : Plugin() {
             }
 
             "inApp#getDisplayInterval" -> call.resolve(scope, method) { proxy.inApp.getDisplayInterval() }
+            "inApp#resendPendingEmbeddedEvent" -> call.resolve(scope, method) { proxy.inApp.resendLastEmbeddedEvent() }
+
+            // Embedded View
+            "embeddedView#create" -> call.resolve(scope, method) {
+                val args = arg.requireMap()
+                embeddedViewManager.create(
+                    viewId = args.require("viewId").requireString(),
+                    embeddedId = args.require("embeddedId").requireString(),
+                    frame = args.require("frame").requireMap().requireFrame(),
+                    clip = args.require("clip").requireMap().requireFrame()
+                )
+            }
+
+            "embeddedView#updateFrame" -> call.resolve(scope, method) {
+                val args = arg.requireMap()
+                embeddedViewManager.updateFrame(
+                    viewId = args.require("viewId").requireString(),
+                    frame = args.require("frame").requireMap().requireFrame(),
+                    clip = args.require("clip").requireMap().requireFrame()
+                )
+            }
+
+            "embeddedView#setVisible" -> call.resolve(scope, method) {
+                val args = arg.requireMap()
+                embeddedViewManager.setVisible(
+                    viewId = args.require("viewId").requireString(),
+                    visible = args.require("visible").requireBoolean()
+                )
+            }
+
+            "embeddedView#dispose" -> call.resolve(scope, method) {
+                embeddedViewManager.dispose(
+                    viewId = arg.requireMap().require("viewId").requireString()
+                )
+            }
 
             // Analytics
             "analytics#getSessionId" -> call.resolve(scope, method) { proxy.analytics.getSessionId() }
@@ -423,6 +460,15 @@ internal fun PluginCall.resolve(scope: CoroutineScope, method: String, function:
 internal fun JsonValue.requireBoolean(): Boolean {
     require(this.isBoolean)
     return this.getBoolean(false)
+}
+
+internal fun JsonMap.requireFrame(): AirshipEmbeddedViewManager.Frame {
+    return AirshipEmbeddedViewManager.Frame(
+        x = opt("x").getDouble(0.0),
+        y = opt("y").getDouble(0.0),
+        width = opt("width").getDouble(0.0),
+        height = opt("height").getDouble(0.0)
+    )
 }
 
 internal fun JsonValue.requireStringList(): List<String> {

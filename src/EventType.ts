@@ -10,6 +10,7 @@ import type {
   DisplayPreferenceCenterEvent,
   PushTokenReceivedEvent,
   LiveActivitiesUpdatedEvent,
+  PendingEmbeddedUpdatedEvent,
 } from './types';
 
 export enum EventType {
@@ -24,6 +25,7 @@ export enum EventType {
   PushTokenReceived = 'push_token_received',
   IOSAuthorizedNotificationSettingsChanged = 'ios_authorized_notification_settings_changed',
   IOSLiveActivitiesUpdated = 'ios_live_activities_updated',
+  PendingEmbeddedUpdated = 'pending_embedded_updated',
 }
 
 export interface EventTypeMap {
@@ -38,4 +40,5 @@ export interface EventTypeMap {
   [EventType.DisplayPreferenceCenter]: DisplayPreferenceCenterEvent;
   [EventType.PushTokenReceived]: PushTokenReceivedEvent;
   [EventType.IOSLiveActivitiesUpdated]: LiveActivitiesUpdatedEvent;
+  [EventType.PendingEmbeddedUpdated]: PendingEmbeddedUpdatedEvent;
 }
