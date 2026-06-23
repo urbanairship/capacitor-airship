@@ -1,5 +1,14 @@
 # Capacitor Plugin Changelog
 
+## Version 6.2.0 - Unreleased
+
+Minor release that adds support for Embedded Content.
+
+### Changes
+- Added `Airship.inApp.addEmbeddedReadyListener` and `Airship.inApp.isEmbeddedReady` to track when embedded content is available for an embedded ID
+- Added `Airship.inApp.createEmbeddedView` to display embedded Scene content inline by overlaying a native view on a placeholder element
+- Added an optional `clipElement` to `createEmbeddedView` that clips the native view to a scroll container's bounds, so it scrolls under surrounding content (such as a header) instead of over it
+
 ## Version 6.1.0 - June 12, 2026
 
 Minor release that updates the Android SDK to 20.7.4 and the iOS SDK to 20.7.2.
@@ -7,7 +16,6 @@ Minor release that updates the Android SDK to 20.7.4 and the iOS SDK to 20.7.2.
 ### Changes
 - Updated Android SDK to [20.7.4](https://github.com/urbanairship/android-library/releases/tag/20.7.4)
 - Updated iOS SDK to [20.7.2](https://github.com/urbanairship/ios-library/releases/tag/20.7.2)
-
 
 ## Version 6.0.0 - May 7, 2026
 

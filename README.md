@@ -10,6 +10,7 @@ The official Airship Capacitor plugin for iOS and Android.
 - **Push Notifications** - Rich, interactive push notifications with deep linking
 - **Live Activities & Live Updates** - Real-time content updates on iOS Lock Screen and Android Live Content
 - **In-App Experiences** - Contextual messaging, automation, and Scenes
+- **Embedded Content** - Scene content displayed inline within app screens
 - **Message Center** - Persistent inbox for rich messages with HTML, video, and interactive content
 - **Preference Center** - User preference management
 - **Feature Flags** - Dynamic feature toggles and experimentation

@@ -1122,3 +1122,22 @@ export interface EmailRegistrationOptions {
   /** If true, a double opt-in confirmation email is sent. Defaults to false. */
   doubleOptIn?: boolean;
 }
+/**
+ * Info for a pending embedded view.
+ */
+export interface EmbeddedInfo {
+  /**
+   * The embedded ID.
+   */
+  embeddedId: string;
+}
+
+/**
+ * Event fired when the list of pending embedded views changes.
+ */
+export interface PendingEmbeddedUpdatedEvent {
+  /**
+   * The pending embedded views.
+   */
+  pending: EmbeddedInfo[];
+}
