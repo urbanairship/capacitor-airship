@@ -6,9 +6,6 @@ on:
       version:
         required: true
         type: string
-    secrets:
-      GCP_SA_KEY:
-        required: true
   workflow_dispatch:
     inputs:
       version:
@@ -40,28 +37,14 @@ jobs:
       - name: Build docs
         run: npm run build:docs
 
-      - name: Setup GCP Auth
-        uses: google-github-actions/auth@v2
-        with:
-          credentials_json: ${{ secrets.GCP_SA_KEY }}
-
-      - name: Set up Cloud SDK
-        uses: google-github-actions/setup-gcloud@v2
-
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: docs
 
-      - name: Upload Docs
-        env:
-          VERSION: ${{ inputs.version }}
-        run: bash ./scripts/upload_docs.sh "$VERSION" ./docs
-
   deploy-docs:
     needs: release-docs
     runs-on: ubuntu-latest
-    continue-on-error: true # Remove when migration to GH Pages is complete
     permissions:
       pages: write
       id-token: write
