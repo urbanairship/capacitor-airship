@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Resource keep rules for the Airship Capacitor plugin. -->
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:keep="
+        @layout/ua_*,
+        @menu/ua_*,
+        @drawable/ua_*,
+        @string/ua_*,
+        @color/ua_message_center_*,
+        @style/UrbanAirship_MessageCenter*,
+        @attr/messageCenter*,
+        @id/mark_all_read,
+        @id/enter_edit_mode,
+        @id/leave_edit_mode,
+        @id/delete_all,
+        @id/delete,
+        @id/refresh,
+        @id/toolbar,
+        @id/list_vertical_divider" />
