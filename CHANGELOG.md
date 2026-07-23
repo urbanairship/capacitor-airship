@@ -1,5 +1,14 @@
 # Capacitor Plugin Changelog
 
+## Version 6.2.0 - July 23, 2026
+
+Minor release that updates the Android SDK to 20.10.0 and the iOS SDK to 20.11.0.
+
+### Changes
+- Updated Android SDK to [20.10.0](https://github.com/urbanairship/android-library/releases/tag/20.10.0)
+- Updated iOS SDK to [20.11.0](https://github.com/urbanairship/ios-library/releases/tag/20.11.0)
+
+
 ## Version 6.2.0 - Unreleased
 
 Minor release that adds support for Embedded Content.
