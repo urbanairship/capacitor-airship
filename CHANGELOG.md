@@ -2,21 +2,15 @@
 
 ## Version 6.2.0 - July 23, 2026
 
-Minor release that updates the Android SDK to 20.10.0 and the iOS SDK to 20.11.0.
-
-### Changes
-- Updated Android SDK to [20.10.0](https://github.com/urbanairship/android-library/releases/tag/20.10.0)
-- Updated iOS SDK to [20.11.0](https://github.com/urbanairship/ios-library/releases/tag/20.11.0)
-
-
-## Version 6.2.0 - Unreleased
-
-Minor release that adds support for Embedded Content.
+Minor release that adds support for Embedded Content and updates the iOS SDK to 20.11.0 and the Android SDK to 20.10.0.
 
 ### Changes
 - Added `Airship.inApp.addEmbeddedReadyListener` and `Airship.inApp.isEmbeddedReady` to track when embedded content is available for an embedded ID
 - Added `Airship.inApp.createEmbeddedView` to display embedded Scene content inline by overlaying a native view on a placeholder element
 - Added an optional `clipElement` to `createEmbeddedView` that clips the native view to a scroll container's bounds, so it scrolls under surrounding content (such as a header) instead of over it
+- Updated iOS SDK to [20.11.0](https://github.com/urbanairship/ios-library/releases/tag/20.11.0)
+- Updated Android SDK to [20.10.0](https://github.com/urbanairship/android-library/releases/tag/20.10.0)
+- Fixed iOS Message Center inbox failing to load after upgrading across SDK versions that changed the Core Data model
 
 ## Version 6.1.0 - June 12, 2026
 
