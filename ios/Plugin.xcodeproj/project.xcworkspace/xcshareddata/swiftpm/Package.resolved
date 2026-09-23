@@ -1,5 +1,5 @@
 {
-  "originHash" : "b9d9382873e66beba883fb0dc15cef896da11469e709797a5dfcb0e92e886d96",
+  "originHash" : "d16a71a5eb8026cba2eb309eda4d38abd23eb5a1da5535f8db2e17a8c435aa44",
   "pins" : [
     {
       "identity" : "airship-mobile-framework-proxy",
@@ -20,18 +20,9 @@
       }
     },
     {
-      "identity" : "ion-ios-camera",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/ionic-team/ion-ios-camera.git",
-      "state" : {
-        "revision" : "00c3dfdd6267f80db299d9c5a0bad522156b6cbc",
-        "version" : "2.0.0"
-      }
-    },
-    {
       "identity" : "ios-library",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/urbanairship/ios-library",
+      "location" : "https://github.com/urbanairship/ios-library.git",
       "state" : {
         "revision" : "67cd1cb0c2cfd7f0748d247a876a9ed77181e107",
         "version" : "21.0.2"

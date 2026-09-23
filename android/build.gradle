@@ -1,5 +1,5 @@
 ext {
-    airshipProxyVersion = project.hasProperty('airshipProxyVersion') ? rootProject.ext.airshipProxyVersion : '15.14.1'
+    airshipProxyVersion = project.hasProperty('airshipProxyVersion') ? rootProject.ext.airshipProxyVersion : '16.0.1'
 }
 
 
@@ -27,7 +27,7 @@ android {
     namespace "com.airship.capacitor"
     compileSdk project.hasProperty('compileSdkVersion') ? rootProject.ext.compileSdkVersion : 36
     defaultConfig {
-        minSdkVersion project.hasProperty('minSdkVersion') ? rootProject.ext.minSdkVersion : 24
+        minSdkVersion project.hasProperty('minSdkVersion') ? rootProject.ext.minSdkVersion : 26
         targetSdkVersion project.hasProperty('targetSdkVersion') ? rootProject.ext.targetSdkVersion : 36
         versionCode 1
         versionName "1.0"

@@ -1,11 +1,6 @@
 /* Copyright Airship and Contributors */
 
-#if canImport(AirshipKit)
-import AirshipKit
-#elseif canImport(AirshipCore)
 import AirshipCore
-#endif
-
 import AirshipFrameworkProxy
 import Capacitor
 
@@ -66,7 +61,7 @@ extension AirshipCapacitorAutopilot: AirshipProxyDelegate {
                 let proxyConfig: ProxyConfig = try AirshipJSON.wrap(config).decode()
                 airshipConfig.applyProxyConfig(proxyConfig: proxyConfig)
             } catch {
-                AirshipLogger.error("Failed to parse config: \(error)")
+                CAPLog.print("⚡️  Failed to parse config: ", error)
             }
         }
         return airshipConfig
