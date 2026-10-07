@@ -47,7 +47,8 @@ class AirshipPlugin : Plugin() {
             EventType.FOREGROUND_PUSH_RECEIVED to "push_received",
             EventType.BACKGROUND_PUSH_RECEIVED to "push_received",
             EventType.NOTIFICATION_STATUS_CHANGED to "notification_status_changed",
-            EventType.PENDING_EMBEDDED_UPDATED to "pending_embedded_updated"
+            EventType.PENDING_EMBEDDED_UPDATED to "pending_embedded_updated",
+            EventType.FEATURE_FLAG_STATUS_CHANGED to "feature_flag_status_changed"
         )
     }
     override fun load() {
@@ -403,6 +404,11 @@ class AirshipPlugin : Plugin() {
                     val featureFlagProxy = FeatureFlagProxy(arg)
                     proxy.featureFlagManager.trackInteraction(flag = featureFlagProxy)
                 }
+            }
+
+            "featureFlagManager#status" -> call.resolve(scope, method) { proxy.featureFlagManager.status }
+            "featureFlagManager#waitRefresh" -> call.resolve(scope, method) {
+                proxy.featureFlagManager.waitRefresh(if (arg.isNull) null else arg.getLong(0))
             }
 
             // Live Update

@@ -1,12 +1,7 @@
 import Foundation
 import SwiftUI
-
-#if canImport(AirshipKit)
-import AirshipKit
-#elseif canImport(AirshipCore)
 import AirshipCore
-#endif
-
+import AirshipScenes
 import AirshipFrameworkProxy
 
 /**
@@ -195,15 +190,23 @@ private final class EmbeddedViewModel: ObservableObject {
 
     var height: CGFloat {
         guard let height = self.size?.height, height > 0 else {
-            return (try? AirshipUtils.mainWindow()?.screen.bounds.height) ?? 500
+            return Self.mainWindowScreenBounds()?.height ?? 500
         }
         return height
     }
 
     var width: CGFloat {
         guard let width = self.size?.width, width > 0 else {
-            return (try? AirshipUtils.mainWindow()?.screen.bounds.width) ?? 500
+            return Self.mainWindowScreenBounds()?.width ?? 500
         }
         return width
+    }
+
+    private static func mainWindowScreenBounds() -> CGRect? {
+        let scene = UIApplication.shared.connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .first { $0.activationState == .foregroundActive } ?? UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first
+        let window = scene?.windows.first { $0.isKeyWindow } ?? scene?.windows.first
+        return window?.screen.bounds
     }
 }

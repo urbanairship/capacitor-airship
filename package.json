@@ -1,6 +1,6 @@
 {
   "name": "@ua/capacitor-airship",
-  "version": "6.3.0",
+  "version": "7.0.0",
   "description": "Airship capacitor plugin",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -12,8 +12,7 @@
     "dist/",
     "ios/Plugin/",
     "ios/Bootloader/",
-    "Package.swift",
-    "UaCapacitorAirship.podspec"
+    "Package.swift"
   ],
   "author": "Airship",
   "license": "Apache-2.0",
@@ -31,7 +30,7 @@
   ],
   "scripts": {
     "verify": "npm run build && npm run verify:ios && npm run verify:android",
-    "verify:ios": "cd ios && pod install && xcrun xcodebuild -workspace Plugin.xcworkspace -scheme Plugin -destination generic/platform=iOS && cd ..",
+    "verify:ios": "cd ios && xcrun xcodebuild -project Plugin.xcodeproj -scheme Plugin -destination generic/platform=iOS && cd ..",
     "verify:android": "cd android && ./gradlew clean build -x lint && cd ..",
     "lint": "npm run eslint && npm run prettier -- --check && npm run swiftlint -- lint",
     "fmt": "npm run eslint -- --fix && npm run prettier -- --write && npm run swiftlint -- --fix --format",
@@ -44,10 +43,10 @@
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "@capacitor/android": "^8.0.0",
-    "@capacitor/core": "^8.0.0",
-    "@capacitor/ios": "^8.0.0",
-    "@capacitor/cli": "^8.0.0",
+    "@capacitor/android": "^8.5.2",
+    "@capacitor/core": "^8.5.2",
+    "@capacitor/ios": "^8.5.2",
+    "@capacitor/cli": "^8.5.2",
     "@ionic/eslint-config": "^0.4.0",
     "@ionic/prettier-config": "^4.0.0",
     "@ionic/swiftlint-config": "^2.0.0",
@@ -60,7 +59,7 @@
     "typedoc": "0.23.24"
   },
   "peerDependencies": {
-    "@capacitor/core": ">=8.0.0"
+    "@capacitor/core": ">=8.5.0"
   },
   "prettier": "@ionic/prettier-config",
   "eslintConfig": {

@@ -7,16 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		03FC29A292ACC40490383A1F /* Pods_Plugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B2A61DA5A1F2DD4F959604D /* Pods_Plugin.framework */; };
-		20C0B05DCFC8E3958A738AF2 /* Pods_PluginTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6753A823D3815DB436415E3 /* Pods_PluginTests.framework */; };
+		12263848A9CB198FB96F4663 /* Capacitor in Frameworks */ = {isa = PBXBuildFile; productRef = B7975E59B7B602D4272E6F9B /* Capacitor */; };
+		2B0F56CCDD82DD085F7A7EA9 /* AirshipScenes in Frameworks */ = {isa = PBXBuildFile; productRef = 5356F890CD8D3578782F90C1 /* AirshipScenes */; };
+		32B9E5B57E440282341548FF /* AirshipMessageCenter in Frameworks */ = {isa = PBXBuildFile; productRef = 2E93927B34698E1506781E39 /* AirshipMessageCenter */; };
+		4602B0302A413B5637B75643 /* AirshipPreferenceCenter in Frameworks */ = {isa = PBXBuildFile; productRef = 7F3C569796150DD853577EA5 /* AirshipPreferenceCenter */; };
+		499C9103DE044497F5E72154 /* AirshipFeatureFlags in Frameworks */ = {isa = PBXBuildFile; productRef = CEA31C6A267FAB367CDA8520 /* AirshipFeatureFlags */; };
+		4F878C1B3C808CC3CD685B1C /* AirshipFeatureFlags in Frameworks */ = {isa = PBXBuildFile; productRef = FBC8E4508EC5D19D8C3A1965 /* AirshipFeatureFlags */; };
 		50ADFF92201F53D600D50D53 /* UaCapacitorAirship.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50ADFF88201F53D600D50D53 /* UaCapacitorAirship.framework */; };
 		50ADFF97201F53D600D50D53 /* AirshipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ADFF96201F53D600D50D53 /* AirshipTests.swift */; };
-		50ADFFA42020D75100D50D53 /* Capacitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50ADFFA52020D75100D50D53 /* Capacitor.framework */; };
 		50E1A94820377CB70090CE1A /* AirshipPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E1A94720377CB70090CE1A /* AirshipPlugin.swift */; };
+		6898BBDC3A486B2021DDE39C /* AirshipScenes in Frameworks */ = {isa = PBXBuildFile; productRef = 90254D351FAA8A28AE70B7D7 /* AirshipScenes */; };
 		6EDAFAC02CB096AF000BD4AA /* AirshipPluginLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDAFABF2CB09698000BD4AA /* AirshipPluginLoader.swift */; };
-		A1B2C3D42E000001000BD4AA /* AirshipCapacitorEmbeddedViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D42E000002000BD4AA /* AirshipCapacitorEmbeddedViewManager.swift */; };
 		6EDE5F202B9FCF3600E33D04 /* AirshipCapacitorVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDE5F1C2B9FCF3600E33D04 /* AirshipCapacitorVersion.swift */; };
 		6EDE5F232B9FCF3600E33D04 /* AirshipCapacitorAutopilot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDE5F1F2B9FCF3600E33D04 /* AirshipCapacitorAutopilot.swift */; };
+		7D443F2E97D385D72534B3CB /* AirshipCore in Frameworks */ = {isa = PBXBuildFile; productRef = 8971394285CD590FD02EB205 /* AirshipCore */; };
+		84BAF7F09C6845BF910F800C /* AirshipPreferenceCenter in Frameworks */ = {isa = PBXBuildFile; productRef = F08D1487D96AC967C91EF7EE /* AirshipPreferenceCenter */; };
+		863F14F54BD2BED7E633C4C0 /* AirshipAutomation in Frameworks */ = {isa = PBXBuildFile; productRef = B6A80A4BCA51FE4D87851397 /* AirshipAutomation */; };
+		97543E915F5A58B85B6BC108 /* AirshipAutomation in Frameworks */ = {isa = PBXBuildFile; productRef = A67B626DB80D89F0B789A550 /* AirshipAutomation */; };
+		A179C5D264647740091105B0 /* AirshipFrameworkProxy in Frameworks */ = {isa = PBXBuildFile; productRef = 5EB79634344365AA02D847EB /* AirshipFrameworkProxy */; };
+		A1B2C3D42E000001000BD4AA /* AirshipCapacitorEmbeddedViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D42E000002000BD4AA /* AirshipCapacitorEmbeddedViewManager.swift */; };
+		A596944617311F2DEE73164C /* AirshipMessageCenter in Frameworks */ = {isa = PBXBuildFile; productRef = 4387E4D6FCCFA4A4DCF734B7 /* AirshipMessageCenter */; };
+		A871E57DBA880534E08188D8 /* AirshipCore in Frameworks */ = {isa = PBXBuildFile; productRef = 8FF79FB823E05C0434A669A2 /* AirshipCore */; };
+		C041B5097744C83F90CC423B /* Capacitor in Frameworks */ = {isa = PBXBuildFile; productRef = AEB76A130019AE946B5DBE94 /* Capacitor */; };
+		C5F88FEBFAD0C4B8E2ACFECB /* AirshipFrameworkProxy in Frameworks */ = {isa = PBXBuildFile; productRef = 12129C8153ABBFD5C4CF5F64 /* AirshipFrameworkProxy */; };
+		EC710BF33148EAB7E137820B /* Cordova in Frameworks */ = {isa = PBXBuildFile; productRef = C6D7386BF1A4DCC76B22B8A7 /* Cordova */; };
+		F62567C7C8E715986E1EA94C /* AirshipErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3446C766D341678D9EE9DDA /* AirshipErrors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,23 +45,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3B2A61DA5A1F2DD4F959604D /* Pods_Plugin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Plugin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50ADFF88201F53D600D50D53 /* UaCapacitorAirship.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UaCapacitorAirship.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50ADFF8C201F53D600D50D53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50ADFF91201F53D600D50D53 /* PluginTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PluginTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		50ADFF96201F53D600D50D53 /* AirshipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirshipTests.swift; sourceTree = "<group>"; };
 		50ADFF98201F53D600D50D53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		50ADFFA52020D75100D50D53 /* Capacitor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Capacitor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50E1A94720377CB70090CE1A /* AirshipPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirshipPlugin.swift; sourceTree = "<group>"; };
-		5E23F77F099397094342571A /* Pods-Plugin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plugin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Plugin/Pods-Plugin.debug.xcconfig"; sourceTree = "<group>"; };
 		6EDAFABF2CB09698000BD4AA /* AirshipPluginLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirshipPluginLoader.swift; sourceTree = "<group>"; };
-		A1B2C3D42E000002000BD4AA /* AirshipCapacitorEmbeddedViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirshipCapacitorEmbeddedViewManager.swift; sourceTree = "<group>"; };
 		6EDE5F1C2B9FCF3600E33D04 /* AirshipCapacitorVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirshipCapacitorVersion.swift; sourceTree = "<group>"; };
 		6EDE5F1F2B9FCF3600E33D04 /* AirshipCapacitorAutopilot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirshipCapacitorAutopilot.swift; sourceTree = "<group>"; };
-		91781294A431A2A7CC6EB714 /* Pods-Plugin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plugin.release.xcconfig"; path = "Pods/Target Support Files/Pods-Plugin/Pods-Plugin.release.xcconfig"; sourceTree = "<group>"; };
-		96ED1B6440D6672E406C8D19 /* Pods-PluginTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PluginTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PluginTests/Pods-PluginTests.debug.xcconfig"; sourceTree = "<group>"; };
-		F65BB2953ECE002E1EF3E424 /* Pods-PluginTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PluginTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PluginTests/Pods-PluginTests.release.xcconfig"; sourceTree = "<group>"; };
-		F6753A823D3815DB436415E3 /* Pods_PluginTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PluginTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1B2C3D42E000002000BD4AA /* AirshipCapacitorEmbeddedViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirshipCapacitorEmbeddedViewManager.swift; sourceTree = "<group>"; };
+		D3446C766D341678D9EE9DDA /* AirshipErrors.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AirshipErrors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,8 +63,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50ADFFA42020D75100D50D53 /* Capacitor.framework in Frameworks */,
-				03FC29A292ACC40490383A1F /* Pods_Plugin.framework in Frameworks */,
+				12263848A9CB198FB96F4663 /* Capacitor in Frameworks */,
+				EC710BF33148EAB7E137820B /* Cordova in Frameworks */,
+				A179C5D264647740091105B0 /* AirshipFrameworkProxy in Frameworks */,
+				6898BBDC3A486B2021DDE39C /* AirshipScenes in Frameworks */,
+				A871E57DBA880534E08188D8 /* AirshipCore in Frameworks */,
+				863F14F54BD2BED7E633C4C0 /* AirshipAutomation in Frameworks */,
+				32B9E5B57E440282341548FF /* AirshipMessageCenter in Frameworks */,
+				84BAF7F09C6845BF910F800C /* AirshipPreferenceCenter in Frameworks */,
+				4F878C1B3C808CC3CD685B1C /* AirshipFeatureFlags in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,7 +80,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				50ADFF92201F53D600D50D53 /* UaCapacitorAirship.framework in Frameworks */,
-				20C0B05DCFC8E3958A738AF2 /* Pods_PluginTests.framework in Frameworks */,
+				C041B5097744C83F90CC423B /* Capacitor in Frameworks */,
+				C5F88FEBFAD0C4B8E2ACFECB /* AirshipFrameworkProxy in Frameworks */,
+				2B0F56CCDD82DD085F7A7EA9 /* AirshipScenes in Frameworks */,
+				7D443F2E97D385D72534B3CB /* AirshipCore in Frameworks */,
+				97543E915F5A58B85B6BC108 /* AirshipAutomation in Frameworks */,
+				A596944617311F2DEE73164C /* AirshipMessageCenter in Frameworks */,
+				4602B0302A413B5637B75643 /* AirshipPreferenceCenter in Frameworks */,
+				499C9103DE044497F5E72154 /* AirshipFeatureFlags in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,8 +100,6 @@
 				50ADFF8A201F53D600D50D53 /* Plugin */,
 				50ADFF95201F53D600D50D53 /* PluginTests */,
 				50ADFF89201F53D600D50D53 /* Products */,
-				8C8E7744173064A9F6D438E3 /* Pods */,
-				A797B9EFA3DCEFEA1FBB66A9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,6 +121,7 @@
 				6EDE5F1C2B9FCF3600E33D04 /* AirshipCapacitorVersion.swift */,
 				50E1A94720377CB70090CE1A /* AirshipPlugin.swift */,
 				50ADFF8C201F53D600D50D53 /* Info.plist */,
+				D3446C766D341678D9EE9DDA /* AirshipErrors.swift */,
 			);
 			path = Plugin;
 			sourceTree = "<group>";
@@ -111,27 +133,6 @@
 				50ADFF98201F53D600D50D53 /* Info.plist */,
 			);
 			path = PluginTests;
-			sourceTree = "<group>";
-		};
-		8C8E7744173064A9F6D438E3 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				5E23F77F099397094342571A /* Pods-Plugin.debug.xcconfig */,
-				91781294A431A2A7CC6EB714 /* Pods-Plugin.release.xcconfig */,
-				96ED1B6440D6672E406C8D19 /* Pods-PluginTests.debug.xcconfig */,
-				F65BB2953ECE002E1EF3E424 /* Pods-PluginTests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		A797B9EFA3DCEFEA1FBB66A9 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				50ADFFA52020D75100D50D53 /* Capacitor.framework */,
-				3B2A61DA5A1F2DD4F959604D /* Pods_Plugin.framework */,
-				F6753A823D3815DB436415E3 /* Pods_PluginTests.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,7 +152,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 50ADFF9C201F53D600D50D53 /* Build configuration list for PBXNativeTarget "Plugin" */;
 			buildPhases = (
-				AB5B3E54B4E897F32C2279DA /* [CP] Check Pods Manifest.lock */,
 				50ADFF83201F53D600D50D53 /* Sources */,
 				50ADFF84201F53D600D50D53 /* Frameworks */,
 				50ADFF85201F53D600D50D53 /* Headers */,
@@ -162,6 +162,17 @@
 			dependencies = (
 			);
 			name = Plugin;
+			packageProductDependencies = (
+				B7975E59B7B602D4272E6F9B /* Capacitor */,
+				C6D7386BF1A4DCC76B22B8A7 /* Cordova */,
+				5EB79634344365AA02D847EB /* AirshipFrameworkProxy */,
+				90254D351FAA8A28AE70B7D7 /* AirshipScenes */,
+				8FF79FB823E05C0434A669A2 /* AirshipCore */,
+				B6A80A4BCA51FE4D87851397 /* AirshipAutomation */,
+				2E93927B34698E1506781E39 /* AirshipMessageCenter */,
+				F08D1487D96AC967C91EF7EE /* AirshipPreferenceCenter */,
+				FBC8E4508EC5D19D8C3A1965 /* AirshipFeatureFlags */,
+			);
 			productName = Plugin;
 			productReference = 50ADFF88201F53D600D50D53 /* UaCapacitorAirship.framework */;
 			productType = "com.apple.product-type.framework";
@@ -170,11 +181,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 50ADFF9F201F53D600D50D53 /* Build configuration list for PBXNativeTarget "PluginTests" */;
 			buildPhases = (
-				0596884F929ED6F1DE134961 /* [CP] Check Pods Manifest.lock */,
 				50ADFF8D201F53D600D50D53 /* Sources */,
 				50ADFF8E201F53D600D50D53 /* Frameworks */,
 				50ADFF8F201F53D600D50D53 /* Resources */,
-				8E97F58B69A94C6503FC9C85 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -182,6 +191,16 @@
 				50ADFF94201F53D600D50D53 /* PBXTargetDependency */,
 			);
 			name = PluginTests;
+			packageProductDependencies = (
+				AEB76A130019AE946B5DBE94 /* Capacitor */,
+				12129C8153ABBFD5C4CF5F64 /* AirshipFrameworkProxy */,
+				5356F890CD8D3578782F90C1 /* AirshipScenes */,
+				8971394285CD590FD02EB205 /* AirshipCore */,
+				A67B626DB80D89F0B789A550 /* AirshipAutomation */,
+				4387E4D6FCCFA4A4DCF734B7 /* AirshipMessageCenter */,
+				7F3C569796150DD853577EA5 /* AirshipPreferenceCenter */,
+				CEA31C6A267FAB367CDA8520 /* AirshipFeatureFlags */,
+			);
 			productName = PluginTests;
 			productReference = 50ADFF91201F53D600D50D53 /* PluginTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -217,6 +236,11 @@
 				Base,
 			);
 			mainGroup = 50ADFF7E201F53D600D50D53;
+			packageReferences = (
+				EDE93CD6EA86FE6F9E3B8CA0 /* XCRemoteSwiftPackageReference "capacitor-swift-pm" */,
+				46207BB50404457B0B83E7C0 /* XCRemoteSwiftPackageReference "airship-mobile-framework-proxy" */,
+				AE22540ABD0E13BAA9A0C8F7 /* XCRemoteSwiftPackageReference "ios-library" */,
+			);
 			productRefGroup = 50ADFF89201F53D600D50D53 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -244,69 +268,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		0596884F929ED6F1DE134961 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PluginTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8E97F58B69A94C6503FC9C85 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PluginTests/Pods-PluginTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Airship/AirshipKit.framework",
-				"${BUILT_PRODUCTS_DIR}/AirshipFrameworkProxy/AirshipFrameworkProxy.framework",
-				"${BUILT_PRODUCTS_DIR}/Capacitor/Capacitor.framework",
-				"${BUILT_PRODUCTS_DIR}/CapacitorCordova/Cordova.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AirshipKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AirshipFrameworkProxy.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Capacitor.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cordova.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PluginTests/Pods-PluginTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AB5B3E54B4E897F32C2279DA /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Plugin-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		50ADFF83201F53D600D50D53 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -317,6 +278,7 @@
 				6EDAFAC02CB096AF000BD4AA /* AirshipPluginLoader.swift in Sources */,
 				A1B2C3D42E000001000BD4AA /* AirshipCapacitorEmbeddedViewManager.swift in Sources */,
 				6EDE5F232B9FCF3600E33D04 /* AirshipCapacitorAutopilot.swift in Sources */,
+				F62567C7C8E715986E1EA94C /* AirshipErrors.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,7 +428,6 @@
 		};
 		50ADFF9D201F53D600D50D53 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5E23F77F099397094342571A /* Pods-Plugin.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -475,6 +436,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(BUILT_PRODUCTS_DIR)",
+				);
 				INFOPLIST_FILE = Plugin/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -492,7 +457,6 @@
 		};
 		50ADFF9E201F53D600D50D53 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 91781294A431A2A7CC6EB714 /* Pods-Plugin.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -501,6 +465,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(BUILT_PRODUCTS_DIR)",
+				);
 				INFOPLIST_FILE = Plugin/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -517,9 +485,12 @@
 		};
 		50ADFFA0201F53D600D50D53 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 96ED1B6440D6672E406C8D19 /* Pods-PluginTests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(BUILT_PRODUCTS_DIR)",
+				);
 				INFOPLIST_FILE = PluginTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.getcapacitor.PluginTests;
@@ -531,9 +502,12 @@
 		};
 		50ADFFA1201F53D600D50D53 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F65BB2953ECE002E1EF3E424 /* Pods-PluginTests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(BUILT_PRODUCTS_DIR)",
+				);
 				INFOPLIST_FILE = PluginTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.getcapacitor.PluginTests;
@@ -574,6 +548,121 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		46207BB50404457B0B83E7C0 /* XCRemoteSwiftPackageReference "airship-mobile-framework-proxy" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/urbanairship/airship-mobile-framework-proxy.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 16.0.1;
+			};
+		};
+		AE22540ABD0E13BAA9A0C8F7 /* XCRemoteSwiftPackageReference "ios-library" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/urbanairship/ios-library.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 21.0.2;
+			};
+		};
+		EDE93CD6EA86FE6F9E3B8CA0 /* XCRemoteSwiftPackageReference "capacitor-swift-pm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ionic-team/capacitor-swift-pm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		12129C8153ABBFD5C4CF5F64 /* AirshipFrameworkProxy */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 46207BB50404457B0B83E7C0 /* XCRemoteSwiftPackageReference "airship-mobile-framework-proxy" */;
+			productName = AirshipFrameworkProxy;
+		};
+		2E93927B34698E1506781E39 /* AirshipMessageCenter */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AE22540ABD0E13BAA9A0C8F7 /* XCRemoteSwiftPackageReference "ios-library" */;
+			productName = AirshipMessageCenter;
+		};
+		4387E4D6FCCFA4A4DCF734B7 /* AirshipMessageCenter */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AE22540ABD0E13BAA9A0C8F7 /* XCRemoteSwiftPackageReference "ios-library" */;
+			productName = AirshipMessageCenter;
+		};
+		5356F890CD8D3578782F90C1 /* AirshipScenes */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AE22540ABD0E13BAA9A0C8F7 /* XCRemoteSwiftPackageReference "ios-library" */;
+			productName = AirshipScenes;
+		};
+		5EB79634344365AA02D847EB /* AirshipFrameworkProxy */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 46207BB50404457B0B83E7C0 /* XCRemoteSwiftPackageReference "airship-mobile-framework-proxy" */;
+			productName = AirshipFrameworkProxy;
+		};
+		7F3C569796150DD853577EA5 /* AirshipPreferenceCenter */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AE22540ABD0E13BAA9A0C8F7 /* XCRemoteSwiftPackageReference "ios-library" */;
+			productName = AirshipPreferenceCenter;
+		};
+		8971394285CD590FD02EB205 /* AirshipCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AE22540ABD0E13BAA9A0C8F7 /* XCRemoteSwiftPackageReference "ios-library" */;
+			productName = AirshipCore;
+		};
+		8FF79FB823E05C0434A669A2 /* AirshipCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AE22540ABD0E13BAA9A0C8F7 /* XCRemoteSwiftPackageReference "ios-library" */;
+			productName = AirshipCore;
+		};
+		90254D351FAA8A28AE70B7D7 /* AirshipScenes */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AE22540ABD0E13BAA9A0C8F7 /* XCRemoteSwiftPackageReference "ios-library" */;
+			productName = AirshipScenes;
+		};
+		A67B626DB80D89F0B789A550 /* AirshipAutomation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AE22540ABD0E13BAA9A0C8F7 /* XCRemoteSwiftPackageReference "ios-library" */;
+			productName = AirshipAutomation;
+		};
+		AEB76A130019AE946B5DBE94 /* Capacitor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EDE93CD6EA86FE6F9E3B8CA0 /* XCRemoteSwiftPackageReference "capacitor-swift-pm" */;
+			productName = Capacitor;
+		};
+		B6A80A4BCA51FE4D87851397 /* AirshipAutomation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AE22540ABD0E13BAA9A0C8F7 /* XCRemoteSwiftPackageReference "ios-library" */;
+			productName = AirshipAutomation;
+		};
+		B7975E59B7B602D4272E6F9B /* Capacitor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EDE93CD6EA86FE6F9E3B8CA0 /* XCRemoteSwiftPackageReference "capacitor-swift-pm" */;
+			productName = Capacitor;
+		};
+		C6D7386BF1A4DCC76B22B8A7 /* Cordova */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EDE93CD6EA86FE6F9E3B8CA0 /* XCRemoteSwiftPackageReference "capacitor-swift-pm" */;
+			productName = Cordova;
+		};
+		CEA31C6A267FAB367CDA8520 /* AirshipFeatureFlags */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AE22540ABD0E13BAA9A0C8F7 /* XCRemoteSwiftPackageReference "ios-library" */;
+			productName = AirshipFeatureFlags;
+		};
+		F08D1487D96AC967C91EF7EE /* AirshipPreferenceCenter */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AE22540ABD0E13BAA9A0C8F7 /* XCRemoteSwiftPackageReference "ios-library" */;
+			productName = AirshipPreferenceCenter;
+		};
+		FBC8E4508EC5D19D8C3A1965 /* AirshipFeatureFlags */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AE22540ABD0E13BAA9A0C8F7 /* XCRemoteSwiftPackageReference "ios-library" */;
+			productName = AirshipFeatureFlags;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 50ADFF7F201F53D600D50D53 /* Project object */;
 }

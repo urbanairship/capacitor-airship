@@ -3,8 +3,7 @@
 Failing `npm run verify`?
 
 Try this from root directory:
-`rm -rf node_modules package-lock.json ios/Pods ios/Podfile.lock`
+`rm -rf node_modules package-lock.json`
 `npm cache clean --force`
 `npm install`
-`cd ios && pod install`
 

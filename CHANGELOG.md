@@ -1,5 +1,19 @@
 # Capacitor Plugin Changelog
 
+## Version 7.0.0 - September 21, 2026
+
+Major release that drops CocoaPods support, updates to Capacitor 8.5, and updates the iOS SDK to 21.0.2 and the Android SDK to 21.0.2. See [MIGRATION.md](MIGRATION.md) for upgrade details.
+
+### Breaking: CocoaPods support dropped
+The plugin is now distributed via Swift Package Manager only; `UaCapacitorAirship.podspec` has been removed. If your app's iOS project still uses CocoaPods, it will not resolve this version at all — migrate to SPM first (see Capacitor's [Swift Package Manager guide](https://capacitorjs.com/docs/ios/spm)), or stay on the 6.x line until you do. This is ahead of [CocoaPods Trunk going read-only](https://blog.cocoapods.org/CocoaPods-Specs-Repo/) in December 2026.
+
+### Changes
+- Updated to Capacitor 8.5
+- Updated iOS SDK to [21.0.2](https://github.com/urbanairship/ios-library/releases/tag/21.0.2). Xcode 27 is now required to build the iOS SDK.
+- Updated Android SDK to [21.0.2](https://github.com/urbanairship/android-library/releases/tag/21.0.2)
+- Android `minSdkVersion` increased from 24 to 26
+- Added `Airship.featureFlagManager.status` and `Airship.featureFlagManager.waitRefresh` to check and wait on feature flag data freshness, and a new `EventType.FeatureFlagStatusChanged` event fired when that freshness changes
+
 ## Version 6.3.0 - August 19, 2026
 
 Minor release that updates the Android SDK to 20.11.1.

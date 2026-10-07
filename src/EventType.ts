@@ -11,6 +11,7 @@ import type {
   PushTokenReceivedEvent,
   LiveActivitiesUpdatedEvent,
   PendingEmbeddedUpdatedEvent,
+  FeatureFlagStatusChangedEvent,
 } from './types';
 
 export enum EventType {
@@ -26,6 +27,7 @@ export enum EventType {
   IOSAuthorizedNotificationSettingsChanged = 'ios_authorized_notification_settings_changed',
   IOSLiveActivitiesUpdated = 'ios_live_activities_updated',
   PendingEmbeddedUpdated = 'pending_embedded_updated',
+  FeatureFlagStatusChanged = 'feature_flag_status_changed',
 }
 
 export interface EventTypeMap {
@@ -41,4 +43,5 @@ export interface EventTypeMap {
   [EventType.PushTokenReceived]: PushTokenReceivedEvent;
   [EventType.IOSLiveActivitiesUpdated]: LiveActivitiesUpdatedEvent;
   [EventType.PendingEmbeddedUpdated]: PendingEmbeddedUpdatedEvent;
+  [EventType.FeatureFlagStatusChanged]: FeatureFlagStatusChangedEvent;
 }

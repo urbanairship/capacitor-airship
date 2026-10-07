@@ -1,13 +1,7 @@
 import Foundation
 @preconcurrency
 import Capacitor
-
-#if canImport(AirshipKit)
-import AirshipKit
-#elseif canImport(AirshipCore)
 import AirshipCore
-#endif
-
 import AirshipFrameworkProxy
 
 /**
@@ -75,7 +69,7 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin, @unchecked Sendable {
         do {
             self.notifyListeners(eventName, data: try event.body.unwrapped())
         } catch {
-            AirshipLogger.error("Failed to send event: \(event) error: \(error)")
+            CAPLog.print("⚡️  Failed to send event: ", event, error)
         }
 
         return true
@@ -552,6 +546,17 @@ public class AirshipPlugin: CAPPlugin, CAPBridgedPlugin, @unchecked Sendable {
         case "featureFlagManager#trackInteraction":
             try AirshipProxy.shared.featureFlagManager.trackInteraction(
                 flag: call.requireCodableArg()
+            )
+
+            return nil
+
+        case "featureFlagManager#status":
+            return try await AirshipProxy.shared.featureFlagManager.status
+
+        case "featureFlagManager#waitRefresh":
+            // Proxy takes seconds; the public API is in milliseconds like the rest of the plugin.
+            try await AirshipProxy.shared.featureFlagManager.waitRefresh(
+                maxTime: call.getDouble("value").map { $0 / 1000.0 }
             )
 
             return nil

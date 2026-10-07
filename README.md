@@ -19,6 +19,14 @@ The official Airship Capacitor plugin for iOS and Android.
 - **Tags, Attributes & Subscription Lists** - User segmentation, personalization, and subscription management
 - **Privacy Controls** - Granular data collection and feature management
 
+## Requirements
+
+- Capacitor 8.5+
+- iOS: Swift Package Manager only (CocoaPods is not supported); Xcode 27+
+- Android: `minSdkVersion` 26+
+
+Upgrading from an earlier major version? See [MIGRATION.md](MIGRATION.md).
+
 ## Quick Start
 
 Install the package:

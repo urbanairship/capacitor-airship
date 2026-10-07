@@ -848,6 +848,24 @@ export interface FeatureFlag {
   readonly _internal: unknown;
 }
 
+/**
+ * The freshness of the feature flag data used to resolve flags.
+ * - `up_to_date` - The data is current.
+ * - `stale` - The data is out of date, but flags can still be resolved.
+ * - `out_of_date` - The data is out of date and flags should not be resolved.
+ */
+export type FeatureFlagStatus = 'up_to_date' | 'stale' | 'out_of_date';
+
+/**
+ * Event fired when the feature flag data status changes.
+ */
+export interface FeatureFlagStatusChangedEvent {
+  /**
+   * The feature flag data status.
+   */
+  status: FeatureFlagStatus;
+}
+
 
 /**
  * Live Activity info.
