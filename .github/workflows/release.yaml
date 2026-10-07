@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   deploy:
-    runs-on: macos-26-xlarge
+    runs-on: xcode-27-xlarge
     timeout-minutes: 20
     env:
       DEVELOPER_DIR: /Applications/Xcode_27.0.app/Contents/Developer
