@@ -1,6 +1,6 @@
 # Capacitor Plugin Changelog
 
-## Version 7.0.0 - September 21, 2026
+## Version 7.0.0 - October 6, 2026
 
 Major release that drops CocoaPods support, updates to Capacitor 8.5, and updates the iOS SDK to 21.0.2 and the Android SDK to 21.0.2. See [MIGRATION.md](MIGRATION.md) for upgrade details.
 
