@@ -16,18 +16,38 @@ import com.urbanairship.json.JsonValue
 
 class CapacitorAutopilot : BaseAutopilot() {
 
+    @Volatile
+    private var cachedPluginConfig: ProxyConfig? = null
+
     override fun onReady(context: Context) {
         Log.i("CapacitorAutopilot", "onAirshipReady")
         Airship.analytics.registerSDKExtension(Extension.CAPACITOR, AirshipCapacitorVersion.version)
     }
 
     override fun createConfigBuilder(context: Context): AirshipConfigOptions.Builder {
-        val pluginConfig = CapConfig.loadDefault(context).getPluginConfiguration("Airship")
-        val proxyConfig = ProxyConfig(JsonValue.wrapOpt(pluginConfig.getObject("config")).optMap())
-        val builder =  AirshipConfigOptions.newBuilder()
-        try { builder.tryApplyDefaultProperties(context) } catch (_: Exception) {}
-        builder.applyProxyConfig(context, proxyConfig)
-        return builder
+        return super.createConfigBuilder(context).apply {
+            applyProxyConfig(context, pluginConfig(context))
+        }
+    }
+
+    /**
+     * Returns the Airship plugin config declared in `capacitor.config.json`, parsing it once per
+     * process.
+     *
+     * `CapConfig.loadDefault` re-reads and re-parses the asset on every call, and callers may be on
+     * the main thread. The asset ships in the APK, so the first parse stays valid for the life of
+     * the process.
+     */
+    private fun pluginConfig(context: Context): ProxyConfig {
+        cachedPluginConfig?.let { return it }
+
+        return synchronized(this) {
+            cachedPluginConfig ?: run {
+                val pluginConfig = CapConfig.loadDefault(context).getPluginConfiguration("Airship")
+                ProxyConfig(JsonValue.wrapOpt(pluginConfig.getObject("config")).optMap())
+                    .also { cachedPluginConfig = it }
+            }
+        }
     }
 
     override fun onMigrateData(context: Context, proxyStore: ProxyStore) {
