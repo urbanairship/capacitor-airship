@@ -39,6 +39,9 @@ class CapacitorAutopilot : BaseAutopilot() {
      * `CapConfig.loadDefault` re-reads and re-parses the asset on every call, and Airship asks for
      * the config again at every entry point until takeoff succeeds. The asset ships in the APK, so
      * the first parse stays valid for the life of the process.
+     *
+     * @param context The application context.
+     * @return The Airship plugin config, parsed on the first call and reused afterwards.
      */
     private fun pluginConfig(context: Context): ProxyConfig {
         return cachedPluginConfig ?: run {
