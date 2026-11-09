@@ -26,9 +26,10 @@ class CapacitorAutopilot : BaseAutopilot() {
     }
 
     override fun createConfigBuilder(context: Context): AirshipConfigOptions.Builder {
-        return super.createConfigBuilder(context).apply {
-            applyProxyConfig(context, pluginConfig(context))
-        }
+        val builder = AirshipConfigOptions.newBuilder()
+        try { builder.tryApplyDefaultProperties(context) } catch (_: Exception) {}
+        builder.applyProxyConfig(context, pluginConfig(context))
+        return builder
     }
 
     /**
