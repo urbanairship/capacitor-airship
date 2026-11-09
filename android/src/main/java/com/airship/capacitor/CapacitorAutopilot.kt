@@ -16,18 +16,39 @@ import com.urbanairship.json.JsonValue
 
 class CapacitorAutopilot : BaseAutopilot() {
 
+    // Core serializes every path into isReady under Autopilot.automaticTakeOff's monitor, so this
+    // needs no synchronization of its own despite being reached from more than one thread.
+    private var cachedPluginConfig: ProxyConfig? = null
+
     override fun onReady(context: Context) {
         Log.i("CapacitorAutopilot", "onAirshipReady")
         Airship.analytics.registerSDKExtension(Extension.CAPACITOR, AirshipCapacitorVersion.version)
     }
 
     override fun createConfigBuilder(context: Context): AirshipConfigOptions.Builder {
-        val pluginConfig = CapConfig.loadDefault(context).getPluginConfiguration("Airship")
-        val proxyConfig = ProxyConfig(JsonValue.wrapOpt(pluginConfig.getObject("config")).optMap())
-        val builder =  AirshipConfigOptions.newBuilder()
+        val builder = AirshipConfigOptions.newBuilder()
         try { builder.tryApplyDefaultProperties(context) } catch (_: Exception) {}
-        builder.applyProxyConfig(context, proxyConfig)
+        builder.applyProxyConfig(context, pluginConfig(context))
         return builder
+    }
+
+    /**
+     * Returns the Airship plugin config declared in `capacitor.config.json`, parsing it once per
+     * process.
+     *
+     * `CapConfig.loadDefault` re-reads and re-parses the asset on every call, and Airship asks for
+     * the config again at every entry point until takeoff succeeds. The asset ships in the APK, so
+     * the first parse stays valid for the life of the process.
+     *
+     * @param context The application context.
+     * @return The Airship plugin config, parsed on the first call and reused afterwards.
+     */
+    private fun pluginConfig(context: Context): ProxyConfig {
+        return cachedPluginConfig ?: run {
+            val pluginConfig = CapConfig.loadDefault(context).getPluginConfiguration("Airship")
+            ProxyConfig(JsonValue.wrapOpt(pluginConfig.getObject("config")).optMap())
+                .also { cachedPluginConfig = it }
+        }
     }
 
     override fun onMigrateData(context: Context, proxyStore: ProxyStore) {
