@@ -16,7 +16,8 @@ import com.urbanairship.json.JsonValue
 
 class CapacitorAutopilot : BaseAutopilot() {
 
-    @Volatile
+    // Core serializes every path into isReady under Autopilot.automaticTakeOff's monitor, so this
+    // needs no synchronization of its own despite being reached from more than one thread.
     private var cachedPluginConfig: ProxyConfig? = null
 
     override fun onReady(context: Context) {
@@ -34,19 +35,15 @@ class CapacitorAutopilot : BaseAutopilot() {
      * Returns the Airship plugin config declared in `capacitor.config.json`, parsing it once per
      * process.
      *
-     * `CapConfig.loadDefault` re-reads and re-parses the asset on every call, and callers may be on
-     * the main thread. The asset ships in the APK, so the first parse stays valid for the life of
-     * the process.
+     * `CapConfig.loadDefault` re-reads and re-parses the asset on every call, and Airship asks for
+     * the config again at every entry point until takeoff succeeds. The asset ships in the APK, so
+     * the first parse stays valid for the life of the process.
      */
     private fun pluginConfig(context: Context): ProxyConfig {
-        cachedPluginConfig?.let { return it }
-
-        return synchronized(this) {
-            cachedPluginConfig ?: run {
-                val pluginConfig = CapConfig.loadDefault(context).getPluginConfiguration("Airship")
-                ProxyConfig(JsonValue.wrapOpt(pluginConfig.getObject("config")).optMap())
-                    .also { cachedPluginConfig = it }
-            }
+        return cachedPluginConfig ?: run {
+            val pluginConfig = CapConfig.loadDefault(context).getPluginConfiguration("Airship")
+            ProxyConfig(JsonValue.wrapOpt(pluginConfig.getObject("config")).optMap())
+                .also { cachedPluginConfig = it }
         }
     }
 
