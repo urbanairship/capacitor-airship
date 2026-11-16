@@ -43,6 +43,11 @@ android {
         abortOnError false
         checkDependencies false
     }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_21
         targetCompatibility JavaVersion.VERSION_21
@@ -62,6 +67,10 @@ dependencies {
     implementation project(':capacitor-android')
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     api "com.urbanairship.android:airship-framework-proxy:$airshipProxyVersion"
+
+    testImplementation "junit:junit:4.13.2"
+    testImplementation "io.mockk:mockk:1.13.13"
+    testImplementation "org.robolectric:robolectric:4.14.1"
 
     if (isHmsEnabled()) {
         implementation "com.urbanairship.android:airship-framework-proxy-hms:$airshipProxyVersion"
