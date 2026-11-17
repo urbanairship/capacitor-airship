@@ -1,5 +1,14 @@
 # Capacitor Plugin Changelog
 
+## Version 7.1.0 - November 16, 2026
+
+Minor release that updates the Android and iOS SDKs to 21.2.0, which fixes reporting for Scenes launched from a push, and reduces Android startup work.
+
+### Changes
+- Updated Android SDK to [21.2.0](https://github.com/urbanairship/android-library/releases/tag/21.2.0)
+- Updated iOS SDK to [21.2.0](https://github.com/urbanairship/ios-library/releases/tag/21.2.0)
+- Reduced repeated work on Android before Airship takes off, which could contribute to ANRs
+
 ## Version 7.0.0 - October 6, 2026
 
 Major release that drops CocoaPods support, updates to Capacitor 8.5, and updates the iOS SDK to 21.0.2 and the Android SDK to 21.0.2. See [MIGRATION.md](MIGRATION.md) for upgrade details.
